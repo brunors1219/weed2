@@ -1,0 +1,59 @@
+import connectToDatabase from '../../database';
+import Guest from '../../database/schemas/Guest';
+import Escort from '../../database/schemas/Escort';
+
+export default async function handler(request, response) {
+  if (request.method === 'POST') {
+    try {
+      await connectToDatabase();
+
+      if (!request.body) {
+        return response.status(400).json({ message: 'Corpo da requisição está vazio' });
+      }
+
+      const {
+        name,
+        email,
+        age,
+        phone,
+        escorts
+       } = request.body;
+
+       // Para verficar se o email já está cadastro
+       if (email) {
+        const guestExists = await Guest.findOne({
+          email,
+        });
+
+         if (guestExists) {
+           return response.status(400).json({ message: 'E-mail já esta sendo usado' });
+         }
+       }
+
+       if (!Array.isArray(escorts)) {
+          return response.status(400).json({ message: 'Escorts precisa ser uma array'});
+       }
+
+       const guest = new Guest({ name, email, age, phone });
+
+       guest.escorts = escorts.map(escort => ({
+         name: escort.name,
+         age: escort.age,
+       }));
+
+       guest.save(function (err) {
+         if (err) console.error(err);
+       });
+  
+      return response.status(201).json(guest);
+    } catch (err) {
+      console.error(err);
+
+      return response.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  const guests = await Guest.find();
+  
+  return response.status(405).json({ message: guests });
+}
