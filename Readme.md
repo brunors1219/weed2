@@ -2,11 +2,11 @@
 
 ## Database setup
 
-**CLIENT**: MongoDB
-**HOST**: cluster0.0dtj2.mongodb.net
-**USER**: weddingAnselmo
-**PASSWORD**: VWkw1dBa3jJL5eTO
-**DATABASE NAME**:myFirstDatabase
+**CLIENT**: MongoDB <br />
+**HOST**: cluster0.0dtj2.mongodb.net <br />
+**USER**: weddingAnselmo <br />
+**PASSWORD**: VWkw1dBa3jJL5eTO <br />
+**DATABASE NAME**:myFirstDatabase <br />
 
 ```javascript
 const { MongoClient, ServerApiVersion } = require('mongodb');
