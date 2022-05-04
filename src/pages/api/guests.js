@@ -53,7 +53,42 @@ export default async function handler(request, response) {
     }
   }
 
-  const guests = await Guest.find();
+  if (request.method === 'GET' && !request.params) {
+    try {
+      await connectToDatabase();
+
+      const guests = await Guest.find();
+
+
+      const serializedGuests = guests.map(guest => {
+        return {
+          name: guest.name,
+          invitation_url: `${process.env.APP_URL}/guestInvitation/${guest.id}`, 
+        };
+      });
   
-  return response.status(405).json({ message: guests });
+      return response.json(serializedGuests);
+    } catch (err) {
+      console.log(err);
+
+      return response.status(500).json(err);
+    }
+  }
+
+  if (request.method === 'GET' && request.params.id) {
+    try {
+      await connectToDatabase();
+
+      const guest = await Guest.findOne(request.params.id);
+
+      return response.json(guest);
+    } catch (err) {
+      console.log(err);
+
+      return response.status(500).json(err);
+    }
+  }
+
+  
+  return response.status(405).json({ message: 'Method not allowed' });
 }
