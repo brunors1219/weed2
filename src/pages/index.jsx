@@ -1,3 +1,34 @@
-const Home = () => <h1>Convite</h1>;
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import img1 from '../img/a.jpg';
+import img2 from '../img/b.jpg';
+import img3 from '../img/c.jpg';
+
+
+function Home() {
+  return (
+    <View style={styles.container}>
+    <Text style={styles.red}>just red</Text>
+    <Text style={styles.bigBlue}>just bigBlue</Text>
+    <Text style={[styles.bigBlue, styles.red]}>bigBlue, then red</Text>
+    <Text style={[styles.red, styles.bigBlue]}>red, then bigBlue</Text>
+  </View>
+  );
+
+} 
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 50,
+  },
+  bigBlue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  red: {
+    color: 'red',
+  },
+});
 
 export default Home;
