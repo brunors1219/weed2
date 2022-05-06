@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback }  from 'react';
 import { useRouter } from 'next/router'; 
-
+import ProductCard from './../../components/Product';
 
 function gifts() {
   const { query } = useRouter();
@@ -10,14 +10,17 @@ function gifts() {
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)
       .then(response => response.json())
-      .then(data => setProducts(data));
-    console.log(products);
+      .then(data => {
+        setProducts(data);
+      });
   }, []);
 
   return (
     <div>
-      {products.map((item)=>{
-        <p>item.name</p>
+      {products.map((item)=> {
+        return (
+          <ProductCard key={item._id} product={item} />
+        );
       })}
     </div>
   );

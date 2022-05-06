@@ -1,34 +1,45 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import img1 from '../img/a.jpg';
-import img2 from '../img/b.jpg';
-import img3 from '../img/c.jpg';
+import { Box, Image, Flex, Badge, Text } from "@chakra-ui/react";
+import { MdStar } from "react-icons/md";
+import { GiGreekTemple } from 'react-icons/gi'
+import styled from '@emotion/styled';
 
+const Caixa = styled(Flex)`
+  background-image: url(/images/a.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
 
 function Home() {
   return (
-    <View style={styles.container}>
-    <Text style={styles.red}>just red</Text>
-    <Text style={styles.bigBlue}>just bigBlue</Text>
-    <Text style={[styles.bigBlue, styles.red]}>bigBlue, then red</Text>
-    <Text style={[styles.red, styles.bigBlue]}>red, then bigBlue</Text>
-  </View>
+    <Caixa h="100vh" flexDirection="column" justify="flex-end">
+      <Box background="white" p="5" w="full" h="12rem" borderWidth="1px" opacity="0.6">
+        <Text mt={2} fontSize="3xl" fontWeight="semibold" lineHeight="short">
+          Super casamento Margo e Anselmo
+        </Text>
+        <Flex mt={2} align="center">
+          <Box as={MdStar} color="orange.400" />
+          <Text ml={1} fontSize="sm">
+            <b>18/08/2022</b> 
+          </Text>
+        </Flex>
+        <Flex mt={2} align="center">
+          <Box as={GiGreekTemple} color="orange.400" />
+          <Text ml={1} fontSize="sm">
+            <b>Celebração as 21:00 - Igreja de São Francisco - Sete Lagoas - Bairro JK</b> 
+          </Text>
+        </Flex>
+        <Flex mt={2} align="center">
+          <Box as={GiGreekTemple} color="orange.400" />
+          <Text ml={1} fontSize="sm">
+            <b>Recepção a partir das 22:00 - Sítio Primavera</b> 
+          </Text>
+        </Flex>
+      </Box>
+    </Caixa>
   );
 
 } 
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 50,
-  },
-  bigBlue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 30,
-  },
-  red: {
-    color: 'red',
-  },
-});
 
 export default Home;

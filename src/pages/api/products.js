@@ -1,5 +1,5 @@
 import connectToDatabase from '../../database';
-import Product from '../../database/schemas/Products';
+import Product from '../../database/schemas/Product';
 
 export default async function handler(request, response) {
   if (request.method === 'POST') {
@@ -43,7 +43,7 @@ export default async function handler(request, response) {
     try {
       await connectToDatabase();
 
-      const products = await Product.find();
+      const products = await Product.find().exec();
 
       return response.json(products);
     } catch (err) {
@@ -52,5 +52,6 @@ export default async function handler(request, response) {
       return response.status(500).json(err);
     }
   }
+
   return response.status(405).json({ message: 'Method not allowed' });
 }

@@ -57,8 +57,7 @@ export default async function handler(request, response) {
     try {
       await connectToDatabase();
 
-      const guests = await Guest.find();
-
+      const guests = await Guest.find().exec();
 
       const serializedGuests = guests.map(guest => {
         return {
