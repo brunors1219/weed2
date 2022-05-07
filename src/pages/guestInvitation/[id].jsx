@@ -1,5 +1,16 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router'; 
+import { Center, Box, Image, Flex, Badge, Text } from "@chakra-ui/react";
+import { MdStar } from "react-icons/md";
+import { GiGreekTemple } from 'react-icons/gi'
+import styled from '@emotion/styled';
+
+const Caixa = styled(Flex)`
+  background-image: url(/images/a.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
 
 const GuestInvite = () => {
   const { query } = useRouter();
@@ -16,8 +27,9 @@ const GuestInvite = () => {
           setName(data.name);
           setStatus(data.confirmed);
           setEscorts(data.escorts);
+          console.log(name);
         });
-    }
+    }    
   }, [id]);
 
   const setConfirmedStatus = useCallback((confirmed, escortId) => {
@@ -39,33 +51,34 @@ const GuestInvite = () => {
   }, [id]);
   
   return (
-    <div>
-      <h1>Guest Id: {id}</h1>
-      <h2>{name}</h2>
-      <h3>
-        Situação da confirmação: {status == null ? 'Pendente' : status ? 'Confirmado' : 'Não irá'}
-      </h3>
-      <button onClick={() => setConfirmedStatus(true)}>Eu vou</button>
-      <button onClick={() => setConfirmedStatus(false)}>Infelizmente não vou poder</button>
-      <button onClick={() => setConfirmedStatus(null)}>Não sei ainda</button>
-      {status && (
-        <ul>
-          {escorts.map(escort => (
-            <li>
-              <span>Id: {escort._id}</span>
-              <br />
-              <span>Nome do acompanhante: {escort.name}</span>
-              <h3>
-                Situação da confirmação: {escort.confirmed == null ? 'Pendente' : escort.confirmed ? 'Confirmado' : 'Não irá'}
-              </h3>
-              <button onClick={() => setConfirmedStatus(true, escort._id)}>Confirmar</button>
-              <button onClick={() => setConfirmedStatus(false, escort._id)}>Não irá</button>
-              <button onClick={() => setConfirmedStatus(null, escort._id)}>Não sei ainda</button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <Caixa h="100vh" flexDirection="column" justify="flex-end">
+        <Box 
+          background="white" 
+          w="lg" 
+          h="7rem" 
+          borderWidth="1px" 
+          opacity="0.6" 
+          ml="20px" 
+          mb="20px" 
+          borderRadius="lg"
+          boxShadow='dark-lg' rounded='md' 
+        >
+          <Text mt={2} fontSize="3xl" fontWeight="semibold" lineHeight="short" textAlign="center">
+            Olá {name}, precisamos muito da sua confirmação!
+          </Text>
+          {status && (
+            <ul>
+              {escorts.map(escort => (
+                <li>
+                  <span>Id: {escort._id}</span>
+                  <br />
+                  <span>Nome do acompanhante: {escort.name}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Box>
+    </Caixa>      
   );
 };
 

@@ -1,6 +1,5 @@
 import connectToDatabase from '../../database';
 import Guest from '../../database/schemas/Guest';
-import Escort from '../../database/schemas/Escort';
 
 export default async function handler(request, response) {
   if (request.method === 'POST') {
@@ -11,41 +10,45 @@ export default async function handler(request, response) {
         return response.status(400).json({ message: 'Corpo da requisição está vazio' });
       }
 
-      const {
-        name,
-        email,
-        age,
-        phone,
-        escorts
-       } = request.body;
+      const guests = request.body;
 
-       // Para verficar se o email já está cadastro
-       if (email) {
-        const guestExists = await Guest.findOne({
-          email,
-        });
-
-         if (guestExists) {
-           return response.status(400).json({ message: 'E-mail já esta sendo usado' });
-         }
-       }
-
-       if (!Array.isArray(escorts)) {
-          return response.status(400).json({ message: 'Escorts precisa ser uma array'});
-       }
-
-       const guest = new Guest({ name, email, age, phone });
-
-       guest.escorts = escorts.map(escort => ({
-         name: escort.name,
-         age: escort.age,
-       }));
-
-       guest.save(function (err) {
-         if (err) console.error(err);
-       });
+      if (!Array.isArray(guests)) {
+        return response.status(400).json({ message: 'Guests precisa ser uma array'});
+      }
+      let erros = [];
+      guests.map(async (item)=>{
+        if (item.name) {
+          const guestExists = await Guest.findOne({
+            "name" : item.name,
+          });
   
-      return response.status(201).json(guest);
+           if (guestExists) {
+              //  Guest exist - UPDATE
+
+
+           } else {
+              //  Guest not exist - INSERT
+              const record_guest = new Guest({
+                name : item.name, 
+                owner : item.owner
+              });
+              
+              if (Array.isArray(item.escorts)) {
+                record_guest.escorts = item.escorts.map(escort => ({
+                  name: escort.name
+                }));                
+              };
+                         
+              record_guest.save(function (err) {
+                if (err) erros.push({"erro": err, "owner": item.owner, "name": item.name});
+              });
+           }
+         }
+      })
+      if (erros.length > 0)
+        return response.status(200).json(erros);
+      else
+        return response.status(201).json('Dados incluídos com sucesso');
     } catch (err) {
       console.error(err);
 

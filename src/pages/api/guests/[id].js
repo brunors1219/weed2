@@ -1,6 +1,5 @@
 import connectToDatabase from '../../../database';
 import Guest from '../../../database/schemas/Guest';
-import Escort from '../../../database/schemas/Escort';
 
 export default async function handler(request, response) {
   if (request.method === 'GET') {
@@ -8,8 +7,7 @@ export default async function handler(request, response) {
       const { id } = request.query;
 
       await connectToDatabase();
-
-      const guest = await Guest.findOne({ id }).exec();
+      const guest = await Guest.findOne({ _id : id }).exec();
 
       return response.json(guest);
     } catch (err) {
