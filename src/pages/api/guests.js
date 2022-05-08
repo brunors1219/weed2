@@ -61,10 +61,9 @@ export default async function handler(request, response) {
       await connectToDatabase();
 
       const guests = await Guest.find().exec();
-
       const serializedGuests = guests.map(guest => {
         return {
-          name: guest.name,
+          ...guest, 
           invitation_url: `${process.env.APP_URL}/guestInvitation/${guest.id}`, 
         };
       });
