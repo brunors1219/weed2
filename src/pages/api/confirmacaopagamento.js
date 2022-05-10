@@ -7,13 +7,19 @@ export default async function confirmacaopagamento(request, response) {
     
     const { body } = request;
 
+    console.log({ body });
+
     const record = new Pagamentos({
       item: body
     });
     
-    record.save();
+    record.save(function (err) {
+      if (err) console.log(err);
+    });
 
-    return response.json();
+    console.log({ record });
+
+    return response.send();
     
   } catch(err) {
     return response.status(500).json({ message: 'Internal server error' });
