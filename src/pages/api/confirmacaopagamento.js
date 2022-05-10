@@ -11,6 +11,11 @@ export default async function confirmacaopagamento(request, response) {
       item: query
     });
     
+    record.save();
+
+    console.log(request.params);
+    console
+    
     return response.json({ record, query });
     
   } catch(err) {
