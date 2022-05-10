@@ -76,20 +76,6 @@ export default async function handler(request, response) {
     }
   }
 
-  if (request.method === 'GET' && request.params.id) {
-    try {
-      await connectToDatabase();
-
-      const guest = await Guest.findOne(request.params.id);
-
-      return response.json(guest);
-    } catch (err) {
-      console.log(err);
-
-      return response.status(500).json(err);
-    }
-  }
-
   
   return response.status(405).json({ message: 'Method not allowed' });
 }
