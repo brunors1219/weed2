@@ -5,7 +5,9 @@ export default async function confirmacaopagamento(request, response) {
   try {
     await connectToDatabase();
     
-    const { query } = request;
+    const { body } = request;
+
+    console.log({ body });
 
     const record = new Pagamentos({
       item: query
@@ -13,9 +15,6 @@ export default async function confirmacaopagamento(request, response) {
     
     record.save();
 
-    console.log(request.params);
-    console
-    
     return response.json({ record, query });
     
   } catch(err) {
