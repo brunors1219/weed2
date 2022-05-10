@@ -8,7 +8,7 @@ export default async function confirmacaopagamento(request, response) {
     const { query } = request;
 
     const record = new Pagamentos({
-      item : query
+      item: query
     });
     
     return response.json({ record, query });
