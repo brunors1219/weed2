@@ -30,17 +30,14 @@ const Caixa = styled(Flex)`
 const Circlo = styled(Flex)`
   background-color: #505EA1;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  width: 30vh;
+  height: 30vh;
   overflow: hidden;
   position: relative;
-  margin-top: 3vh;
   margin-left: 30px;
   img {
-    width: 300px;
-    height: 250px;
-    margin-top: -52px;
-    margin-left: 0px; 
+    width: 100%;
+    height: 100%;
   }    
 `;
 
