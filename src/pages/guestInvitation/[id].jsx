@@ -6,29 +6,36 @@ import { GiGreekTemple } from 'react-icons/gi'
 import styled from '@emotion/styled';
 
 const Caixa = styled(Flex)`
-  background-image: url(/images/inviteBack.jpg);
+  background-image: url(/images/inviteBack1.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   text-align: center;
   align-items: center;
-  color: white;
+  color: #C8A2C8;
   font-family: "Great Vibes";
   .title {font-size: x-large; }
   .titleName {font-size: xxx-large;
-    padding: 10px; }
+    padding: 10px; 
+    margin-top: 20px;
+    color: #9583B6;
+    margin-bottom: 20px}   
   .locate {font-size: xx-large; }  
   .time {font-weight: 900;}  
+  .frase {width: 50%;    margin-left: -180px;}
+  .fraseAutor{    margin-left: -118px
+;}
 `;
 
 const Circlo = styled(Flex)`
-  background-color: #aaa;
+  background-color: #505EA1;
   border-radius: 50%;
   width: 200px;
   height: 200px;
   overflow: hidden;
   position: relative;
-  margin-top: -10vh;
+  margin-top: 3vh;
+  margin-left: 30px;
   img {
     width: 300px;
     height: 250px;
@@ -39,13 +46,15 @@ const Circlo = styled(Flex)`
 
 const Btn = styled(Button)`
   display:block;
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
-  border: 1px solid;
-  background-color: white;
-  color: black;
+  background-color: #505EA1;
+  color: white;
   font-weight:600;
+  text-align: center;
+  white-space: normal;
+  margin:15px 5px 10px 5px;
 `;
 
 const Aviso = styled(Box)`
@@ -101,14 +110,14 @@ const GuestInvite = () => {
       <img src="" alt="" />
       <p class="locate">13 de agosto de 2022</p>
       <p class="locate time">às 21:00h</p>
-      <Flex flexDirection="row">
+      <Flex flexDirection="row" mt="20px"  mb="50px">  
         <Btn>Confirme sua presença</Btn>
         <Btn>Local da cerimônia</Btn>
         <Btn>Local da recepção</Btn>
         <Btn>Lista de presentes</Btn>
       </Flex>
-      <h3>"Da parte do Senhos se fez isto, maravilhoso é aos nossos olhos"</h3>
-      <h4>Salmos 118:23</h4>
+      <h3 class="frase">Da parte do Senhos se fez isto, maravilhoso é aos nossos olhos"</h3>
+      <h4 class="fraseAutor">Salmos 118:23</h4>
     </Caixa>      
   );
 };
