@@ -13,7 +13,7 @@ import {
 
 export default function Confirmation() {
   return (
-    <Center py={6}>
+    <Center py={6} position="absolute" display="none" id="cardConfirmation">
       <Box
         maxW={'320px'}
         w={'full'}
