@@ -21,7 +21,7 @@ export default function GuestCard({ guest }) {
         })}
       </Flex>
       <Text mt={2} fontSize="10px" fontWeight="semibold" lineHeight="short">
-        {guest.invitation_url}
+        <a href={guest.invitation_url}>Link do convite</a>
       </Text>
       <Button w="100%">
         <Text fontSize="20px" color="pink" fontWeight={"extrabold"}>
