@@ -11,7 +11,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-export default function Confirmation() {
+export default function Confirmation({Guest, Escort}) {
   return (
     <Center py={6} position="absolute" display="none" id="cardConfirmation">
       <Box
@@ -23,10 +23,10 @@ export default function Confirmation() {
         p={6}
         textAlign={'center'}>
         <Heading fontSize={'2xl'} fontFamily={'body'}>
-          Lindsey James
+          {Guest}
         </Heading>
         <Text fontWeight={600} color={'gray.500'} mb={4}>
-          @lindsey_jam3s
+          Sua presença é muito importante
         </Text>
         <Text
           textAlign={'center'}

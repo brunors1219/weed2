@@ -116,7 +116,7 @@ const GuestInvite = () => {
   
   return (
     <Box>
-      <Confirmation>        
+      <Confirmation guest={name} escorts={escorts}>        
       </Confirmation>
       <Caixa h="100vh" flexDirection="column" justify="center" >
         <Circlo>
