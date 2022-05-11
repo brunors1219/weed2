@@ -6,15 +6,19 @@ import styled from '@emotion/styled';
 import Head from 'next/head';
 
 const Caixa = styled(Flex)`
-  background-image: url(/images/a.jpg);
+  background-image: url(/images/capLink.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+  margin: 2%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20%;
 `;
 
 function Home() {
   return (
-    <div>
+    <Box bc="#505EA1" w="100vw" h="100vh" >
       <Head>
       {/* <!-- Primary Meta Tags --> */}
         <title>Nosso convite de casamento</title>
@@ -36,7 +40,7 @@ function Home() {
         <meta property="twitter:image" content=""/>        
       </Head>
 
-      <Caixa h="100vh" flexDirection="column" justify="flex-end">
+      <Caixa h="80vh" flexDirection="column" justify="flex-end">
         <Box background="white" p="5" w="full" h="12rem" borderWidth="1px" opacity="0.6">
           <Text mt={2} fontSize="3xl" fontWeight="semibold" lineHeight="short">
             Super casamento Margo e Anselmo
@@ -44,7 +48,7 @@ function Home() {
           <Flex mt={2} align="center">
             <Box as={MdStar} color="orange.400" />
             <Text ml={1} fontSize="sm">
-              <b>18/08/2022</b> 
+              <b>13/08/2022</b> 
             </Text>
           </Flex>
           <Flex mt={2} align="center">
@@ -61,7 +65,7 @@ function Home() {
           </Flex>
         </Box>
       </Caixa>
-    </div>
+    </Box>
   );
 
 } 
