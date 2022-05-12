@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'; 
 import { Center, Box, Image, Flex, Text, Button } from "@chakra-ui/react";
 import { MdStar } from "react-icons/md";
@@ -80,8 +80,14 @@ const GuestInvite = () => {
   const { query } = useRouter();
   const { id } = query;
   const [name , setName] = useState('');
-  const [status , setStatus] = useState('Pendente');
   const [escorts , setEscorts] = useState([]);
+  const [show, setShow] = useState(false);
+  const [msgConfirmacao, setmsgConfirmacao] = useState('none');
+
+  const handleToggle = () => {
+    alert('teste');
+    setShow(!show);
+  };
 
   useEffect(() => {
     if (id) {
@@ -89,34 +95,14 @@ const GuestInvite = () => {
         .then(response => response.json())
         .then(data => {
           setName(data.name);
-          setStatus(data.confirmed);
           setEscorts(data.escorts);
-          console.log(name);
         });
     }    
-  }, [id]);
-
-  const setConfirmedStatus = useCallback((confirmed, escortId) => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        confirmed,
-        escortId,
-      }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      setStatus(data.confirmed);
-
-      if (escortId) {
-        setEscorts(data.escorts);
-      }
-    });
   }, [id]);
   
   return (
     <Box>
-      <Confirmation guest={name} escorts={escorts}>        
+      <Confirmation _id={id} Guest={name} Escorts={escorts} Visivel={msgConfirmacao}>        
       </Confirmation>
       <Caixa h="100vh" flexDirection="column" justify="center" >
         <Circlo>
@@ -129,7 +115,7 @@ const GuestInvite = () => {
         <p class="locate">13 de agosto de 2022</p>
         <p class="locate time">às 21:00h</p>
         <Flex flexDirection="row">  
-          <Btn>Confirme sua presença</Btn>
+          <Btn onClick={()=>setmsgConfirmacao("block")}>Confirme sua presença</Btn>
           <Btn>Local da cerimônia</Btn>
           <Btn>Local da recepção</Btn>
           <Btn>Lista de presentes</Btn>
