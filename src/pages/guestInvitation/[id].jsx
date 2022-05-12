@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'; 
 import { Center, Box, Image, Flex, Text, Button } from "@chakra-ui/react";
 import { MdStar } from "react-icons/md";
-import { GiGreekTemple } from 'react-icons/gi'
+import { GiConsoleController, GiGreekTemple } from 'react-icons/gi'
 import styled from '@emotion/styled';
 import Confirmation from "/src/components/Confirmation.jsx";
+import Locate from "/src/components/Locate.jsx";
 
 const Caixa = styled(Flex)`
   background-image: url(/images/inviteBack1.jpg);
@@ -74,7 +75,7 @@ const Btn = styled(Button)`
   height: 50px;
   width: 85px;
   border-radius: 50%;
-  background-color: #505EA1;
+  background-color: #C8A2C8;
   color: white;
   text-align: center;
   white-space: normal;
@@ -95,7 +96,7 @@ const Btn1 = styled(Button)`
   height: 50px;
   width: 85px;
   border-radius: 50%;
-  background-color: #C8A2C8 ;
+  background-color: #505EA1 ;
   color: white;
   text-align: center;
   white-space: normal;
@@ -121,9 +122,9 @@ const GuestInvite = () => {
   const [escorts , setEscorts] = useState([]);
   const [show, setShow] = useState(false);
   const [msgConfirmacao, setmsgConfirmacao] = useState('none');
+  const [msgLocal, setmsgLocal] = useState('none');
 
   const handleToggle = () => {
-    alert('teste');
     setShow(!show);
   };
 
@@ -140,8 +141,11 @@ const GuestInvite = () => {
   
   return (
     <Box>
-      <Confirmation _id={id} Guest={name} Escorts={escorts} Visivel={msgConfirmacao}>        
+      <Confirmation id={id} Guest={name} Escorts={escorts} Visivel={msgConfirmacao}>        
       </Confirmation>
+      <Locate Visivel={msgLocal}>        
+      </Locate>
+
       <Caixa h="100vh" flexDirection="column" justify="center" >
         <Circlo>
           <img src="/images/MargoeEu.jpg" alt="" />
@@ -153,13 +157,12 @@ const GuestInvite = () => {
         <p class="locate">13 de agosto de 2022</p>
         <p class="locate time">às 21:00h</p>
         <Flex flexDirection="row">  
+          <Btn onClick={()=>setmsgLocal("block")}>Local</Btn>
           <Btn1 onClick={()=>setmsgConfirmacao("block")}>Confirme sua presença</Btn1>
-          <Btn>Local da cerimônia</Btn>
-          <Btn>Local da recepção</Btn>
           <Btn>Lista de presentes</Btn>
         </Flex>
-        <h3 class="frase">"Acima de tudo, porém, revistam-se do amor, que é o elo perfeito"</h3>
-        <h4 class="fraseAutor">Colossenses 3:14</h4>
+        <h3 class="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
+        <h4 class="fraseAutor">Provérbios 16:9</h4>
       </Caixa>      
 
     </Box>

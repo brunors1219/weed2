@@ -22,14 +22,14 @@ export default function Confirmation({id, Guest, Escorts, Visivel}) {
 
   useEffect(() => {
     setMostrar(Visivel);
-    console.log(mostrar);
   }, [Visivel]);
 
-  const setConfirmedStatus = useCallback((confirmed) => {
+  const setConfirmedStatus = useCallback((confirmed, quantidade) => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({
-        confirmed
+        confirmed,
+        quantidade
       }),
     })
     .then(response => response.json())
@@ -49,7 +49,7 @@ export default function Confirmation({id, Guest, Escorts, Visivel}) {
           rounded={'lg'}
           p={6}
           textAlign={'center'}>
-          <Heading fontSize={'2xl'} fontFamily={'body'}>
+          <Heading fontSize={'2xl'} fontFamily={'body'} color={'#5f5694 '}>
             {Guest}
           </Heading>
           <Text fontWeight={600} color={'gray.500'} mb={4}>
@@ -65,15 +65,26 @@ export default function Confirmation({id, Guest, Escorts, Visivel}) {
             para que possamos melhor organizar a recepção!
           </Text>
 
-          <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+          <Stack align={'center'} justify={'center'} direction={'row'} mt={6} flexWrap={'wrap'}>
+            <Badge
+              m={1}
+              px={2}
+              py={1}
+              bg={'#5f5694'}
+              color={'white'}
+              fontWeight={'400'}>
+              #{Guest}
+            </Badge>  
             {Escorts.map((Escort)=>{
               return (
                 <Badge
+                  m={1}
                   px={2}
                   py={1}
-                  bg={useColorModeValue('gray.50', 'gray.800')}
+                  bg={'#5f5694'}
+                  color={'white'}
                   fontWeight={'400'}>
-                  {Escort.name}
+                  #{Escort.name}
                 </Badge>  
               );
             })}
@@ -95,16 +106,16 @@ export default function Confirmation({id, Guest, Escorts, Visivel}) {
           <FormControl id="name" flexDirection={'column'} p={1}>
             <Button
               variant="solid"
-              bg="#0D74FF"
+              bg="#505EA1"
               color="white"
               _hover={{}}
               w="100%"
-              onClick={() => setConfirmedStatus(true)}>
+              onClick={() => setConfirmedStatus(true, document.querySelector('#quantidadeConfirmada').value)}>
               Registrar
             </Button>
             <Button
               variant="solid"
-              bg="red"
+              bg="#C8A2C8"
               color="white"
               _hover={{}}
               w="100%"

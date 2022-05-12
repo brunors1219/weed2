@@ -19,7 +19,10 @@ export default function GuestCard({ guest }) {
       <Flex align="baseline" mt={2} flexWrap={'wrap'}>
         {guest._doc.escorts.map((escort)=>{
           return (
-            <Badge m={1} colorScheme="pink">{escort.name}</Badge>
+            <Badge m={1} colorScheme="pink">
+              {escort.name}
+              ({escort.confirmed == null ? "Pendente" : escort.confirmed ? "Confirmado" : "Não Vai"})
+            </Badge>
           );
         })}
       </Flex>
