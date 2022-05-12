@@ -6,6 +6,7 @@ import { GiConsoleController, GiGreekTemple } from 'react-icons/gi'
 import styled from '@emotion/styled';
 import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
+import QrCode from "/src/components/QrCode.jsx";
 
 const Caixa = styled(Flex)`
   background-image: url(/images/inviteBack1.jpg);
@@ -119,10 +120,12 @@ const GuestInvite = () => {
   const { query } = useRouter();
   const { id } = query;
   const [name , setName] = useState('');
+  const [confirmado , setconfirmado] = useState('');
   const [escorts , setEscorts] = useState([]);
   const [show, setShow] = useState(false);
   const [msgConfirmacao, setmsgConfirmacao] = useState('none');
   const [msgLocal, setmsgLocal] = useState('none');
+  const [msgQrCode, setmsgQrCode] = useState('none');
 
   const handleToggle = () => {
     setShow(!show);
@@ -134,6 +137,7 @@ const GuestInvite = () => {
         .then(response => response.json())
         .then(data => {
           setName(data.name);
+          setconfirmado(data.confirmed);
           setEscorts(data.escorts);
         });
     }    
@@ -143,8 +147,12 @@ const GuestInvite = () => {
     <Box>
       <Confirmation id={id} Guest={name} Escorts={escorts} Visivel={msgConfirmacao}>        
       </Confirmation>
+
       <Locate Visivel={msgLocal}>        
       </Locate>
+
+      <QrCode id={id} Visivel={msgQrCode}>        
+      </QrCode>
 
       <Caixa h="100vh" flexDirection="column" justify="center" >
         <Circlo>
@@ -158,7 +166,9 @@ const GuestInvite = () => {
         <p class="locate time">às 21:00h</p>
         <Flex flexDirection="row">  
           <Btn onClick={()=>setmsgLocal("block")}>Local</Btn>
-          <Btn1 onClick={()=>setmsgConfirmacao("block")}>Confirme sua presença</Btn1>
+          <Btn1 onClick={()=>confirmado ? setmsgQrCode("block") : setmsgConfirmacao("block")}>
+            {(confirmado)? "QrCode" : "Confirme sua presença"}            
+          </Btn1>
           <Btn>Lista de presentes</Btn>
         </Flex>
         <h3 class="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
