@@ -15,17 +15,35 @@ const Caixa = styled(Flex)`
   align-items: center;
   color: #C8A2C8;
   font-family: "Great Vibes";
-  .title {font-size: large; }
+  .title {
+    font-size: x-large; 
+    width: 70%;
+  }
   .titleName {font-size: xxx-large;
     padding: 5px; 
     color: #9583B6;
-    font-weight: 500;
+    font-weight: 700;
     }   
-  .locate {font-size: x-large; }  
-  .time {font-weight: 900;}  
-  .frase {width: 50%;    
-        margin-left: -100px;}
-  .fraseAutor{margin-left: -118px;}
+  .locate {
+    font-size: x-large;
+  }  
+  .time {
+    font-weight: 900;
+    font-family: "Water Brush"
+  }  
+  .frase {
+    font-size: smaller; 
+    width: 50%;    
+    font-family: "Water Brush";
+    margin-top: 2vh;
+    margin-left: -40%;
+    text-align: left;
+    font-weight: 900;
+    color: #9583B6;
+  }
+  .fraseAutor{
+    margin-left: -20%;
+  }
 
   @media(min-height: 800px) {
     .title {font-size: xx-large; }
@@ -54,24 +72,44 @@ const Circlo = styled(Flex)`
 const Btn = styled(Button)`
   display:block;
   height: 50px;
-  width: 60px;
+  width: 85px;
   border-radius: 50%;
   background-color: #505EA1;
   color: white;
   text-align: center;
   white-space: normal;
   font-size: xx-small;
-  font-family: "Great Vibes";
-  margin: 2px;
+  font-family: "Water Brush"; 
+  /* "Great Vibes"; */
+  margin: 1px;
 
   @media(min-height: 800px) {
     height: 80px;
-    width: 80px;
-    margin: 40px 10px 40px 10px;
-    font-size: medium;
+    width: 25%;
+    font-size: smaller;
   }
 `;
 
+const Btn1 = styled(Button)`
+  display:block;
+  height: 50px;
+  width: 85px;
+  border-radius: 50%;
+  background-color: #C8A2C8 ;
+  color: white;
+  text-align: center;
+  white-space: normal;
+  font-size: xx-small;
+  font-family: "Water Brush"; 
+  /* "Great Vibes"; */
+  margin: 1px;
+
+  @media(min-height: 800px) {
+    height: 80px;
+    width: 25%;
+    font-size: smaller;
+  }
+`;
 const Aviso = styled(Box)`
   box-shadow : 8px 13px 7px black;
 `;
@@ -108,20 +146,20 @@ const GuestInvite = () => {
         <Circlo>
           <img src="/images/MargoeEu.jpg" alt="" />
         </Circlo>
-        <p class="title">{name}, convido para o casamento de</p>
+        <p class="title">{name}, gostaríamos de convida-lo para o casamento de</p>
         <img src="" alt="" />
         <p class="titleName">Margarete E Anselmo</p>
         <img src="" alt="" />
         <p class="locate">13 de agosto de 2022</p>
         <p class="locate time">às 21:00h</p>
         <Flex flexDirection="row">  
-          <Btn onClick={()=>setmsgConfirmacao("block")}>Confirme sua presença</Btn>
+          <Btn1 onClick={()=>setmsgConfirmacao("block")}>Confirme sua presença</Btn1>
           <Btn>Local da cerimônia</Btn>
           <Btn>Local da recepção</Btn>
           <Btn>Lista de presentes</Btn>
         </Flex>
-        <h3 class="frase">Da parte do Senhos se fez isto, maravilhoso é aos nossos olhos"</h3>
-        <h4 class="fraseAutor">Salmos 118:23</h4>
+        <h3 class="frase">"Acima de tudo, porém, revistam-se do amor, que é o elo perfeito"</h3>
+        <h4 class="fraseAutor">Colossenses 3:14</h4>
       </Caixa>      
 
     </Box>
