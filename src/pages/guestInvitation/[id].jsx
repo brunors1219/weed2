@@ -110,7 +110,7 @@ const GuestInvite = () => {
         </Circlo>
         <p class="title">{name}, convido para o casamento de</p>
         <img src="" alt="" />
-        <p class="titleName">Margare E Anselmo</p>
+        <p class="titleName">Margarete E Anselmo</p>
         <img src="" alt="" />
         <p class="locate">13 de agosto de 2022</p>
         <p class="locate time">às 21:00h</p>
