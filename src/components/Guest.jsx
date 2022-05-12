@@ -13,6 +13,9 @@ export default function GuestCard({ guest }) {
       <Text mt={1} fontSize="15px" fontWeight="extrabold">
         {guest._doc.name}
       </Text>
+      <Text mt={1} fontSize="15px">
+        Status: {guest._doc.confirmed == null ? "Pendente" : guest._doc.confirmed ? "Confirmado" : "Não Vai"}
+      </Text>
       <Flex align="baseline" mt={2} flexWrap={'wrap'}>
         {guest._doc.escorts.map((escort)=>{
           return (
