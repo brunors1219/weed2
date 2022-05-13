@@ -17,6 +17,7 @@ const Fundo = styled(Center)`
 const Caixa = styled(Center)`
   margin:auto;
 `;
+
 export default function Confirmation({id, Guest, Escorts, Visivel}) {
   const [mostrar, setMostrar] = useState(Visivel);
 

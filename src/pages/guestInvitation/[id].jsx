@@ -1,13 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'; 
-import { Center, Box, Image, Flex, Text, Button } from "@chakra-ui/react";
-import { MdStar } from "react-icons/md";
-import { GiConsoleController, GiGreekTemple } from 'react-icons/gi'
+import { Center, Box, Flex, Button } from "@chakra-ui/react";
 import styled from '@emotion/styled';
 import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
-import QrCode from "/src/components/QrCode.jsx";
 
+const Fundo = styled(Center)`
+  position:absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index:999;
+`;
+const CaixaMsg = styled(Center)`
+  margin:auto;
+`;
 const Caixa = styled(Flex)`
   background-image: url(/images/inviteBack1.jpg);
   background-size: 100% 100%;
@@ -61,10 +67,41 @@ const Circlo = styled(Flex)`
   overflow: hidden;
   position: relative;
   margin-left: 30px;
+  h1 {
+    font-size: xx-large;
+  }
   img {
     width: 100%;
     height: 100%;
   }    
+  @media(min-height: 800px) {
+    margin-left: 30vw;
+  }
+
+`;
+
+const ImgQrCode = styled(Flex)`
+  background-image: url(/images/inviteBack1.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  align-items: center;
+  color: black;
+  font-size: large;
+  overflow: hidden;
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  img {
+    margin-left: 10%;
+    width: 80%;
+    height: 40%;
+  }    
+  button {
+    width: 50%;
+  }
   @media(min-height: 800px) {
     margin-left: 30vw;
   }
@@ -151,8 +188,27 @@ const GuestInvite = () => {
       <Locate Visivel={msgLocal}>        
       </Locate>
 
-      <QrCode id={id} Visivel={msgQrCode}>        
-      </QrCode>
+      <ImgQrCode display={msgQrCode}>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1>É indispensável a apresentação na recepção!</h1>
+        <br />
+        <h3>Através deste código será possível identificar você e seus acompanhantes!</h3>
+        <img src="/images/QrCode.jpg" alt="" />
+        <Button
+              variant="solid"
+              bg="#C8A2C8"
+              color="white"
+              _hover={{}}
+              w="100%"
+              mt={5}
+              onClick={() => setmsgQrCode("none") }>
+              Voltar
+        </Button>
+      </ImgQrCode>
 
       <Caixa h="100vh" flexDirection="column" justify="center" >
         <Circlo>
@@ -174,7 +230,7 @@ const GuestInvite = () => {
         <h3 class="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
         <h4 class="fraseAutor">Provérbios 16:9</h4>
       </Caixa>      
-
+  
     </Box>
   );
 };

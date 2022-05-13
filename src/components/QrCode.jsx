@@ -14,7 +14,7 @@ const Fundo = styled(Center)`
 const Caixa = styled(Center)`
   margin:auto;
 `;
-export default function QrCode({id, Visivel}) {
+export default function QrCode({Visivel}) {
   const [mostrar, setMostrar] = useState(Visivel);
   const { Canvas } = useQRCode();
 
@@ -40,7 +40,7 @@ export default function QrCode({id, Visivel}) {
           <h3>Através deste código será possível identificar você e seus acompanhantes!</h3>
           <br />
           <Canvas
-                text={id}
+                text={"Casamento maravilhoso Margo e Anselmo"}
                 options={{
                   type: 'image/jpeg',
                   quality: 0.3,
