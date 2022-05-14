@@ -14,16 +14,15 @@ const Fundo = styled(Center)`
 const Caixa = styled(Center)`
   margin:auto;
 `;
-export default function QrCode({Visivel}) {
-  const [mostrar, setMostrar] = useState(Visivel);
+export default function QrCode({Visivel, funcaoFechar}) {
   const { Canvas } = useQRCode();
 
-  useEffect(() => {
-    setMostrar(Visivel);
-  }, [Visivel]);
+  if (!Visivel) {
+    return null;
+  }
 
   return (
-    <Fundo id="cardConfirmation" display={mostrar}>
+    <Fundo id="cardConfirmation">
       <Caixa py={6}>
         <Box
           maxW={'320px'}
@@ -53,7 +52,7 @@ export default function QrCode({Visivel}) {
                     light: '#FFBF60FF',
                   },
                 }}
-              />            
+              />
           <br />
           <br />
 
@@ -64,7 +63,7 @@ export default function QrCode({Visivel}) {
               color="white"
               _hover={{}}
               w="100%"
-              onClick={() => setMostrar("none")}>
+              onClick={funcaoFechar}>
               Voltar
             </Button>
           </FormControl>

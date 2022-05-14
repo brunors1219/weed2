@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState } from 'react';
-import { Heading, Avatar, Box, Center, Text, Stack, Button, Link, 
+import { Heading, Avatar, Box, Center, Text, Stack, Button, Link,
   Badge, useColorModeValue, FormControl, FormLabel, Collapse,
   NumberInput,
   NumberInputField,
@@ -18,13 +18,7 @@ const Caixa = styled(Center)`
   margin:auto;
 `;
 
-export default function Confirmation({id, Guest, Escorts, Visivel}) {
-  const [mostrar, setMostrar] = useState(Visivel);
-
-  useEffect(() => {
-    setMostrar(Visivel);
-  }, [Visivel]);
-
+export default function Confirmation({id, Guest, Escorts, Visivel, funcaoFenchar}) {
   const setConfirmedStatus = useCallback((confirmed, quantidade) => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${id}`, {
       method: 'PATCH',
@@ -34,13 +28,17 @@ export default function Confirmation({id, Guest, Escorts, Visivel}) {
       }),
     })
     .then(response => response.json())
-    .then(data => {
-      setMostrar("none");
+    .then(() => {
+      funcaoFenchar();
     });
-  }, [id]);
+  }, [id, funcaoFenchar]);
+
+  if (!Visivel) {
+    return null;
+  }
 
   return (
-    <Fundo id="cardConfirmation" display={mostrar}>
+    <Fundo id="cardConfirmation">
       <Caixa py={6}>
         <Box
           maxW={'320px'}
@@ -61,7 +59,7 @@ export default function Confirmation({id, Guest, Escorts, Visivel}) {
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={3}>
-            Precisamos que confirme sua 
+            Precisamos que confirme sua
             <b> presença</b> e de seus <b>acompanhantes </b>
             para que possamos melhor organizar a recepção!
           </Text>
@@ -75,7 +73,7 @@ export default function Confirmation({id, Guest, Escorts, Visivel}) {
               color={'white'}
               fontWeight={'400'}>
               #{Guest}
-            </Badge>  
+            </Badge>
             {Escorts.map((Escort)=>{
               return (
                 <Badge
@@ -86,7 +84,7 @@ export default function Confirmation({id, Guest, Escorts, Visivel}) {
                   color={'white'}
                   fontWeight={'400'}>
                   #{Escort.name}
-                </Badge>  
+                </Badge>
               );
             })}
           </Stack>
@@ -121,7 +119,7 @@ export default function Confirmation({id, Guest, Escorts, Visivel}) {
               _hover={{}}
               w="100%"
               mt={5}
-              onClick={() => setMostrar("none") }>
+              onClick={() => funcaoFenchar() }>
               Não comparacerei
             </Button>
           </FormControl>

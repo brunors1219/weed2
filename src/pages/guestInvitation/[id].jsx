@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router'; 
+import { useEffect, useState, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import { Center, Box, Flex, Button } from "@chakra-ui/react";
 import styled from '@emotion/styled';
 import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
+import QrCode from '/src/components/QrCode';
 
 const Fundo = styled(Center)`
   position:absolute;
@@ -24,24 +25,24 @@ const Caixa = styled(Flex)`
   color: #C8A2C8;
   font-family: "Great Vibes";
   .title {
-    font-size: x-large; 
+    font-size: x-large;
     width: 70%;
   }
   .titleName {font-size: xxx-large;
-    padding: 5px; 
+    padding: 5px;
     color: #9583B6;
     font-weight: 700;
-    }   
+    }
   .locate {
     font-size: x-large;
-  }  
+  }
   .time {
     font-weight: 900;
     font-family: "Water Brush"
-  }  
+  }
   .frase {
-    font-size: smaller; 
-    width: 50%;    
+    font-size: smaller;
+    width: 50%;
     font-family: "Water Brush";
     margin-top: 2vh;
     margin-left: -40%;
@@ -55,7 +56,7 @@ const Caixa = styled(Flex)`
 
   @media(min-height: 800px) {
     .title {font-size: xx-large; }
-    .locate {font-size: xx-large; }  
+    .locate {font-size: xx-large; }
   }
 `;
 
@@ -73,7 +74,7 @@ const Circlo = styled(Flex)`
   img {
     width: 100%;
     height: 100%;
-  }    
+  }
   @media(min-height: 800px) {
     margin-left: 30vw;
   }
@@ -98,7 +99,7 @@ const ImgQrCode = styled(Flex)`
     margin-left: 10%;
     width: 80%;
     height: 40%;
-  }    
+  }
   button {
     width: 50%;
   }
@@ -118,7 +119,7 @@ const Btn = styled(Button)`
   text-align: center;
   white-space: normal;
   font-size: xx-small;
-  font-family: "Water Brush"; 
+  font-family: "Water Brush";
   /* "Great Vibes"; */
   margin: 1px;
 
@@ -139,7 +140,7 @@ const Btn1 = styled(Button)`
   text-align: center;
   white-space: normal;
   font-size: xx-small;
-  font-family: "Water Brush"; 
+  font-family: "Water Brush";
   /* "Great Vibes"; */
   margin: 1px;
 
@@ -159,14 +160,9 @@ const GuestInvite = () => {
   const [name , setName] = useState('');
   const [confirmado , setconfirmado] = useState('');
   const [escorts , setEscorts] = useState([]);
-  const [show, setShow] = useState(false);
-  const [msgConfirmacao, setmsgConfirmacao] = useState('none');
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [msgLocal, setmsgLocal] = useState('none');
-  const [msgQrCode, setmsgQrCode] = useState('none');
-
-  const handleToggle = () => {
-    setShow(!show);
-  };
+  const [mostrarQrCode, setMostrarQrCode] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -177,38 +173,34 @@ const GuestInvite = () => {
           setconfirmado(data.confirmed);
           setEscorts(data.escorts);
         });
-    }    
+    }
   }, [id]);
-  
+
+  const exibirConfirmacao = useCallback(() => {
+    setMostrarConfirmacao(true);
+  }, []);
+
+  const fecharConfirmacao = useCallback(() => {
+    setMostrarConfirmacao(false);
+    window.location.reload();
+  }, []);
+
+  const exibirQrCode = useCallback(() => {
+    setMostrarQrCode(true);
+  }, []);
+
+  const fecharQrCode = useCallback(() => {
+    setMostrarQrCode(false);
+  }, []);
+
   return (
     <Box>
-      <Confirmation id={id} Guest={name} Escorts={escorts} Visivel={msgConfirmacao}>        
-      </Confirmation>
+      <Confirmation id={id} Guest={name} Escorts={escorts} Visivel={mostrarConfirmacao} funcaoFenchar={fecharConfirmacao} />
 
-      <Locate Visivel={msgLocal}>        
+      <Locate Visivel={msgLocal}>
       </Locate>
 
-      <ImgQrCode display={msgQrCode}>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <h1>É indispensável a apresentação na recepção!</h1>
-        <br />
-        <h3>Através deste código será possível identificar você e seus acompanhantes!</h3>
-        <img src="/images/QrCode.jpg" alt="" />
-        <Button
-              variant="solid"
-              bg="#C8A2C8"
-              color="white"
-              _hover={{}}
-              w="100%"
-              mt={5}
-              onClick={() => setmsgQrCode("none") }>
-              Voltar
-        </Button>
-      </ImgQrCode>
+      <QrCode Visivel={mostrarQrCode} funcaoFechar={fecharQrCode} />
 
       <Caixa h="100vh" flexDirection="column" justify="center" >
         <Circlo>
@@ -220,17 +212,17 @@ const GuestInvite = () => {
         <img src="" alt="" />
         <p class="locate">13 de agosto de 2022</p>
         <p class="locate time">às 21:00h</p>
-        <Flex flexDirection="row">  
+        <Flex flexDirection="row">
           <Btn onClick={()=>setmsgLocal("block")}>Local</Btn>
-          <Btn1 onClick={()=>confirmado ? setmsgQrCode("block") : setmsgConfirmacao("block")}>
-            {(confirmado)? "QrCode" : "Confirme sua presença"}            
+          <Btn1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
+            {(confirmado)? "QrCode" : "Confirme sua presença"}
           </Btn1>
           <Btn>Lista de presentes</Btn>
         </Flex>
         <h3 class="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
         <h4 class="fraseAutor">Provérbios 16:9</h4>
-      </Caixa>      
-  
+      </Caixa>
+
     </Box>
   );
 };
