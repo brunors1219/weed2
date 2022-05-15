@@ -11,21 +11,15 @@ export default async function handler(request, response) {
       }
 
       const {
+        category,
         name,
-        img,
+        value,
         url
-       } = request.body;
+      } = JSON.parse(request.body);
 
-       // Para verficar se o email já está cadastro
-       if (name) {
-        const productExists = await Product.findOne({name});
+      const date = Date.now();
 
-         if (productExists) {
-           return response.status(400).json({ message: 'Produto já cadastrado' });
-         }
-       }
-
-       const product = new Product({ name, img, url });
+       const product = new Product({ category, name, value, url, date });
 
        product.save(function (err) {
          if (err) console.error(err);
@@ -43,7 +37,7 @@ export default async function handler(request, response) {
     try {
       await connectToDatabase();
 
-      const products = await Product.find().exec();
+      const products = await Product.find().sort([['date', -1]]).exec();
 
       return response.json(products);
     } catch (err) {

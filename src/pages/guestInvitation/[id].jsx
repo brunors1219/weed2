@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
 import QrCode from '/src/components/QrCode';
+import Gifts from './../gifts/index';
 
 const Fundo = styled(Center)`
   position:absolute;
@@ -163,6 +164,7 @@ const GuestInvite = () => {
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [msgLocal, setmsgLocal] = useState('none');
   const [mostrarQrCode, setMostrarQrCode] = useState(false);
+  const [mostrarList, setMostrarList] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -193,14 +195,24 @@ const GuestInvite = () => {
     setMostrarQrCode(false);
   }, []);
 
+  const exibirList = useCallback(() => {
+    setMostrarList(true);
+  }, []);
+
+  const fecharList = useCallback(() => {
+    setMostrarList(false);
+  }, []);
+
   return (
     <Box>
-      <Confirmation id={id} Guest={name} Escorts={escorts} Visivel={mostrarConfirmacao} funcaoFenchar={fecharConfirmacao} />
+      <Confirmation id={id} Guest={name} Escorts={escorts} Visivel={mostrarConfirmacao} funcaoFechar={fecharConfirmacao} />
 
       <Locate Visivel={msgLocal}>
       </Locate>
 
       <QrCode Visivel={mostrarQrCode} funcaoFechar={fecharQrCode} />
+
+      <Gifts Visivel={mostrarList} funcaoFechar={fecharList} />
 
       <Caixa h="100vh" flexDirection="column" justify="center" >
         <Circlo>
@@ -217,7 +229,7 @@ const GuestInvite = () => {
           <Btn1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
             {(confirmado)? "QrCode" : "Confirme sua presença"}
           </Btn1>
-          <Btn>Lista de presentes</Btn>
+          <Btn onClick={()=>exibirList()}>Lista de presentes</Btn>
         </Flex>
         <h3 class="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
         <h4 class="fraseAutor">Provérbios 16:9</h4>

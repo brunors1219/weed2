@@ -18,7 +18,7 @@ const Caixa = styled(Center)`
   margin:auto;
 `;
 
-export default function Confirmation({id, Guest, Escorts, Visivel, funcaoFenchar}) {
+export default function Confirmation({id, Guest, Escorts, Visivel, funcaoFechar}) {
   const setConfirmedStatus = useCallback((confirmed, quantidade) => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${id}`, {
       method: 'PATCH',
@@ -29,9 +29,9 @@ export default function Confirmation({id, Guest, Escorts, Visivel, funcaoFenchar
     })
     .then(response => response.json())
     .then(() => {
-      funcaoFenchar();
+      funcaoFechar();
     });
-  }, [id, funcaoFenchar]);
+  }, [id, funcaoFechar]);
 
   if (!Visivel) {
     return null;
@@ -119,7 +119,7 @@ export default function Confirmation({id, Guest, Escorts, Visivel, funcaoFenchar
               _hover={{}}
               w="100%"
               mt={5}
-              onClick={() => funcaoFenchar() }>
+              onClick={() => funcaoFechar() }>
               Não comparacerei
             </Button>
           </FormControl>
