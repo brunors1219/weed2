@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Head from 'next/head'
-import Gifts from '../../components/gifts';
+import Gifts from '/src/components/gifts';
 
 export default function insertgifts() {
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
+  const [mostrarList, setMostrarList] = useState(true);
 
   /**
    * handleOnChange
    * @description Triggers when the file input changes (ex: when a file is selected)
    */
+   const exibirList = useCallback(() => {
+    setMostrarList(true);
+  }, []);
+
+  const fecharList = useCallback(() => {
+    setMostrarList(false);
+  }, []);
+
 
   function handleOnChange(changeEvent) {
     
@@ -121,7 +130,7 @@ export default function insertgifts() {
         </form>
       </main>
 
-      <Gifts />
+      <Gifts Visivel={mostrarList} funcaoFechar={fecharList}/>
 
     </div>
   )

@@ -10,21 +10,28 @@ export const Fundo = styled(Center)`
 export const CaixaMsg = styled(Center)`
   margin:auto;
 `;
-export const CaixaTextoContive = styled(Box)`
-  margin: 10px;
-  width: 50vw;
-  font-size: x-large;
-  color: #9583B6;
-  align-self: flex-end;
+export const ImgFlores = styled(Box)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width:100%;
+  img{
+    width:100%;
+  }
 `;
 export const CaixaNoivos = styled(Box)`
+  width: 40vw;
+  height: 30vh;
   font-size: xx-large;
   color: #9583B6;
   font-weight: 500;
   font-family: "Mistrully";
+  align-self: flex-end;
+  margin-top: 10px;
 `;
 export const Caixa = styled(Flex)`
-  background-image: url(/images/inviteBackSemFolha.jpg);
+  background-image: url(/images/inviteBack1.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -33,10 +40,18 @@ export const Caixa = styled(Flex)`
   color: #C8A2C8;
   font-family: "Great Vibes";
 
+  .title {
+    font-size: xx-large;
+    width: 95%;
+    margin-top: -40px;
+  }
   .locate {
+    margin-top: 20px;
     font-size: x-large;
   }
   .time {
+    margin-top: 10px;
+    margin-bottom: 30px;
     font-weight: 900;
     font-family: "Water Brush"
   }
@@ -55,17 +70,19 @@ export const Caixa = styled(Flex)`
   }
 
   @media(min-height: 800px) {
-    .title {font-size: xx-large; }
     .locate {font-size: xx-large; }
   }
 `;
 
 export const Circlo = styled(Flex)`
+  position: absolute;
   background-color: #505EA1;
   border-radius: 50%;
   width: 25vh;
-  height: 25vh;
+  height: 20vh;
   overflow: hidden;
+  top: 100px;
+  left: 40px;
 `;
 
 export const ImgQrCode = styled(Flex)`
@@ -113,9 +130,8 @@ export const Btn = styled(Button)`
 
 export const Btn1 = styled(Button)`
   display:block;
-  display:block;
   height: 85px;
-  width: 120px;
+  width: 125px;
   border-radius: 50%;
   background-color: #505EA1 ;
   color: white;
@@ -123,6 +139,7 @@ export const Btn1 = styled(Button)`
   white-space: normal;
   font-size: larger;
   font-family: "Water Brush";
+  /* "Great Vibes"; */
   margin: 1px;
 `;
 export const Aviso = styled(Box)`

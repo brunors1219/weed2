@@ -4,8 +4,8 @@ import { Box, Flex } from "@chakra-ui/react";
 import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
 import QrCode from '/src/components/QrCode';
-import Gifts from '../../components/gifts';
-import * as Style from './guestInvitation';
+import Gifts from '/src/components/gifts';
+import * as Style from './style';
 
 const GuestInvite = () => {
 
@@ -83,16 +83,14 @@ const GuestInvite = () => {
             <span>A</span>nselmo
           </p>
         </Style.CaixaNoivos>
-        <img src="" alt="" />
-        <img src="" alt="" />
         <p className="locate"><b>13 de agosto de 2022</b></p>
         <p className="locate time">às 21:00h</p>
         <Flex flexDirection="row">
-          <Style.Btn onClick={()=>setmsgLocal("block")}>Local</Style.Btn>
-          <Style.Btn1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
+          <Style.BtnNovo onClick={()=>setmsgLocal("block")}>Local</Style.BtnNovo>
+          <Style.BtnNovo1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
             {(confirmado)? "QrCode" : "Confirme sua presença"}
-          </Style.Btn1>
-          <Style.Btn onClick={()=>exibirList()}>Lista presentes</Style.Btn>
+          </Style.BtnNovo1>
+          <Style.BtnNovo onClick={()=>exibirList()}>Lista presentes</Style.BtnNovo>
         </Flex>
         <h3 className="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
         <h4 className="fraseAutor">Provérbios 16:9</h4>

@@ -4,8 +4,8 @@ import { Box, Flex } from "@chakra-ui/react";
 import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
 import QrCode from '/src/components/QrCode';
-import Gifts from '../../components/gifts';
-import * as Style from './guestInvitation';
+import Gifts from '/src/components/gifts';
+import * as Style from './style';
 
 const GuestInvite = () => {
 
