@@ -10,4 +10,10 @@ export default createGlobalStyle`
     font-family: 'Pony';
     src: url(/fonts/Pony.ttf);
   }
+
+  @font-face {
+    font-family: 'Pony1';
+    src: url(/fonts/Pony.ttf);
+  }
+
 `;
