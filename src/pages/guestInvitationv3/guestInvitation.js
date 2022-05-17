@@ -113,6 +113,7 @@ export const Btn = styled(Button)`
 
 export const Btn1 = styled(Button)`
   display:block;
+  display:block;
   height: 85px;
   width: 120px;
   border-radius: 50%;
