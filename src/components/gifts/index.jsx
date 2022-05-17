@@ -1,19 +1,11 @@
 import React, { useEffect, useState, useCallback }  from 'react';
 import { useRouter } from 'next/router'; 
 import ProductCard from './../../components/Product';
-import { Flex, Box } from '@chakra-ui/react';
-import { IconButton } from '@chakra-ui/react'
+import { Flex, IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
-import styled from '@emotion/styled';
+import { ButtonClose } from './styles';
 
-const btnClose = styled(Box)`
-    position: fixed;
-    margin-right: 0px;
-    top: 7px;
-    right: 7px;
-`;
-
-function gifts({Visivel, funcaoFechar}) {
+function Gifts({Visivel, funcaoFechar, guest}) {
 
   if (!Visivel) {
     return null;
@@ -34,7 +26,7 @@ function gifts({Visivel, funcaoFechar}) {
 
   return (    
     <>
-      <btnClose>
+      <ButtonClose>
         <IconButton
           colorScheme='teal'
           aria-label='Call Segun'
@@ -42,11 +34,11 @@ function gifts({Visivel, funcaoFechar}) {
           icon={<CloseIcon />}
           onClick={() => funcaoFechar() }          
         />    
-      </btnClose>
+      </ButtonClose>
       <Flex flexWrap={'wrap'}>
         {products.map((item)=> {
           return (
-            <ProductCard key={item._id} product={item} />
+            <ProductCard key={item._id} product={item} guest={guest} />
           );
         })}
       </Flex>
@@ -55,4 +47,4 @@ function gifts({Visivel, funcaoFechar}) {
 
 } 
 
-export default gifts;
+export default Gifts;

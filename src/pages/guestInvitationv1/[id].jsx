@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
 import QrCode from '/src/components/QrCode';
-import Gifts from './../gifts/index';
+import Gifts from '../../components/gifts';
 
 const Fundo = styled(Center)`
   position:absolute;
@@ -15,6 +15,17 @@ const Fundo = styled(Center)`
 `;
 const CaixaMsg = styled(Center)`
   margin:auto;
+`;
+export const ImgFlores = styled(Box)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width:100%;
+  img{
+    width:100%;
+  }
+
 `;
 const Caixa = styled(Flex)`
   background-image: url(/images/inviteBack1.jpg);
@@ -26,13 +37,15 @@ const Caixa = styled(Flex)`
   color: #C8A2C8;
   font-family: "Great Vibes";
   .title {
-    font-size: x-large;
-    width: 70%;
+    font-size: xx-large;
+    width: 90%;
   }
-  .titleName {font-size: xxx-large;
+  .titleName {
+    font-size: xxx-large;
     padding: 5px;
     color: #9583B6;
-    font-weight: 700;
+    font-weight: 400;
+    font-family: "Mistrully";
     }
   .locate {
     font-size: x-large;
@@ -56,7 +69,6 @@ const Caixa = styled(Flex)`
   }
 
   @media(min-height: 800px) {
-    .title {font-size: xx-large; }
     .locate {font-size: xx-large; }
   }
 `;
@@ -69,6 +81,7 @@ const Circlo = styled(Flex)`
   overflow: hidden;
   position: relative;
   margin-left: 30px;
+  margin-top: -90px;
   h1 {
     font-size: xx-large;
   }
@@ -112,44 +125,33 @@ const ImgQrCode = styled(Flex)`
 
 const Btn = styled(Button)`
   display:block;
-  height: 50px;
-  width: 85px;
+  height: 85px;
+  width: 120px;
   border-radius: 50%;
   background-color: #C8A2C8;
   color: white;
   text-align: center;
   white-space: normal;
-  font-size: xx-small;
+  font-size: larger;
   font-family: "Water Brush";
   /* "Great Vibes"; */
   margin: 1px;
 
-  @media(min-height: 800px) {
-    height: 80px;
-    width: 25%;
-    font-size: smaller;
-  }
 `;
 
 const Btn1 = styled(Button)`
   display:block;
-  height: 50px;
-  width: 85px;
+  height: 85px;
+  width: 120px;
   border-radius: 50%;
   background-color: #505EA1 ;
   color: white;
   text-align: center;
   white-space: normal;
-  font-size: xx-small;
+  font-size: larger;
   font-family: "Water Brush";
   /* "Great Vibes"; */
   margin: 1px;
-
-  @media(min-height: 800px) {
-    height: 80px;
-    width: 25%;
-    font-size: smaller;
-  }
 `;
 const Aviso = styled(Box)`
   box-shadow : 8px 13px 7px black;
@@ -204,7 +206,7 @@ const GuestInvite = () => {
   }, []);
 
   return (
-    <Box>
+    <Box position="relative">
       <Confirmation id={id} Guest={name} Escorts={escorts} Visivel={mostrarConfirmacao} funcaoFechar={fecharConfirmacao} />
 
       <Locate Visivel={msgLocal}>
@@ -212,15 +214,18 @@ const GuestInvite = () => {
 
       <QrCode Visivel={mostrarQrCode} funcaoFechar={fecharQrCode} />
 
-      <Gifts Visivel={mostrarList} funcaoFechar={fecharList} />
+      <Gifts Visivel={mostrarList} funcaoFechar={fecharList} guest={id}/>
 
       <Caixa h="100vh" flexDirection="column" justify="center" >
+        <ImgFlores>
+          <img src="/images/Flores.png" alt="" />
+        </ImgFlores>        
         <Circlo>
           <img src="/images/MargoeEu.jpg" alt="" />
         </Circlo>
-        <p class="title">{name}, gostaríamos de convida-lo para o casamento de</p>
+        <p class="title">{name}, é com muita alegria, que convido vocês para nosso casamento!</p>
         <img src="" alt="" />
-        <p class="titleName">Margarete E Anselmo</p>
+        <p class="titleName">Margarete e Anselmo</p>
         <img src="" alt="" />
         <p class="locate">13 de agosto de 2022</p>
         <p class="locate time">às 21:00h</p>
@@ -229,7 +234,7 @@ const GuestInvite = () => {
           <Btn1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
             {(confirmado)? "QrCode" : "Confirme sua presença"}
           </Btn1>
-          <Btn onClick={()=>exibirList()}>Lista de presentes</Btn>
+          <Btn onClick={()=>exibirList()}>Lista presentes</Btn>
         </Flex>
         <h3 class="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
         <h4 class="fraseAutor">Provérbios 16:9</h4>

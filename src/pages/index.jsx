@@ -21,7 +21,7 @@ function Home() {
     <Box bc="#505EA1" w="100vw" h="100vh" >
       <Head>
       {/* <!-- Primary Meta Tags --> */}
-        <title>Nosso convite de casamento</title>
+        <title>Casamento Margo e Anselmo</title>
         <meta name="title" content="Nosso convite de casamento" />
         <meta name="description" content="Muito importante a confirmação de sua presença." />
 

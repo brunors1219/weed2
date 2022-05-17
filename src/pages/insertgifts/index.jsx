@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head'
-import Gifts from './../gifts/index';
+import Gifts from '../../component/gifts';
 
 export default function insertgifts() {
   const [imageSrc, setImageSrc] = useState();

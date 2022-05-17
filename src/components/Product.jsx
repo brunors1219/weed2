@@ -13,20 +13,23 @@ const Category = styled(Badge)`
     text-overflow: ellipsis;
 `;
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, guest }) {
 
   const setPay = useCallback(async (product) => {
+
     const queryParams = new URLSearchParams({
-      title: product.name,
+      guest   : guest,
+      product : product._id,
+      title   : product.name,
       quantity: 1,
-      price: product.value,
+      price   : product.value,
     });
+
+    console.log(queryParams);
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/venda?${queryParams}`)
     
     const data = await response.text();
-
-    console.log({ data });
 
     window.open(data);
   }, []);

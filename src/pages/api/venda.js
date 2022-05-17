@@ -1,4 +1,6 @@
 import mercadopago from "mercadopago";
+import connectToDatabase from '../../database';
+import Pagamentos from '../../database/schemas/Pagamentos';
 
 export default async function venda(request, response) {
 
@@ -21,6 +23,18 @@ export default async function venda(request, response) {
    const result = await mercadopago.preferences.create(preference);
 
     if (!result) return response.status(500).json({ message: 'Ocorreu um erro inesperado' });
+
+    await connectToDatabase();
+
+    const record = new Pagamentos({
+      guest      : request.query.guest,
+      product    : request.query.product,
+      request_id : result.body.id,
+    });
+    
+    record.save(function (err) {
+      if (err) console.log(err);
+    });
 
     return response.json(result.body.init_point);
   }
