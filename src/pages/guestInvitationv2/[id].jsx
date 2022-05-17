@@ -5,7 +5,7 @@ import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
 import QrCode from '/src/components/QrCode';
 import Gifts from '/src/components/gifts';
-import * as Style from './style';
+import * as Style from '../../styles/guestInvitationv2';
 
 const GuestInvite = () => {
 
@@ -79,11 +79,11 @@ const GuestInvite = () => {
         <Style.Circlo>
           <img src="/images/MargoeEu.jpg" alt="" />
         </Style.Circlo>
-        <p className="title">Olá {name}, venha participar desse nosso dia inesquecível!</p>
+        <p class="title">Olá {name}, venha participar desse nosso dia inesquecível!</p>
         <img src="" alt="" />
         <img src="" alt="" />
-        <p className="locate"><b>13 de agosto de 2022</b></p>
-        <p className="locate time">às 21:00h</p>
+        <p class="locate"><b>13 de agosto de 2022</b></p>
+        <p class="locate time">às 21:00h</p>
         <Flex flexDirection="row" mt={2}>
           <Style.Btn onClick={()=>setmsgLocal("block")}>Local</Style.Btn>
           <Style.Btn1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
@@ -91,8 +91,8 @@ const GuestInvite = () => {
           </Style.Btn1>
           <Style.Btn onClick={()=>exibirList()}>Lista presentes</Style.Btn>
         </Flex>
-        <h3 className="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
-        <h4 className="fraseAutor">Provérbios 16:9</h4>
+        <h3 class="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
+        <h4 class="fraseAutor">Provérbios 16:9</h4>
       </Style.Caixa>
 
     </Box>

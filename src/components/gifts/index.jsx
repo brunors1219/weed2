@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import ProductCard from './../../components/Product';
 import { Flex, IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
-import { ButtonClose } from './styles';
+import { ButtonClose, Fundo } from './styles';
+
 
 function Gifts({Visivel, funcaoFechar, guest}) {
 
@@ -25,7 +26,7 @@ function Gifts({Visivel, funcaoFechar, guest}) {
   }, []);
 
   return (    
-    <>
+    <Fundo>
       <ButtonClose>
         <IconButton
           colorScheme='teal'
@@ -42,7 +43,7 @@ function Gifts({Visivel, funcaoFechar, guest}) {
           );
         })}
       </Flex>
-    </>
+    </Fundo>
   );
 
 } 

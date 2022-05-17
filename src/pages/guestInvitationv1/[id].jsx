@@ -5,7 +5,7 @@ import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
 import QrCode from '/src/components/QrCode';
 import Gifts from '/src/components/gifts';
-import * as Style from './style';
+import * as Style from '../../styles/guestInvitationv1';
 
 const GuestInvite = () => {
   const { query } = useRouter();
@@ -72,12 +72,12 @@ const GuestInvite = () => {
         <Style.Circlo>
           <img src="/images/MargoeEu.jpg" alt="" />
         </Style.Circlo>
-        <p classname="title">{name}, é com muita alegria, que convido vocês para nosso casamento!</p>
+        <p class="title">{name}, é com muita alegria, que convido vocês para nosso casamento!</p>
         <img src="" alt="" />
-        <p classname="titleName">Margarete e Anselmo</p>
+        <p class="titleName">Margarete e Anselmo</p>
         <img src="" alt="" />
-        <p classname="locate">13 de agosto de 2022</p>
-        <p classname="locate time">às 21:00h</p>
+        <p class="locate">13 de agosto de 2022</p>
+        <p class="locate time">às 21:00h</p>
         <Flex flexDirection="row">
           <Style.Btn onClick={()=>setmsgLocal("block")}>Local</Style.Btn>
           <Style.Btn1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
@@ -85,8 +85,8 @@ const GuestInvite = () => {
           </Style.Btn1>
           <Style.Btn onClick={()=>exibirList()}>Lista presentes</Style.Btn>
         </Flex>
-        <h3 classname="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
-        <h4 classname="fraseAutor">Provérbios 16:9</h4>
+        <h3 class="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
+        <h4 class="fraseAutor">Provérbios 16:9</h4>
       </Style.Caixa>
 
     </Box>

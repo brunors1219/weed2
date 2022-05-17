@@ -12,7 +12,7 @@ const Fundo = styled(Center)`
   position:absolute;
   width: 100vw;
   height: 100vh;
-  z-index:999;
+  z-index:9999;
 `;
 const Caixa = styled(Center)`
   margin:auto;

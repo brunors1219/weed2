@@ -19,7 +19,16 @@ export const ImgFlores = styled(Box)`
   img{
     width:100%;
   }
-
+`;
+export const CaixaNoivos = styled(Box)`
+  width: 40vw;
+  height: 30vh;
+  font-size: xx-large;
+  color: #9583B6;
+  font-weight: 500;
+  font-family: "Mistrully";
+  align-self: flex-end;
+  margin-top: 15vh;
 `;
 export const Caixa = styled(Flex)`
   background-image: url(/images/inviteBack1.jpg);
@@ -30,21 +39,18 @@ export const Caixa = styled(Flex)`
   align-items: center;
   color: #C8A2C8;
   font-family: "Great Vibes";
+
   .title {
-    font-size: xx-large;
+    font-size: x-large;
     width: 90%;
   }
-  .titleName {
-    font-size: xxx-large;
-    padding: 5px;
-    color: #9583B6;
-    font-weight: 400;
-    font-family: "Mistrully";
-    }
   .locate {
+    margin-top: 20px;
     font-size: x-large;
   }
   .time {
+    margin-top: 10px;
+    margin-bottom: 30px;
     font-weight: 900;
     font-family: "Water Brush"
   }
@@ -68,25 +74,14 @@ export const Caixa = styled(Flex)`
 `;
 
 export const Circlo = styled(Flex)`
+  position: absolute;
   background-color: #505EA1;
   border-radius: 50%;
-  width: 30vh;
-  height: 30vh;
+  width: 29vh;
+  height: 29vh;
   overflow: hidden;
-  position: relative;
-  margin-left: 30px;
-  margin-top: -90px;
-  h1 {
-    font-size: xx-large;
-  }
-  img {
-    width: 100%;
-    height: 100%;
-  }
-  @media(min-height: 800px) {
-    margin-left: 30vw;
-  }
-
+  top: 80px;
+  left: 10px;
 `;
 
 export const ImgQrCode = styled(Flex)`
@@ -130,13 +125,12 @@ export const Btn = styled(Button)`
   font-family: "Water Brush";
   /* "Great Vibes"; */
   margin: 1px;
-
 `;
 
 export const Btn1 = styled(Button)`
   display:block;
   height: 85px;
-  width: 120px;
+  width: 125px;
   border-radius: 50%;
   background-color: #505EA1 ;
   color: white;
