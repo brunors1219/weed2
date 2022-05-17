@@ -10,7 +10,5 @@ export const ButtonClose = styled(Box)`
 export const Fundo = styled(Center)`
   background-color: #9583B6;
   position:absolute;  
-  width: 97vw;
-  height: 97vh;
   z-index:9999;
 `;
