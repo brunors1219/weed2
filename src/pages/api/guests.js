@@ -64,7 +64,7 @@ export default async function handler(request, response) {
       const serializedGuests = guests.map(guest => {
         return {
           ...guest, 
-          invitation_url: `${process.env.APP_URL}/guestInvitation/${guest.id}`, 
+          invitation_url: `${process.env.APP_URL}/guestInvitationv3/${guest.id}`, 
         };
       });
   

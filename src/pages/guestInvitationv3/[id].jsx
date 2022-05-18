@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Flex } from "@chakra-ui/react";
-import Confirmation from "/src/components/Confirmation.jsx";
+import Confirmationv2 from "/src/components/Confirmationv2.jsx";
 import Locate from "/src/components/Locate.jsx";
 import QrCode from '/src/components/QrCode';
 import Gifts from '/src/components/gifts';
@@ -33,6 +33,7 @@ const GuestInvite = () => {
 
   const exibirConfirmacao = useCallback(() => {
     setMostrarConfirmacao(true);
+    setMostrarQrCode(false);
   }, []);
 
   const fecharConfirmacao = useCallback(() => {
@@ -58,12 +59,18 @@ const GuestInvite = () => {
 
   return (
     <Box position="relative">
-      <Confirmation id={id} Guest={name} Escorts={escorts} Visivel={mostrarConfirmacao} funcaoFechar={fecharConfirmacao} />
+      <Confirmationv2 
+        id={id} 
+        Guest={name} 
+        Escorts={escorts} 
+        Visivel={mostrarConfirmacao} 
+        funcaoFechar={fecharConfirmacao}
+        confirmed={confirmado} />
 
       <Locate Visivel={msgLocal}>
       </Locate>
 
-      <QrCode Visivel={mostrarQrCode} funcaoFechar={fecharQrCode} />
+      <QrCode Visivel={mostrarQrCode} funcaoFechar={fecharQrCode} funcaoAbrirConfirmacao={exibirConfirmacao} />
 
       <Gifts Visivel={mostrarList} funcaoFechar={fecharList} guest={id}/>
 

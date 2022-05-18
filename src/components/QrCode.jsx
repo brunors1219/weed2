@@ -12,7 +12,7 @@ const Fundo = styled(Center)`
 const Caixa = styled(Center)`
   margin:auto;
 `;
-export default function QrCode({Visivel, funcaoFechar}) {
+export default function QrCode({Visivel, funcaoFechar, funcaoAbrirConfirmacao}) {
   const { Canvas } = useQRCode();
 
   if (!Visivel) {
@@ -55,6 +55,15 @@ export default function QrCode({Visivel, funcaoFechar}) {
           <br />
 
           <FormControl id="name" flexDirection={'column'} p={1}>
+            <Button
+              variant="solid"
+              bg="#ffc1db"
+              color="white"
+              w="100%"
+              mb={3}
+              onClick={funcaoAbrirConfirmacao}>
+              Tela de confirmação
+            </Button>
             <Button
               variant="solid"
               bg="#505EA1"

@@ -27,7 +27,7 @@ function Home() {
 
         {/* <!-- Open Graph / Facebook --> */}
         <meta property="og:type" content="website"/> 
-        <meta property="og:url" content="https://wedd-ichihara7l.vercel.app/guestInvitation/62766327ab987346e0f88fe3"/>
+        <meta property="og:url" content="https://wedd-ichihara7l.vercel.app/guestInvitationv3/62766327ab987346e0f88fe3"/>
         <meta property="og:title" content="Nosso convite de casamento"/>
         <meta property="og:description" content="Muito importante a confirmação de sua presença."/>
         <meta property="og:image" content=""/>
