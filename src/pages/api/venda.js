@@ -5,9 +5,10 @@ import Pagamentos from '../../database/schemas/Pagamentos';
 export default async function venda(request, response) {
 
   if (request.method === 'GET') {
-      mercadopago.configure({
-        access_token: 'TEST-6425645332822099-050921-a85c191823760d81e651b4c679fbff2f-6120575'
-      });
+
+    mercadopago.configure({
+      access_token: process.env.MERCADOPAGO_KEY
+    });
 
     var preference = {
       items: [
@@ -20,16 +21,21 @@ export default async function venda(request, response) {
       ]
     };
 
-   const result = await mercadopago.preferences.create(preference);
+    const result = await mercadopago.preferences.create(preference);
 
     if (!result) return response.status(500).json({ message: 'Ocorreu um erro inesperado' });
 
     await connectToDatabase();
 
+    console.log(request.query);
+
     const record = new Pagamentos({
-      guest      : request.query.guest,
-      product    : request.query.product,
-      request_id : result.body.id,
+      guest           : request.query.guest,
+      guest_name      : request.query.guest_name,
+      product_name    : request.query.product_name,
+      product_url     : request.query.product_url,
+      request_id      : result.body.id,
+      request_Status  : "Aguardando aprovação",
     });
     
     record.save(function (err) {

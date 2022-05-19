@@ -6,6 +6,7 @@ export default function ConfirmationGuest({GuestId, GuestName, Escort, confirmed
 
   const [colorButtonVai, setcolorButtonVai] = useState(confirmed ? '#009000' : '#edf2f7');
   const [colorButtonNaoVai, setcolorButtonNaoVai] = useState(confirmed ? '#edf2f7' : '#ffc1db');
+  
   const setConfirmedStatus = useCallback((confirmed) => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${GuestId}`, {
       method: 'PATCH',

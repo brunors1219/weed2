@@ -13,16 +13,18 @@ const Category = styled(Badge)`
     text-overflow: ellipsis;
 `;
 
-export default function ProductCard({ product, guest }) {
+export default function ProductCard({ product, guest, guest_name, funcaoFechar }) {
 
   const setPay = useCallback(async (product) => {
 
     const queryParams = new URLSearchParams({
-      guest   : guest,
-      product : product._id,
-      title   : product.name,
-      quantity: 1,
-      price   : product.value,
+      guest         : guest,
+      guest_name    : guest_name,
+      product_name  : product.name,
+      product_url   : product.url,
+      title         : product.name,
+      quantity      : 1,
+      price         : product.value,
     });
 
     console.log(queryParams);
@@ -30,7 +32,9 @@ export default function ProductCard({ product, guest }) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/venda?${queryParams}`)
     
     const data = await response.text();
-
+    
+    funcaoFechar();
+    
     window.open(data);
   }, []);
 
@@ -54,7 +58,7 @@ export default function ProductCard({ product, guest }) {
 
           <Text mt={2}>R$ {product.value}</Text>
           <Button onClick={() => setPay(product)}>
-            Comprar
+            Dar este...
           </Button>
         </Box>
       </Center>

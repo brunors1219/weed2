@@ -35,11 +35,17 @@ export default async function handler(request, response) {
 
   if (request.method === 'GET' && !request.params) {
     try {
+      
       await connectToDatabase();
 
-      const products = await Product.find().sort([['date', -1]]).exec();
-
-      return response.json(products);
+      if (request.query){
+        const products = await Product.find({category :request.query.category}).sort([['date', -1]]).exec();
+        return response.json(products);
+      } else {
+        const products = await Product.find().sort([['date', -1]]).exec();
+        return response.json(products);
+      }
+      
     } catch (err) {
       console.log(err);
 

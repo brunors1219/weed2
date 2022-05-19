@@ -72,7 +72,7 @@ const GuestInvite = () => {
 
       <QrCode Visivel={mostrarQrCode} funcaoFechar={fecharQrCode} funcaoAbrirConfirmacao={exibirConfirmacao} />
 
-      <Gifts Visivel={mostrarList} funcaoFechar={fecharList} guest={id}/>
+      <Gifts Visivel={mostrarList} funcaoFechar={fecharList} guest={id} guest_name={name}/>
 
       <Style.Caixa h="100vh" flexDirection="column">
         <Style.CaixaTextoContive>
