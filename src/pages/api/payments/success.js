@@ -11,9 +11,7 @@ export default async function handler(request, response) {
 
     Pagamento.save();
 
-    window.close();
-
-    return response.status(200).json({ message: 'OK' });
+    return response.status(200).json({ message: 'Pagamento aprovado o presente será enviado aos noivos, para acompanhar a entrega acesse a sua lista de presentes!' });
   }else{
     return response.status(500).json({ message: 'Registro não encontrado para atualização' });
   }
