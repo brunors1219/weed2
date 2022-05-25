@@ -1,5 +1,5 @@
-import connectToDatabase from '../../database';
-import Pagamentos from '../../database/schemas/Pagamentos';
+import connectToDatabase from '/src/database';
+import Pagamentos from '/src/Pagamentos';
 
 export default async function handler(request, response) {
   console.log("MPSucess", request.query);
