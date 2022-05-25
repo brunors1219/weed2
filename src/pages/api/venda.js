@@ -25,9 +25,9 @@ export default async function venda(request, response) {
       auto_return : "all",
       external_reference : "123",
       back_urls : {
-        success : `${process.env.APP_URL}/payments/success`,
-        pending : `${process.env.APP_URL}/payments/pending`,
-        failure : `${process.env.APP_URL}/payments/failure`,
+        success : `${process.env.APP_URL}/api/payments/success`,
+        pending : `${process.env.APP_URL}/api/payments/pending`,
+        failure : `${process.env.APP_URL}/api/payments/failure`,
       }
     };
 

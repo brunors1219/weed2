@@ -7,7 +7,9 @@ export default async function confirmacaopagamento(request, response) {
     
     const { body } = request;
 
+
     console.log({ body });
+    console.log({ request });
 
     const record = new Pagamentos({
       item: body
