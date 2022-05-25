@@ -1,5 +1,15 @@
+import connectToDatabase from '../../database';
+import Pagamentos from '../../database/schemas/Pagamentos';
+
 export default async function handler(request, response) {
-  console.log("MPPending", request);
+  console.log("MPSucess", request.query);
+
+  await connectToDatabase();
+  const Pagamento = await Pagamentos.findOne({ request_id : request.query.preference_id }).exec();
+
+  Pagamento.status = "Pendente de aprovação";
+
+  Pagamento.save();
 
   return response.status(200).json({ message: 'OK' });
 
