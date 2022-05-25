@@ -12,18 +12,20 @@ const GuestInvite = () => {
   const { query } = useRouter();
   const { id } = query;
   const [name , setName] = useState('');
+  const [guest , setguest] = useState({});
   const [confirmado , setconfirmado] = useState('');
   const [escorts , setEscorts] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [msgLocal, setmsgLocal] = useState('none');
   const [mostrarQrCode, setMostrarQrCode] = useState(false);
   const [mostrarList, setMostrarList] = useState(false);
-
+  
   useEffect(() => {
     if (id) {
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${id}`)
         .then(response => response.json())
         .then(data => {
+          setguest(data);
           setName(data.name);
           setconfirmado(data.confirmed);
           setEscorts(data.escorts);
@@ -70,7 +72,12 @@ const GuestInvite = () => {
       <Locate Visivel={msgLocal}>
       </Locate>
 
-      <QrCode Visivel={mostrarQrCode} funcaoFechar={fecharQrCode} funcaoAbrirConfirmacao={exibirConfirmacao} />
+      <QrCode 
+        Guest={guest}
+        Visivel={mostrarQrCode} 
+        funcaoFechar={fecharQrCode} 
+        funcaoAbrirConfirmacao={exibirConfirmacao} 
+      />
 
       <Gifts Visivel={mostrarList} funcaoFechar={fecharList} guest={id} guest_name={name}/>
 

@@ -27,8 +27,6 @@ export default function ProductCard({ product, guest, guest_name, funcaoFechar }
       price         : product.value,
     });
 
-    console.log(queryParams);
-
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/venda?${queryParams}`)
     
     const data = await response.text();
@@ -58,7 +56,7 @@ export default function ProductCard({ product, guest, guest_name, funcaoFechar }
 
           <Text mt={2}>R$ {product.value}</Text>
           <Button onClick={() => setPay(product)}>
-            Dar este...
+            Presentear
           </Button>
         </Box>
       </Center>

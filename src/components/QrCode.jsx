@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Heading, Box, Center, Button,
   useColorModeValue, FormControl} from '@chakra-ui/react';
 import styled from '@emotion/styled';
@@ -12,8 +13,20 @@ const Fundo = styled(Center)`
 const Caixa = styled(Center)`
   margin:auto;
 `;
-export default function QrCode({Visivel, funcaoFechar, funcaoAbrirConfirmacao}) {
+export default function QrCode({Guest, Visivel, funcaoFechar, funcaoAbrirConfirmacao}) {
   const { Canvas } = useQRCode();
+  const [textQrCode, settextQrCode] = useState("");
+
+  useEffect(() => {
+    if (Guest){
+      const text = Guest.name;
+      if (Guest.escorts)
+        Guest.escorts.map((escort)=>{
+          text += ", " + escort.name;
+        });
+      settextQrCode(text);
+    }
+  }, [Guest]);  
 
   if (!Visivel) {
     return null;
@@ -37,7 +50,7 @@ export default function QrCode({Visivel, funcaoFechar, funcaoAbrirConfirmacao}) 
           <h3>Através deste código será possível identificar você e seus acompanhantes!</h3>
           <br />
           <Canvas
-                text={"Casamento maravilhoso Margo e Anselmo"}
+                text={`Convidados: ${textQrCode} `}
                 options={{
                   type: 'image/jpeg',
                   quality: 0.3,

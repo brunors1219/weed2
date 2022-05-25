@@ -13,7 +13,6 @@ export default async function handler(request, response) {
       return response.json(productBuied);
       
     } catch (err) {
-      console.log(err);
 
       return response.status(500).json(err);
     }

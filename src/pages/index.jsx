@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Flex, Badge, Text } from "@chakra-ui/react";
+import { Box, Image, Flex, Badge, Text, Button } from "@chakra-ui/react";
 import { MdStar } from "react-icons/md";
 import { GiGreekTemple } from 'react-icons/gi'
 import styled from '@emotion/styled';

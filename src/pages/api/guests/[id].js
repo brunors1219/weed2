@@ -9,10 +9,8 @@ export default async function handler(request, response) {
       await connectToDatabase();
       const guest = await Guest.findOne({ _id : id }).exec();
 
-      console.log(guest);
       return response.json(guest);
     } catch (err) {
-      console.log(err);
 
       return response.status(500).json(err);
     }
@@ -47,8 +45,6 @@ export default async function handler(request, response) {
         confirmed,
       });
     } catch (err) {
-      console.log(err);
-
       return response.status(500).json(err);
     }
   }
@@ -79,7 +75,6 @@ export default async function handler(request, response) {
   //       confirmed,
   //     });
   //   } catch (err) {
-  //     console.log(err);
 
   //     return response.status(500).json(err);
   //   }

@@ -39,8 +39,9 @@ export default function Confirmationv2({id, Guest, Escorts, Visivel, funcaoFecha
             textAlign={'center'}
             color={useColorModeValue('gray.900', 'gray.400')}
             px={3}>
-            Por favor, <b>confirme</b> a presença apenas dos que vão na <b>recepção</b>!
-            Essa confimarção é importante para que possamos melhor organizar a recepção!
+            Por favor, <b>confirme</b> a presença apenas daqueles que vão na <b>recepção</b>!
+            Essa confimarção é importante para que possamos melhor organizar e recebe-los!
+            <br />
             Ao final será emitido um Qr-Code que precisará apresentar no dia do evento.
           </Text>
 

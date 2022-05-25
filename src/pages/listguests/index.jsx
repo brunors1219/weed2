@@ -10,7 +10,6 @@ function listguests() {
       .then(response => response.json())
       .then(data => {
         setGuests(data);
-        console.log(data);
       });
   }, []);
 

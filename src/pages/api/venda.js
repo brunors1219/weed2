@@ -18,7 +18,17 @@ export default async function venda(request, response) {
           currency_id: 'BRL',
           unit_price: Number(request.query.price)
         }
-      ]
+      ],
+      payer : {
+        email: 'ichihara7l@gmail.com'
+      },
+      auto_return : "all",
+      external_reference : "123",
+      back_urls : {
+        success : `${process.env.APP_URL}/payments/success`,
+        pending : `${process.env.APP_URL}/payments/pending`,
+        failure : `${process.env.APP_URL}/payments/failure`,
+      }
     };
 
     const result = await mercadopago.preferences.create(preference);
@@ -26,8 +36,6 @@ export default async function venda(request, response) {
     if (!result) return response.status(500).json({ message: 'Ocorreu um erro inesperado' });
 
     await connectToDatabase();
-
-    console.log(request.query);
 
     const record = new Pagamentos({
       guest           : request.query.guest,
