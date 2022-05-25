@@ -18,5 +18,6 @@ export default async function handler(request, response) {
     return response.status(500).json({ message: 'Registro não encontrado para atualização' });
   }
 
+  window.close();
 
 }
