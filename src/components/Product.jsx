@@ -33,7 +33,8 @@ export default function ProductCard({ product, guest, guest_name, funcaoFechar }
     
     funcaoFechar();
     
-    window.open(data);
+    window.location.href = data;
+    
   }, []);
 
   return (

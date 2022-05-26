@@ -52,8 +52,6 @@ export default async function venda(request, response) {
       if (err) console.log(err);
     });
 
-    return response.redirect(result.body.init_point);
-
     return response.json(result.body.init_point);
   }
 }
