@@ -35,6 +35,8 @@ export default async function venda(request, response) {
 
     if (!result) return response.status(500).json({ message: 'Ocorreu um erro inesperado' });
 
+    console.log(result);
+    
     await connectToDatabase();
 
     const record = new Pagamentos({
