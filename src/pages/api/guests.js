@@ -30,7 +30,8 @@ export default async function handler(request, response) {
               //  Guest not exist - INSERT
               const record_guest = new Guest({
                 name : item.name, 
-                owner : item.owner
+                owner : item.owner,
+                referency : item.referency
               });
               
               if (Array.isArray(item.escorts)) {
