@@ -7,11 +7,9 @@ export default async function handler(request, response) {
 
   if (Pagamento){
 
-    Pagamento.request_Status = "Pagamento recusado pela operadora";
+    Pagamento.delete();
 
-    Pagamento.save();
-
-    return response.status(200).json({ message: 'Pagamento recusado pela operadora' });
+    return response.status(200).json({ message: 'Pagamento recusado pela operadora, selecione novamente o produto no site do casamento.' });
   }else{
     return response.status(500).json({ message: 'Registro não encontrado para atualização' });
   }

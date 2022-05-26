@@ -7,11 +7,9 @@ export default async function handler(request, response) {
 
   if (Pagamento){
 
-    Pagamento.request_Status = "Pendente de aprovação";
+    Pagamento.delete();
 
-    Pagamento.save();
-
-    return response.status(200).json({ message: 'Pagamento pendente de aprovação' });
+    return response.status(200).json({ message: 'Pagamento pendente de aprovação,  selecione novamente o produto no site do casamento.' });
   }else{
     return response.status(500).json({ message: 'Registro não encontrado para atualização' });
   }
