@@ -7,9 +7,10 @@ export default async function handler(request, response) {
 
   if (Pagamento){
 
-    Pagamento.delete();
+    Pagamento.excluded = true;
+    Pagamento.save();
 
-    return response.status(200).json({ message: 'Pagamento recusado pela operadora, selecione novamente o produto no site do casamento.' });
+    return response.redirect(`${process.env.APP_URL}/guestInvitationv3/${Pagamento.guest}`);
   }else{
     return response.status(500).json({ message: 'Registro não encontrado para atualização' });
   }

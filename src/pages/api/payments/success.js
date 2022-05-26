@@ -7,11 +7,12 @@ export default async function handler(request, response) {
 
   if (Pagamento){
 
-    Pagamento.request_Status = "Aprovado e enviado ao noivos";
+    Pagamento.request_Status = "Aprovado e será enviado ao noivos";
 
     Pagamento.save();
 
-    return response.status(200).json({ message: 'Pagamento aprovado o presente será enviado aos noivos, para acompanhar a entrega acesse a sua lista de presentes!' });
+    return response.redirect(`${process.env.APP_URL}/guestInvitationv3/${Pagamento.guest}`);
+
   }else{
     return response.status(500).json({ message: 'Registro não encontrado para atualização' });
   }

@@ -8,7 +8,7 @@ export default async function handler(request, response) {
       
       await connectToDatabase();
 
-      const productBuied = await Pagamentos.find({guest :request.query.guest}).exec();
+      const productBuied = await Pagamentos.find({guest :request.query.guest, excluded : false}).exec();
       
       return response.json(productBuied);
       

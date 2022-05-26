@@ -46,6 +46,7 @@ export default async function venda(request, response) {
       product_url     : request.query.product_url,
       request_id      : result.body.id,
       request_Status  : "Aguardando aprovação",
+      excluded        : false
     });
     
     record.save(function (err) {
