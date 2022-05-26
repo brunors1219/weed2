@@ -1,8 +1,10 @@
 export default async function confirmacaopagamento(request, response) {
   try {
     
-    const { body } = request;
+    const { body, query } = request;
 
+    console.log(body, query);
+    
     return response.status(200).json({ message: 'OK' });
     
   } catch(err) {
