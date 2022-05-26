@@ -7,6 +7,7 @@ export default async function handler(request, response) {
 
   if (Pagamento){
 
+    Pagamento.request_Status = request.query.status;
     Pagamento.excluded = true;
     Pagamento.save();
 
