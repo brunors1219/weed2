@@ -46,7 +46,6 @@ export default function Confirmationv2({id, Guest, Escorts, Visivel, funcaoFecha
           </Text>
 
           <Stack align={'center'} mt={6} >
-            <ConfirmationGuest GuestId={id} GuestName={Guest} confirmed={confirmed}/>
             {Escorts.map((Escort)=>{
               return (
                 <ConfirmationGuest 
