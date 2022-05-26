@@ -32,6 +32,7 @@ export default async function handler(request, response) {
       if (!Escort) {
         guest.confirmed = confirmed;
       } else {
+        guest.confirmed = confirmed;
         guest.escorts.map((escort)=>{
           if (escort._id == Escort._id)
             escort.confirmed = confirmed;
