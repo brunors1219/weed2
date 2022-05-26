@@ -23,7 +23,7 @@ export default async function venda(request, response) {
         email: 'ichihara7l@gmail.com'
       },
       auto_return : "all",
-      external_reference : "123",
+      external_reference : request.query.guest + "-" + request.query.guest_name,
       back_urls : {
         success : `${process.env.APP_URL}/api/payments/success`,
         pending : `${process.env.APP_URL}/api/payments/pending`,
