@@ -1,43 +1,40 @@
-import React, { Component } from "react";
-import dynamic from "next/dynamic";
-import { Center } from '@chakra-ui/react';
-import styled from '@emotion/styled';
+import React, { useState, useCallback } from 'react';
+import { QrReader } from 'react-qr-reader';
+import WelcomeGuest from '../../components/WelcomeGuest';
 
-export const Screen = styled(Center)`
-  color:blue;
-`;
+export default function ReadQr(props) {
+  const [data, setData] = useState(null);
+  const [reading, setReading] = useState(true);
 
-const QrReader = dynamic(
-  () => import("react-qr-reader").then((mod) => mod.QrReader),
-  { ssr: false }
-);
-class Index extends Component {
-  state = {
-    result: "No result",
-  };
-
-  handleScan = (data) => {
-    if (data) {
-      this.setState({
-        result: data,
-      });
+  const ReadQrCode = useCallback((value) => {
+    if (reading) {
+      setData(value);
+      setReading(false);  
     }
-  };
-  handleError = (err) => {
-    console.error(err);
-  };
-  render() {
-    return (
-      <Screen>
-        <QrReader
-          delay={300}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          style={{ width: "10%" }}
-        />
-        <p>{this.state.result}</p>
-      </Screen>
-    );
-  }
-}
-export default Index;
+  }, []);
+
+  const StartRead = useCallback(() => {
+    setData(null);
+    setReading(true);  
+  }, []);
+
+  return (
+    <>
+      <WelcomeGuest guest={data} back={StartRead}/>
+      
+      <QrReader
+        onResult={(result, error) => {
+
+          if (!!result) {  
+            ReadQrCode(result?.text);          
+          } 
+
+          if (!!error) {
+            console.info(error);
+          }
+        }}
+        style={{ width: '100%' }}
+      />
+    </>
+  );
+};
