@@ -23,6 +23,8 @@ export default function ReadQr(props) {
       <WelcomeGuest guest={data} back={StartRead}/>
       
       <QrReader
+        key="environment"
+        constraints={{ facingMode: 'environment' }}
         onResult={(result, error) => {
 
           if (!!result) {  
