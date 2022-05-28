@@ -8,7 +8,9 @@ const Title = styled(Text)`
     text-overflow: ellipsis;
 `;
 const Caixa = styled(Center)`
-    background-color: #C8A2C8
+    background-color: #e4d2e4;
+    border-radius: 20%;
+    color:black;
 `;
 
 export default function ProductBuied({ guest }) {
@@ -37,7 +39,7 @@ export default function ProductBuied({ guest }) {
       {products.map((item)=> {
           console.log(item);
           return (
-            <Box p="5" maxW="320px" borderWidth="1px">
+            <Box p="5" maxW="320px">
               <Title mt={2} fontSize="larger" 
                 fontWeight="semibold" 
                 lineHeight="short">

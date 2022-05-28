@@ -1,6 +1,21 @@
 import { useCallback, useState } from 'react';
 import { Box, Button, Badge } from '@chakra-ui/react';
 import { GoThumbsup, GoThumbsdown } from 'react-icons/go';
+import styled from '@emotion/styled';
+
+export const BtnVai = styled(Button)`
+  margin : 1px;
+  :hover {
+    background-color: #009000;
+  }
+`;
+
+export const BtnNaoVai = styled(Button)`
+  margin : 1px;
+  :hover {
+    background-color: #ffc1db;
+  }
+`;
 
 export default function ConfirmationGuest({GuestId, GuestName, Escort, confirmed}) {
 
@@ -39,8 +54,16 @@ export default function ConfirmationGuest({GuestId, GuestName, Escort, confirmed
         fontWeight={'400'}>
         #{GuestName}
       </Badge>
-      <Button bg={colorButtonVai} m={1} onClick={()=> setConfirmedStatus(true)}><GoThumbsup /></Button>
-      <Button bg={colorButtonNaoVai} m={1} onClick={()=> setConfirmedStatus(false)}><GoThumbsdown /></Button>
+      <BtnVai 
+        bg={colorButtonVai} 
+        onClick={()=> setConfirmedStatus(true)}>
+        <GoThumbsup />
+      </BtnVai>
+      <BtnNaoVai 
+        bg={colorButtonNaoVai} 
+        onClick={()=> setConfirmedStatus(false)}>
+        <GoThumbsdown />
+      </BtnNaoVai>
     </Box> 
   );
 }

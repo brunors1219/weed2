@@ -16,6 +16,19 @@ export const CaixaTextoContive = styled(Box)`
   font-size: x-large;
   color: #9583B6;
   align-self: flex-end;
+  @media(min-height: 800px) {
+    width: 12vw;
+  }
+
+`;
+export const lateral = styled(Box)`
+  width: 40%;
+  background-color: #9583B6;
+  display: none;
+
+  @media(min-height: 800px) {
+    display: block;
+  }
 `;
 export const CaixaNoivos = styled(Box)`
   font-size: xx-large;
@@ -55,6 +68,7 @@ export const Caixa = styled(Flex)`
   }
 
   @media(min-height: 800px) {
+    width : "30%";
     .title {font-size: xx-large; }
     .locate {font-size: xx-large; }
   }
@@ -98,7 +112,7 @@ export const ImgQrCode = styled(Flex)`
 
 export const BtnNovo = styled(Button)`
   display:block;
-  height: 85px;
+  height: 80px;
   width: 120px;
   border-radius: 50%;
   background-color: #C8A2C8;
@@ -107,8 +121,8 @@ export const BtnNovo = styled(Button)`
   white-space: normal;
   font-size: larger;
   font-family: "Water Brush";
-  /* "Great Vibes"; */
-  margin: 1px;
+  margin: 5px;
+  box-shadow: 3px 3px orange, 3px 2px orange, 0px 1px orange;
 `;
 
 export const BtnNovo1 = styled(Button)`
@@ -124,6 +138,7 @@ export const BtnNovo1 = styled(Button)`
   margin: 1px;
   font-size: larger;
   font-family: 'Water Brush';  
+  box-shadow: 3px 3px orange, 3px 2px orange, 0px 1px orange;
 `;
 
 export const Aviso1 = styled(Box)`

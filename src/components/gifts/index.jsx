@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback }  from 'react';
 import { useRouter } from 'next/router'; 
-import { Flex, Box, IconButton, Select, Text } from '@chakra-ui/react';
+import { Flex, Box, IconButton, Select, Text, Center } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 import { ButtonClose, Fundo } from './styles';
 import ProductCard from './../../components/Product';
@@ -55,17 +55,26 @@ function Gifts({Visivel, funcaoFechar, guest, guest_name}) {
         />    
       </ButtonClose>
       <Flex flexWrap={'wrap'} alignItems={"center"}>
-        <Box textAlign={"center"} p={2}>
-           <Text width={"80%"}>
-           Segue um pouco de nossa sugestão, mas fique a vontade se não encontrar nada aqui.
-           </Text>
+        <Text
+          p={3}
+          textAlign={"center"}  
+          fontSize={"large"}
+          color={"white"}>  
 
-           <ProductBuied guest={guest} />
-        </Box>
+          <Center>
+              <ProductBuied guest={guest} />
+          </Center>         
+
+          Segue um pouco de nossa sugestão, mas fique a vontade se não encontrar nada aqui.
+
+        </Text>
 
         <Select 
           id="category" 
           placeholder='Escolha a categoria...' 
+          fontSize={"large"}
+          fontWeight={"700"}
+          color={"white"}
           margin={"auto"}
           width={"80%"}
           onChange={() => getProducts(document.querySelector('#category').value)}>
@@ -77,16 +86,18 @@ function Gifts({Visivel, funcaoFechar, guest, guest_name}) {
           <option value="Ferramentas">Ferramentas</option>
         </Select>
 
-        {products.map((item)=> {
-          return (
-            <ProductCard 
-              key={item._id} 
-              product={item} 
-              guest={guest} 
-              guest_name={guest_name}
-              funcaoFechar={funcaoFechar}/>
-          );
-        })}
+        <Center flexWrap={'wrap'} alignItems={"center"}>
+          {products.map((item)=> {
+            return (
+              <ProductCard 
+                key={item._id} 
+                product={item} 
+                guest={guest} 
+                guest_name={guest_name}
+                funcaoFechar={funcaoFechar}/>
+            );
+          })}
+        </Center>
       </Flex>
     </Fundo>
   );

@@ -67,7 +67,7 @@ export default function Confirmationv2({id, Guest, Escorts, Visivel, funcaoFecha
               w="100%"
               mt={5}
               onClick={() => funcaoFechar() }>
-              Voltar
+              Enviar
             </Button>
           </FormControl>
         </Box>

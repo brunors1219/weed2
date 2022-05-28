@@ -40,25 +40,43 @@ export default function ProductCard({ product, guest, guest_name, funcaoFechar }
   return (
     <>
       <Center m="2">
-        <Box p="5" maxW="320px" borderWidth="1px" w={"45vw"}>
-          <Title mt={2} fontSize="small" 
-            fontWeight="semibold" 
-            lineHeight="short">
-            {product.name}
-          </Title>
+        <Box 
+          p="5" 
+          maxW="200px" 
+          borderWidth="2px" 
+          borderRadius="15%"
+          w={"45vw"}>
 
           <Flex align="baseline" mt={2}>
             <Category colorScheme="pink">{product.category}</Category>
           </Flex>
 
           <Center>
-            <Image with={"80px"} height={"100px"} borderRadius="md" src={product.url} />
+            <Image 
+              w={"100%"} 
+              h={"100px"} borderRadius="md" src={product.url} />
           </Center>
 
-          <Text mt={2}>R$ 1,00 {/* {product.value} */}</Text>
-          <Button onClick={() => setPay(product)}>
-            Presentear
-          </Button>
+          <Title mt={2} fontSize="small" 
+            fontWeight="semibold" 
+            lineHeight="short">
+            {product.name}
+          </Title>
+
+          <Text 
+            color={"white"}
+            textAlign="right"
+            fontSize={"large"}
+            m="2px">
+            R$ {product.value},00 
+          </Text>
+          <Center>            
+            <Button 
+              w={"90%"}
+              onClick={() => setPay(product)}>
+              Presentear
+            </Button>
+          </Center>
         </Box>
       </Center>
     </>

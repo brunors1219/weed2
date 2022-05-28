@@ -8,7 +8,7 @@ export const ButtonClose = styled(Box)`
 `;
 
 export const Fundo = styled(Center)`
-  background-color: #9583B6;
+  background-color: #64a283;
   position:absolute;  
   z-index:9999;
 `;
