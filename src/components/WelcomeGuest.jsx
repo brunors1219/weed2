@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { Box, Center, Text, Button } from "@chakra-ui/react";
 import styled from '@emotion/styled';
 
@@ -18,9 +18,9 @@ export default function WelcomeGuest({ guest, back }) {
     });
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/present?${queryParams}`);
-    
+       
     const data = await response.text();
-        
+    console.log(data);
   }, []);
 
   if (!guest) {
@@ -32,6 +32,7 @@ export default function WelcomeGuest({ guest, back }) {
       <Box m="2" bgColor={"#64a283"} h={"100vh"}>
           <Center
             m={10}
+            color={"white"}
             fontSize={"xxx-large"}>
             Sejam todos muito bem vindos
           </Center>
@@ -50,9 +51,17 @@ export default function WelcomeGuest({ guest, back }) {
                   </Title>
                   <Button
                     display={!escort.present ? "block" : "none"}
-                    onClick={() => setPresent(guest.guest_id, escort._id)}>
+                    onClick={() => setPresent(guest._id, escort._id)}>
                     Confirmar presença
                   </Button>
+                  <Title m={2} 
+                    p={2}
+                    color={"yellow"}
+                    fontSize={"xx-large"}
+                    fontWeight="semibold" 
+                    display={!escort.present ? "none" : "block"}>
+                    (Já Entrou!!!)
+                  </Title>
   
                 </Center>
                 )

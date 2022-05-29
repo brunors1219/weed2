@@ -11,24 +11,24 @@ export default async function handler(request, response) {
         guest_id,
         escort_id
       } = request.query;
+
+      console.log(request.query);
       
       await connectToDatabase();
 
-      var TheGuest = await Guest.find({_id : guest_id}).exec();
+      const guest = await Guest.findOne({ _id : guest_id }).exec();
 
-      if (TheGuest.escorts){
-        TheGuest.escorts.map((guest)=>{
-          if (guest._id == escort_id) {
-            guest.present = true;
-          }
-        });          
+      if (!guest) {
+        return response.status(400).json({ message: 'Guest not found' });
       }
-      // guest.save(function (err) {
-      //   if (err) erros.push({"erro": err, "owner": item.owner, "name": item.name});
-      // });
 
-      console.log(TheGuest);
-      console.log(TheGuest.escorts);
+      guest.escorts.map((escort)=>{
+        if (escort._id == escort_id)
+          escort.present = true;
+      });
+
+      guest.save();
+      console.log(guest);
 
       return response.json(guest);
     } catch (err) {
