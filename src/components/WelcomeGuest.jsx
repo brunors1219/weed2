@@ -10,6 +10,8 @@ const Title = styled(Text)`
 
 export default function WelcomeGuest({ guest, back }) {
 
+  const [theGest, setTheGest] = useState(guest);
+
   const setPresent = useCallback(async (guest_id, escort_id) => {
 
     const queryParams = new URLSearchParams({
@@ -20,10 +22,11 @@ export default function WelcomeGuest({ guest, back }) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/present?${queryParams}`);
        
     const data = await response.text();
+    setTheGest(JSON.parse(data));
     console.log(data);
   }, []);
 
-  if (!guest) {
+  if (!theGest) {
     return null;
   }
 
@@ -37,7 +40,7 @@ export default function WelcomeGuest({ guest, back }) {
             Sejam todos muito bem vindos
           </Center>
 
-          {guest.escorts
+          {theGest.escorts
             .filter((escort)=>{ return escort.confirmed; })
             .map((escort)=>{
               return (
