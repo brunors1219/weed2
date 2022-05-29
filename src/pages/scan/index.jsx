@@ -33,9 +33,9 @@ export default function ReadQr(props) {
 
   return (
     <>
-      <Button onClick={() =>StartRead()}>Realizar leitura</Button>
+      {/* <Button onClick={() =>StartRead()}>Realizar leitura</Button>
       <Button onClick={()=>StopRead()}>Parar leitura</Button>
-      {data != null && <WelcomeGuest guest={data} back={()=>back()}/>}
+      {data != null && <WelcomeGuest guest={data} back={()=>back()}/>} */}
       {startQrCode &&
           <QrReader
           containerStyle={{height: "100vh"}}

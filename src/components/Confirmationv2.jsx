@@ -3,6 +3,7 @@ import { Box, Center, Text, Stack, Button,
   Badge, useColorModeValue, FormControl} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import ConfirmationGuest from './ConfirmationGuest';
+import { GoThumbsup, GoThumbsdown } from 'react-icons/go';
 
 const Fundo = styled(Center)`
   position:absolute;
@@ -42,7 +43,12 @@ export default function Confirmationv2({id, Guest, Escorts, Visivel, funcaoFecha
             Por favor, <b>confirme</b> a presença apenas daqueles que vão na <b>recepção</b>!
             Essa confimarção é importante para que possamos melhor organizar e recebe-los!
             <br />
-            Ao final será emitido um Qr-Code que precisará apresentar no dia do evento.
+            <br />
+            Escolha um dos botões abaixo:
+            <Center>              
+              <GoThumbsup /> <Text m={2}>Eu Vou</Text>
+              <GoThumbsdown /> <Text m={2}>Eu não Vou</Text>
+            </Center>
           </Text>
 
           <Stack align={'center'} mt={6} >
@@ -56,6 +62,9 @@ export default function Confirmationv2({id, Guest, Escorts, Visivel, funcaoFecha
               )              
             })}
           </Stack>
+          <Text>
+            <b>Ao final será emitido um Qr-Code que precisará apresentar no dia do evento.</b>
+          </Text>
 
           <br />
           <FormControl id="name" flexDirection={'column'} p={1}>
