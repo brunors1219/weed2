@@ -18,13 +18,16 @@ export default function QrCode({Guest, Visivel, funcaoFechar, funcaoAbrirConfirm
   const [textQrCode, settextQrCode] = useState("");
 
   useEffect(() => {
-    if (Guest){
-      const text = Guest.name;
-      if (Guest.escorts)
-        Guest.escorts.map((escort)=>{
-          text += ", " + escort.name;
-        });
-      settextQrCode(text);
+    if (Guest.escorts){
+      console.log(Guest);
+
+      var QrCodeGuest = {guest_id : Guest._id};
+
+      QrCodeGuest.escorts = Guest
+                              .escorts
+                              .filter((t)=>{return t.confirmed});
+
+      settextQrCode(JSON.stringify(QrCodeGuest));
     }
   }, [Guest]);  
 
@@ -50,7 +53,7 @@ export default function QrCode({Guest, Visivel, funcaoFechar, funcaoAbrirConfirm
           <h3>Através deste código será possível identificar você e seus acompanhantes!</h3>
           <br />
           <Canvas
-                text={`Convidados: ${textQrCode} `}
+                text={textQrCode}
                 options={{
                   type: 'image/jpeg',
                   quality: 0.3,

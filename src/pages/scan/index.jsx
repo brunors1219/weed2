@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { QrReader } from 'react-qr-reader';
 import WelcomeGuest from '../../components/WelcomeGuest';
+import { Box, Center, Text, Button } from "@chakra-ui/react";
 
 export default function ReadQr(props) {
   const [data, setData] = useState(null);
@@ -8,7 +9,7 @@ export default function ReadQr(props) {
 
   const ReadQrCode = useCallback((value) => {
     if (reading) {
-      setData(value);
+      setData(JSON.parse(value));
       setReading(false);  
     }
   }, []);

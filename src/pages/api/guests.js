@@ -75,6 +75,33 @@ export default async function handler(request, response) {
     }
   }
 
+  if (request.method === 'GET' && request.params) {
+    try {
+      console.log(request);
+
+      const {
+        guest_id,
+        escort_id
+      } = JSON.parse(request.params);
+
+      await connectToDatabase();
+
+      const guests = await Guest.find({_id : guest_id}).exec();
+      if (guests){
+        guests.map((guest)=>{
+          if (guest._id == escort_id) {
+            guest.present = true;
+          }
+        });          
+      }
+      guests.save();
+      
+      return response.json(guest);
+    } catch (err) {
+      return response.status(500).json(err);
+    }
+  }
+
   
   return response.status(405).json({ message: 'Method not allowed' });
 }

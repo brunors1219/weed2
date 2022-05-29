@@ -24,7 +24,7 @@ export default function ProductCard({ product, guest, guest_name, funcaoFechar }
       product_url   : product.url,
       title         : product.name,
       quantity      : 1,
-      price         : 1 // Testando com valor fixo product.value,
+      price         : product.value,
     });
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/venda?${queryParams}`)
