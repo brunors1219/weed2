@@ -1,7 +1,0 @@
-{
- name: { type: String, required: true },
-  email: { type: String, required: false },
-  age: { type: Number, required: false },
-  phone: { type: 'String', required: true },
-  confirmed: { type: Boolean, default: false },
-}

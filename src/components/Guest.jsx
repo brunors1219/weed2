@@ -1,8 +1,15 @@
+import React, { useState } from 'react';
 import { Box, Flex, Badge, Text, Button } from "@chakra-ui/react";
 import { MdStar } from "react-icons/md";
 
+
 export default function GuestCard({ guest }) {
-  console.log(guest._doc.confirmed);
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(guest.invitation_url);
+    alert("Texto Copiado!");
+  }
+
   return (
     <Box p="5" w="30vw" borderWidth="1px" m="5px">
       <Flex mt={2} align="end" mr="0px">
@@ -27,11 +34,21 @@ export default function GuestCard({ guest }) {
           );
         })}
       </Flex>
-      <Text mt={2} fontSize="10px" fontWeight="semibold" lineHeight="short">
-        <a href={guest.invitation_url}>Link do convite</a>
+      <Text 
+        p={3}
+        color={"blue"}
+        fontSize="large" 
+        fontWeight="semibold" 
+        lineHeight="short"
+        textAlign={"center"}>
+        <a href={guest.invitation_url}>Clique aqui para abrir o convite</a>
       </Text>
       <Button w="100%">
-        <Text fontSize="20px" color="pink" fontWeight={"extrabold"}>
+        <Text 
+          fontSize="20px" 
+          color="pink" 
+          fontWeight={"extrabold"}
+          onClick={()=>copyToClipboard()}>
           Copiar o link
         </Text>
       </Button>

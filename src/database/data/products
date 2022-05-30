@@ -1,7 +1,0 @@
-{
-  name: { type: String, required: true },
-  category: { type: String, required: false },
-  url: { type: String, required: false },
-  value { type: Number, required: false },
-  date { type: Date, required: false },
-}
