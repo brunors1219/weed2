@@ -1,11 +1,12 @@
 import { useState, useCallback } from 'react';
 import Head from 'next/head'
 import Gifts from '/src/components/gifts';
+import { Button, Input, Select } from "@chakra-ui/react";
 
 export default function insertgifts() {
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
-  const [mostrarList, setMostrarList] = useState(true);
+  const [mostrarList, setMostrarList] = useState(false);
 
   /**
    * handleOnChange
@@ -93,7 +94,9 @@ export default function insertgifts() {
         <form method="post" onSubmit={handleOnSubmit}>
           <p>
             <label>Categoria</label>
-            <select name="category" id="category">
+            <select name="category" 
+              id="category" 
+              style={{padding:"15px"}}>
               <option value="Ferramentas">Ferramentas</option>
               <option value="Casa, Móveis e Decoração">Casa, Móveis e Decoração</option>
               <option value="Eletrodomésticos">Eletrodomésticos</option>
@@ -104,16 +107,31 @@ export default function insertgifts() {
           </p>
           <p>
             <label>Descrição</label>
-            <input type="text" id="name" name="name" />
+            <Input 
+              type="text" 
+              id="name" 
+              name="name"
+              backgroundColor={"green.400"}
+              width={"80%"} />
           </p>
           <p>
             <label>Valor</label>
-            <input type="text" id="value" name="value" />
+            <Input 
+              type="text" 
+              id="value" 
+              name="value"
+              backgroundColor={"green.400"}
+              width={"80%"} />
           </p>
 
           <p>
             <label>Foto</label>
-            <input type="file" name="file" onChange={handleOnChange}/>
+            <Input 
+              type="file" 
+              name="file" 
+              onChange={handleOnChange}
+              backgroundColor={"green.400"}
+              width={"80%"}/>                            
           </p>
           
           <img src={imageSrc} height={"100px"} width={"100px"} />
@@ -130,7 +148,10 @@ export default function insertgifts() {
         </form>
       </main>
 
-      <Gifts Visivel={mostrarList} funcaoFechar={fecharList}/>
+      <Button onClick={()=>setMostrarList(true)}>
+        Mostrar produtos
+      </Button>
+      <Gifts Visivel={mostrarList} funcaoFechar={fecharList} goDelete={true}/>
 
     </div>
   )

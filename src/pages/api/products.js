@@ -33,6 +33,22 @@ export default async function handler(request, response) {
     }
   }
 
+  if (request.method === 'DELETE') {
+    try {
+      await connectToDatabase();
+
+      if (request.query){
+        const products = await Product.findOneAndDelete({_id :request.query._id}).exec();
+        console.log(products);
+        return response.json(products);
+      }
+    } catch (err) {
+      console.error(err);
+
+      return response.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
   if (request.method === 'GET' && !request.params) {
     try {
       

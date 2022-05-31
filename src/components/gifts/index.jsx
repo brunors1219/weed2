@@ -6,7 +6,7 @@ import { ButtonClose, Fundo } from './styles';
 import ProductCard from './../../components/Product';
 import ProductBuied from './../../components/ProductBuied';
 
-function Gifts({Visivel, funcaoFechar, guest, guest_name}) {
+function Gifts({Visivel, funcaoFechar, guest, guest_name, goDelete}) {
 
   if (!Visivel) {
     return null;
@@ -74,10 +74,10 @@ function Gifts({Visivel, funcaoFechar, guest, guest_name}) {
           placeholder='Escolha a categoria...' 
           fontSize={"large"}
           fontWeight={"700"}
-          color={"white"}
+          color={"black"}
           margin={"auto"}
           width={"80%"}
-          onChange={() => getProducts(document.querySelector('#category').value)}>
+          onChange={e => getProducts(e.target.value)}>
           <option value="Casa, Móveis e Decoração">Casa, Móveis e Decoração</option>
           <option value="Eletrodomésticos">Eletrodomésticos</option>
           <option value="Eletrônicos e Acessórios">Eletrônicos e Acessórios</option>
@@ -94,7 +94,8 @@ function Gifts({Visivel, funcaoFechar, guest, guest_name}) {
                 product={item} 
                 guest={guest} 
                 guest_name={guest_name}
-                funcaoFechar={funcaoFechar}/>
+                funcaoFechar={funcaoFechar}
+                goDelete={goDelete}/>
             );
           })}
         </Center>

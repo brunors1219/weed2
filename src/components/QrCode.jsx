@@ -19,8 +19,6 @@ export default function QrCode({Guest, Visivel, funcaoFechar, funcaoAbrirConfirm
 
   useEffect(() => {
     if (Guest.escorts){
-      console.log(Guest);
-
       var QrCodeGuest = {guest_id : Guest._id};
 
       QrCodeGuest.escorts = Guest

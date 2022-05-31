@@ -13,7 +13,7 @@ const Category = styled(Badge)`
     text-overflow: ellipsis;
 `;
 
-export default function ProductCard({ product, guest, guest_name, funcaoFechar }) {
+export default function ProductCard({ product, guest, guest_name, funcaoFechar, goDelete }) {
 
   const setPay = useCallback(async (product) => {
 
@@ -34,6 +34,19 @@ export default function ProductCard({ product, guest, guest_name, funcaoFechar }
     funcaoFechar();
     
     window.location.href = data;
+    
+  }, []);
+
+  const deleteProduct = useCallback(async (product) => {
+
+    const queryParams = new URLSearchParams({
+      _id  : product._id,
+    });
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products?${queryParams}`,
+      {method: 'DELETE'});
+    
+      window.location.reload();
     
   }, []);
 
@@ -75,6 +88,14 @@ export default function ProductCard({ product, guest, guest_name, funcaoFechar }
               w={"90%"}
               onClick={() => setPay(product)}>
               Presentear
+            </Button>
+            <Button 
+              m={1}
+              backgroundColor={"red"}
+              w={"50%"}
+              display={goDelete ? "block" : "none"}
+              onClick={() => deleteProduct(product)}>
+              Exc
             </Button>
           </Center>
         </Box>
