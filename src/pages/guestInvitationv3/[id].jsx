@@ -15,7 +15,7 @@ const GuestInvite = () => {
   const { query } = useRouter();
   
   const showButtomCamera = process.env.NEXT_PUBLIC_SHOW_CAMERA;
-
+  console.log(showButtomCamera);
   const { id } = query;
   const [name , setName] = useState('');
   const [guest , setguest] = useState({});
