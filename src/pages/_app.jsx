@@ -1,12 +1,15 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import GlobalStyle from '../styles/global';
 import "@fontsource/great-vibes";
+import { StrictMode } from "react";
 
 export default function Website({ Component, pageProps }) {
   return (
-    <ChakraProvider>
-      <GlobalStyle />
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <StrictMode>
+      <ChakraProvider>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </StrictMode>
   );
 }

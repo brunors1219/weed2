@@ -17,6 +17,8 @@ const Caixa = styled(Flex)`
 `;
 
 function Home() {
+  const [toggleTab, setToggleTab] = React.useState(true);
+
   return (
     <Box bc="#505EA1" w="100vw" h="100vh" >
       <Head>
