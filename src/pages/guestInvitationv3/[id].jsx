@@ -14,8 +14,8 @@ const GuestInvite = () => {
 
   const { query } = useRouter();
   
-  const showButtomCamera = process.env.NEXT_PUBLIC_SHOW_CAMERA;
-  console.log(showButtomCamera);
+  const [showButtomCamera, setshowButtomCamera] = useState(false);
+
   const { id } = query;
   const [name , setName] = useState('');
   const [guest , setguest] = useState({});
@@ -29,6 +29,12 @@ const GuestInvite = () => {
   
   useEffect(() => {
     if (id) {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/setup`)
+        .then(response => response.json())
+        .then(data => {         
+          setshowButtomCamera(data.showCamera);            
+        });
+
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${id}`)
         .then(response => response.json())
         .then(data => {
@@ -133,11 +139,11 @@ const GuestInvite = () => {
               className="frase">
               "Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."
             </Text>
-            {showButtomCamera==1?
+            {!showButtomCamera?null:
             <BsCameraFill
               fontSize={"xxx-large"}
               onClick={()=>exibirCamera()}
-            />:null}
+            />}
           </Flex>
           <h4 className="fraseAutor">Provérbios 16:9</h4>
           
