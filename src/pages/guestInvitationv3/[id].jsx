@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import Confirmationv2 from "/src/components/Confirmationv2.jsx";
 import Locate from "/src/components/Locate.jsx";
 import QrCode from '/src/components/QrCode';
@@ -8,10 +8,14 @@ import Gifts from '/src/components/gifts';
 import * as Style from '../../styles/guestInvitationv3';
 import Camera from '/src/components/Camera';
 import { FcCamera } from 'react-icons/fc';
+import { BsCameraFill } from 'react-icons/bs';
 
 const GuestInvite = () => {
 
   const { query } = useRouter();
+  
+  const showButtomCamera = process.env.NEXT_PUBLIC_SHOW_CAMERA;
+
   const { id } = query;
   const [name , setName] = useState('');
   const [guest , setguest] = useState({});
@@ -116,9 +120,6 @@ const GuestInvite = () => {
           </Style.CaixaNoivos>
           <p className="locate"><b>13 de agosto de 2022</b></p>
           <p className="locate time">às 21:00h</p>
-
-          <FcCamera onClick={()=>exibirCamera()}/>
-
           <Flex flexDirection="row">
             <Style.BtnNovo onClick={()=>setmsgLocal("block")}>Local</Style.BtnNovo>
             <Style.BtnNovo1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
@@ -126,7 +127,18 @@ const GuestInvite = () => {
             </Style.BtnNovo1>
             <Style.BtnNovo onClick={()=>exibirList()}>Lista presentes</Style.BtnNovo>
           </Flex>
-          <h3 className="frase">"Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."</h3>
+          <Flex  flexDirection={"row"}>
+            <Text 
+              margin={"5px"}
+              className="frase">
+              "Em seu coração o homem planeja seu caminho, mas o Senhor determina seus passos."
+            </Text>
+            {showButtomCamera==1?
+            <BsCameraFill
+              fontSize={"xxx-large"}
+              onClick={()=>exibirCamera()}
+            />:null}
+          </Flex>
           <h4 className="fraseAutor">Provérbios 16:9</h4>
           
         </Style.Caixa>

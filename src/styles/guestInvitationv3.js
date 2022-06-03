@@ -58,7 +58,6 @@ export const Caixa = styled(Flex)`
     width: 50%;
     font-family: "Water Brush";
     margin-top: 2vh;
-    margin-left: -40%;
     text-align: left;
     font-weight: 900;
     color: #9583B6;
