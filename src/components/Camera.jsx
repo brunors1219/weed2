@@ -51,8 +51,6 @@ export default function WebcamVideo({ Visivel, funcaoFechar }) {
   const [face, setface] = React.useState("user");
 
   const videoConstraints = {
-    width: "100%",
-    height: "100vh",
     facingMode: face
   };
   
@@ -84,11 +82,8 @@ export default function WebcamVideo({ Visivel, funcaoFechar }) {
         }),
       })
       .then(response => response.json())
-      .then(async () => {
+      .then(() => {
         alert('Saved success. See your photo in pary!');
-        const photos = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo`,{method: 'GET'})
-          .then(r => r.json());
-        console.log(photos);
       });
 
     },
@@ -98,10 +93,11 @@ export default function WebcamVideo({ Visivel, funcaoFechar }) {
     <>
       <Webcam
         audio={false}
-        height={720}
+        width={1920}
+        height={10800}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
-        width={1280}
+        forceScreenshotSourceSize={true}
         videoConstraints={videoConstraints}
       />
       <BoxButton>
