@@ -10,6 +10,7 @@ const Guest = new Schema({
   age: { type: Number, required: false },
   phone: { type: 'String', required: false },
   confirmed: { type: Boolean, required: false, default: null  },
+  dueDate:  { type: Date, required: false, default: null  },
   escorts: [Escort],
 });
 

@@ -69,15 +69,20 @@ export default function QrCode({Guest, Visivel, funcaoFechar, funcaoAbrirConfirm
           <br />
 
           <FormControl id="name" flexDirection={'column'} p={1}>
-            <Button
-              variant="solid"
-              bg="#ffc1db"
-              color="white"
-              w="100%"
-              mb={3}
-              onClick={funcaoAbrirConfirmacao}>
-              Tela de confirmação
-            </Button>
+            {new Date(Guest.dueDate) < new Date() && Guest.dueDate
+            ?
+              <></>
+            :
+              <Button
+                variant="solid"
+                bg="#ffc1db"
+                color="white"
+                w="100%"
+                mb={3}
+                onClick={funcaoAbrirConfirmacao}>
+                Tela de confirmação
+              </Button>
+            }
             <Button
               variant="solid"
               bg="#505EA1"

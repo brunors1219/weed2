@@ -2,6 +2,25 @@ import connectToDatabase from '../../../database';
 import Guest from '../../../database/schemas/Guest';
 
 export default async function handler(request, response) {
+  
+  if (request.method === 'POST') {
+    try {
+      
+      const _body = JSON.parse(request.body);
+      const { _id } = _body.guest._doc;
+
+      await connectToDatabase();
+      const guest = await Guest.findOne({ _id : _id }).exec();
+      const today = new Date()
+      guest.dueDate = today.setDate(today.getDate() + 15);
+      guest.save();
+      return response.json(guest);
+    } catch (err) {
+
+      return response.status(500).json(err);
+    }
+  }
+
   if (request.method === 'GET') {
     try {
       const { id } = request.query;

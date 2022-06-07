@@ -9,6 +9,7 @@ import * as Style from '../../styles/guestInvitationv3';
 import Camera from '/src/components/Camera';
 import { FcCamera } from 'react-icons/fc';
 import { BsCameraFill } from 'react-icons/bs';
+import DueDate from './../../components/DueDate';
 
 const GuestInvite = () => {
 
@@ -18,17 +19,19 @@ const GuestInvite = () => {
 
   const { id } = query;
   const [name , setName] = useState('');
+  const [dueDate , setdueDate] = useState();
   const [guest , setguest] = useState({});
   const [confirmado , setconfirmado] = useState('');
   const [escorts , setEscorts] = useState([]);
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
   const [msgLocal, setmsgLocal] = useState('none');
+  const [msgDueDate, setmsgDueDate] = useState('none');
   const [mostrarQrCode, setMostrarQrCode] = useState(false);
   const [mostrarList, setMostrarList] = useState(false);
   const [mostrarCamera, setMostrarCamera] = useState(false);
   
   useEffect(() => {
-    if (id) {
+    if (id){
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/setup`)
         .then(response => response.json())
         .then(data => {         
@@ -42,9 +45,10 @@ const GuestInvite = () => {
           setName(data.name);
           setconfirmado(data.confirmed);
           setEscorts(data.escorts);
+          setdueDate(data.dueDate);
         });
-    }
-  }, [id]);
+      }
+}, [id]);
 
   const exibirConfirmacao = useCallback(() => {
     setMostrarConfirmacao(true);
@@ -90,8 +94,8 @@ const GuestInvite = () => {
         funcaoFechar={fecharConfirmacao}
         confirmed={confirmado} />
 
-      <Locate Visivel={msgLocal}>
-      </Locate>
+      <Locate Visivel={msgLocal} />
+      <DueDate Visivel={msgDueDate} />
 
       <QrCode 
         Guest={guest}
@@ -128,9 +132,16 @@ const GuestInvite = () => {
           <p className="locate time">às 21:00h</p>
           <Flex flexDirection="row">
             <Style.BtnNovo onClick={()=>setmsgLocal("block")}>Local</Style.BtnNovo>
-            <Style.BtnNovo1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
-              {(confirmado)? "QrCode" : "Confirme sua presença"}
-            </Style.BtnNovo1>
+            {new Date(guest.dueDate) < new Date() && guest.dueDate & !confirmado
+              ?
+                <Style.BtnNovo1 onClick={()=>setmsgDueDate("block")}>
+                  Confirme presença (Expir...)
+                </Style.BtnNovo1>
+              :
+                <Style.BtnNovo1 onClick={()=>confirmado ? exibirQrCode() : exibirConfirmacao()}>
+                  {(confirmado)? "QrCode" : "Confirme sua presença"}
+                </Style.BtnNovo1>
+            }
             <Style.BtnNovo onClick={()=>exibirList()}>Lista presentes</Style.BtnNovo>
           </Flex>
           <Flex  flexDirection={"row"}>

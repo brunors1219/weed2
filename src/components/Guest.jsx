@@ -7,6 +7,17 @@ export default function GuestCard({ guest }) {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(guest.invitation_url);
+
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${guest._id}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        id: guest._id
+      }),
+    })
+    .then(response => {
+        response.json();          
+    });
+  
     alert("Texto Copiado!");
   }
 
