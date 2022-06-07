@@ -107,7 +107,7 @@ const GuestInvite = () => {
 
         <Style.Caixa h="100vh" flexDirection="column">
 
-          <Camera Visivel={mostrarCamera} funcaoFechar={fecharCamera} />
+          {mostrarCamera && <Camera Visivel={mostrarCamera} funcaoFechar={fecharCamera} />}
 
           <Style.CaixaTextoContive>
             <p>Olá {name}, ficaremos felizes e honrados com a presença de vocês em nosso casamento!</p>

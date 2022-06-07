@@ -4,10 +4,12 @@ import styled from '@emotion/styled';
 import { Center, Box, IconButton } from '@chakra-ui/react';
 import { FcRotateCamera } from 'react-icons/fc';
 import { CloseIcon } from '@chakra-ui/icons';
+import Camera, { FACING_MODES } from 'react-html5-camera-photo';
+import 'react-html5-camera-photo/build/css/index.css';
 
 export const BoxButton = styled(Center)`
   bottom: 7px;  
-  display: flex;  
+  position: fixed;
   z-index: 9999;
   .Box{
     margin: 20px;
@@ -15,15 +17,6 @@ export const BoxButton = styled(Center)`
   }
 `;
 
-export const BoxButton1 = styled(Box)`
-  bottom: 7px;  
-  display: flex;  
-  z-index: 9999;
-  .Box{
-    margin: 20px;
-    font-size: "xxx-large";
-  }
-`;
 export const ButtonCapture = styled(Box)`
   bottom: 7px;  
   background-color: red;
@@ -44,29 +37,37 @@ export const ButtonClose = styled(Box)`
 export default function WebcamVideo({ Visivel, funcaoFechar }) {  
 
   if (!Visivel){
-    return
+    return null;
   }
-
-  const webcamRef = React.useRef(null);
-  const [face, setface] = React.useState("user");
-
-  const videoConstraints = {
-    facingMode: face
-  };
   
+  const webcamRef = React.useRef(null);
+  const [idealFacingMode, setIdealFacingMode] = React.useState(null);
+  const [isMaxResolution, setIsMaxResolution] = React.useState(false);
+
   function changeCamera(){
-    if (face =="user")
-      setface("environment");
-    else
-    setface("user");
+    if (idealFacingMode == FACING_MODES.ENVIRONMENT){
+      setIdealFacingMode(FACING_MODES.USER);
+      setIsMaxResolution(false);
+    }else{
+      setIdealFacingMode(FACING_MODES.ENVIRONMENT);
+      setIsMaxResolution(true);
+    }
   };
+
+  React.useEffect(() => {
+    console.log('Montei!');
+
+    return () => {
+      console.log('Desmontei!');
+    };
+  }, []);
 
   const capture = React.useCallback(
-    async () => {
-      const imageSrc = webcamRef.current.getScreenshot();
+    async (dataUri) => {
+      console.log(dataUri);
 
-      const formData = new FormData();     
-      formData.append('file', imageSrc);
+      const formData = new FormData();           
+      formData.append('file', dataUri);
       formData.append('upload_preset', 'my-wedd-photos');
   
       const data = await fetch('https://api.cloudinary.com/v1_1/die6t1h9a/image/upload', {
@@ -89,24 +90,20 @@ export default function WebcamVideo({ Visivel, funcaoFechar }) {
     },
     [webcamRef]
   );
+
   return (
-    <>
-      <Webcam
-        audio={false}
-        width={1920}
-        height={10800}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        forceScreenshotSourceSize={true}
-        videoConstraints={videoConstraints}
+    <Box position="fixed" width="full" height="full"  backgroundColor="#000" top={0} left={0} zIndex={199}>
+      <Camera 
+        idealFacingMode = {idealFacingMode}
+        isMaxResolution = {isMaxResolution}
+        isFullscreen={true}
+        onTakePhoto = { (dataUri) => { capture(dataUri); } }
       />
       <BoxButton>
-        <ButtonCapture onClick={capture} />
+        <FcRotateCamera size={50} className="Box" onClick={()=>changeCamera()}/>
       </BoxButton>
-      <BoxButton1>
-        <FcRotateCamera class="Box" onClick={()=>changeCamera()}/>
-      </BoxButton1>
-      <ButtonClose>
+
+     <ButtonClose>
         <IconButton
           colorScheme='teal'
           aria-label='Call Segun'
@@ -115,6 +112,6 @@ export default function WebcamVideo({ Visivel, funcaoFechar }) {
           onClick={() => funcaoFechar() }          
         />    
       </ButtonClose>
-    </>
+    </Box>
   );
 };

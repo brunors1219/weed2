@@ -1,75 +1,43 @@
-import React from 'react';
-import { Box, Image, Flex, Badge, Text, Button } from "@chakra-ui/react";
-import { MdStar } from "react-icons/md";
-import { GiGreekTemple } from 'react-icons/gi'
-import styled from '@emotion/styled';
-import Head from 'next/head';
+import React from "react";
 
-const Caixa = styled(Flex)`
-  background-image: url(/images/capLink.jpg);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: 2%;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20%;
-`;
+// import Mainslider from "/src/components/pages/Mainslider";
+// import About from "/src/components/pages/About";
+// import Services from "/src/components/pages/Services";
+// import Testimonial from "/src/components/pages/Testimonial";
+// import Footer from "/src/components/pages/Footer";
+import Scrolltop from "/src/components/pages/Scrolltop";
+// import Header from "/src/components/pages/Header";
+// import BtWhatsapp from "/src/components/pages/ButtonWhatsapp";
+// import MenuBody from "/src/components/pages/MenuBody";
 
-function Home() {
-  const [toggleTab, setToggleTab] = React.useState(true);
+// import CookieConsent from "react-cookie-consent"
+
+const Home = () => {
 
   return (
-    <Box bc="#505EA1" w="100vw" h="100vh" >
-      <Head>
-      {/* <!-- Primary Meta Tags --> */}
-        <title>Casamento Margo e Anselmo</title>
-        <meta name="title" content="Nosso convite de casamento" />
-        <meta name="description" content="Muito importante a confirmação de sua presença." />
-
-        {/* <!-- Open Graph / Facebook --> */}
-        <meta property="og:type" content="website"/> 
-        <meta property="og:url" content="https://wedd-ichihara7l.vercel.app/guestInvitationv3/62766327ab987346e0f88fe3"/>
-        <meta property="og:title" content="Nosso convite de casamento"/>
-        <meta property="og:description" content="Muito importante a confirmação de sua presença."/>
-        <meta property="og:image" content=""/>
-
-        {/* <!-- Twitter --> */}
-        <meta property="twitter:card" content="summary_large_image"/>
-        <meta property="twitter:url" content="https://wedd-ichihara7l.vercel.app/guestInvitation/62766327ab987346e0f88fe3"/>
-        <meta property="twitter:title" content="Nosso convite de casamento"/>
-        <meta property="twitter:description" content="Muito importante a confirmação de sua presença."/>
-        <meta property="twitter:image" content=""/>        
-      </Head>
-
-      <Caixa h="80vh" flexDirection="column" justify="flex-end">
-        <Box background="white" p="5" w="full" h="12rem" borderWidth="1px" opacity="0.6">
-          <Text mt={2} fontSize="3xl" fontWeight="semibold" lineHeight="short">
-            Super casamento Margo e Anselmo
-          </Text>
-          <Flex mt={2} align="center">
-            <Box as={MdStar} color="orange.400" />
-            <Text ml={1} fontSize="sm">
-              <b>13/08/2022</b> 
-            </Text>
-          </Flex>
-          <Flex mt={2} align="center">
-            <Box as={GiGreekTemple} color="orange.400" />
-            <Text ml={1} fontSize="sm">
-              <b>Celebração as 21:00 - Igreja de São Francisco - Sete Lagoas - Bairro JK</b> 
-            </Text>
-          </Flex>
-          <Flex mt={2} align="center">
-            <Box as={GiGreekTemple} color="orange.400" />
-            <Text ml={1} fontSize="sm">
-              <b>Recepção a partir das 22:00 - Sítio Primavera</b> 
-            </Text>
-          </Flex>
-        </Box>
-      </Caixa>
-    </Box>
+    <>
+      Hello world!
+      {/* <Header />
+      <Header /> */}
+      <main>
+        {/* <Mainslider /> */}
+        {/* <MenuBody /> */}
+        {/* <About /> */}
+        {/* <Counter /> */}
+        {/* <Services />
+        <Testimonial />
+        <Footer /> */}
+      </main>
+      {/* <BtWhatsapp /> */}
+      {/* <Scrolltop />
+        <CookieConsent 
+          location = "bottom" 
+          buttonText = "Aceito"
+          expires = { 150 }>
+          Este site usa cookies para melhorar a experiência do usuário 
+        </CookieConsent>     */}
+    </>
   );
-
-} 
+};
 
 export default Home;
