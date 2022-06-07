@@ -43,6 +43,7 @@ export default function WebcamVideo({ Visivel, funcaoFechar }) {
   const webcamRef = React.useRef(null);
   const [idealFacingMode, setIdealFacingMode] = React.useState(null);
   const [isMaxResolution, setIsMaxResolution] = React.useState(false);
+  const [cameraStream, setCameraStream] = React.useState();
 
   function changeCamera(){
     if (idealFacingMode == FACING_MODES.ENVIRONMENT){
@@ -91,6 +92,28 @@ export default function WebcamVideo({ Visivel, funcaoFechar }) {
     [webcamRef]
   );
 
+  const handleCameraStart = React.useCallback((stream) => {
+    console.log(stream);
+    setCameraStream(stream);  
+  }, []);
+
+  const closeCamera = React.useCallback(() => {
+    console.log(cameraStream, cameraStream.getTracks);
+
+    if (cameraStream) {
+      const tracks = cameraStream.getTracks();
+
+      tracks.forEach(track => {
+        console.log(track);
+        track.enabled = false;
+      });
+
+      console.log(tracks);
+    }
+
+    funcaoFechar();
+  }, [cameraStream, funcaoFechar])
+
   return (
     <Box position="fixed" width="full" height="full"  backgroundColor="#000" top={0} left={0} zIndex={199}>
       <Camera 
@@ -98,6 +121,7 @@ export default function WebcamVideo({ Visivel, funcaoFechar }) {
         isMaxResolution = {isMaxResolution}
         isFullscreen={true}
         onTakePhoto = { (dataUri) => { capture(dataUri); } }
+        onCameraStart={stream => handleCameraStart(stream)}
       />
       <BoxButton>
         <FcRotateCamera size={50} className="Box" onClick={()=>changeCamera()}/>
@@ -109,7 +133,7 @@ export default function WebcamVideo({ Visivel, funcaoFechar }) {
           aria-label='Call Segun'
           size='lg'
           icon={<CloseIcon />}
-          onClick={() => funcaoFechar() }          
+          onClick={closeCamera}          
         />    
       </ButtonClose>
     </Box>
