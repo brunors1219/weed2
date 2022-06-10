@@ -76,8 +76,8 @@ export const Caixa = styled(Flex)`
 export const Circlo = styled(Flex)`
   background-color: #505EA1;
   border-radius: 50%;
-  width: 25vh;
-  height: 25vh;
+  width: 200px;
+  height: 170px;
   overflow: hidden;
 `;
 
