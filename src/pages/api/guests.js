@@ -61,7 +61,20 @@ export default async function handler(request, response) {
     try {
       await connectToDatabase();
 
-      const guests = await Guest.find().exec();
+      const { query } = request.query;
+      console.log( query );
+
+      let guests = {};
+      if (!query || query =="All")
+        guests = await Guest.find().exec(); 
+      else{
+        let regex = new RegExp(query, 'i');
+        console.log(regex);
+        guests = await Guest.find({'name':regex}).exec();
+      }
+        
+        
+        
       const serializedGuests = guests.map(guest => {
         return {
           ...guest, 

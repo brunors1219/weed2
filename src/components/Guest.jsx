@@ -8,10 +8,12 @@ export default function GuestCard({ guest }) {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(guest.invitation_url);
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${guest._id}`, {
+    console.log(guest);
+
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${guest._doc._id}`, {
       method: 'POST',
       body: JSON.stringify({
-        id: guest._id
+        id: guest._doc._id
       }),
     })
     .then(response => {

@@ -6,11 +6,11 @@ export default async function handler(request, response) {
   if (request.method === 'POST') {
     try {
       
-      const _body = JSON.parse(request.body);
-      const { _id } = _body.guest._doc;
+      const { id }= JSON.parse(request.body);
+      console.log(id);
 
       await connectToDatabase();
-      const guest = await Guest.findOne({ _id : _id }).exec();
+      const guest = await Guest.findOne({ _id : id }).exec();
       const today = new Date()
       guest.dueDate = today.setDate(today.getDate() + 15);
       guest.save();

@@ -14,7 +14,7 @@ const ListPhotos = () => {
   const [photos,setPhotos] = React.useState({});
 
   function update(){
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo`,{method: 'GET'})
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo`)
     .then(r =>  r.json())
     .then(data => {
       setPhotos(data);    
