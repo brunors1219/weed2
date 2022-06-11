@@ -68,11 +68,11 @@ const ListPhotos = () => {
             color={"white"}
             fontStyle={700}
             textShadow={"0.1em 0.1em 0.2em black"}>
-            {/* {!photo.guest_name ? photo.guest_name : null} */}
+            {!photo ? photo.guest_name ? photo.guest_name : null : null}
           </Text>
         </Center>
         <Center>
-          {photo ? <img src={photo.url} /> : Null}
+          {photo ? <img src={photo.url} /> : null}
         </Center>    
         <Center>
           <Text fontSize={"x-large"}
