@@ -129,7 +129,7 @@ const GuestInvite = () => {
             </p>
           </Style.CaixaNoivos>
           <p className="locate"><b>13 de agosto de 2022</b></p>
-          <p className="locate time">às 21:00h</p>
+          <p className="locate time">às 20:47h</p>
           <Flex flexDirection="row">
             <Style.BtnNovo onClick={()=>setmsgLocal("block")}>Local</Style.BtnNovo>
             {new Date(guest.dueDate) < new Date() && guest.dueDate & !confirmado
