@@ -2,6 +2,7 @@ import React from "react";
 import styled from '@emotion/styled';
 import { Box, Center, Text } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react';
+import { LaptopWindows } from "@material-ui/icons";
 
 export const Painel = styled(Box)`
   background-color: blue;
@@ -35,7 +36,7 @@ const ListPhotos = () => {
 
   React.useEffect(() => {
     update();
-    const updateInterval = setInterval(()=> update(), 600000);
+    const updateInterval = setInterval(()=> window.location.reload(), 600000);
 
     return () => {
       clearInterval(updateInterval);
@@ -56,31 +57,74 @@ const ListPhotos = () => {
   return (
       <Painel>
         <Center>
-          <Text fontSize={"xxx-large"}
-            color={"white"}
-            fontStyle={700}
-            textShadow={"0.1em 0.1em 0.2em black"}>
+          <Text style={{
+              "font-size": "xxx-large",
+              "color" : "white",
+              "font-weight" : "900",
+              "text-shadow" : "2px 2px 5px red"}}>
             Curtam as recordações de nosso evento
           </Text>
         </Center>
         <Center>
-          <Text fontSize={"xxx-large"}
-            color={"white"}
-            fontStyle={700}
-            textShadow={"0.1em 0.1em 0.2em black"}>
-            {!photo ? photo.guest_name ? photo.guest_name : null : null}
+          <Text style={{
+              "font-weight" : "900",              
+              "font-size": "xxx-large",
+            }}
+            color={"green"}
+            fontStyle={900}
+            textShadow={"2px 2px 5px red"}>
+            {photo ? photo.guest_name ? photo.guest_name : "Aguardando fotos1..." : "Aguardando fotos..."}
           </Text>
         </Center>
         <Center>
-          {photo ? <img src={photo.url} /> : null}
+          {photo 
+            ? <img style={{"width":"80vw",
+                      "height":"65vh",
+                      "transition":"all 2s ease"}} src={photo.url} /> 
+            : <Text fontSize={"100px"}
+                textAlign={"center"}
+                color={"white"}
+                fontStyle={900}
+                textShadow={"2px 2px 5px red"}>
+                "Vamos lá... capturarem o máximo de recordações!!!"
+              </Text>
+          }
         </Center>    
         <Center>
-          <Text fontSize={"x-large"}
-            color={"white"}
-            fontStyle={700}>
-            Tirem todas as fotos possíveis, vamos registrar esse momento especial...
+          <Text style={{
+              "font-bold":"500",
+              "font-size": "xx-large",
+              "color" : "white",
+              "font-weight" : "900",
+              "text-shadow" : "2px 2px 5px red"}}>
+            Tirem quantas fotos quiser, vamos registrar esse momento especial...
           </Text>
         </Center>
+        <Center>
+          <Text style={{
+              "font-bold":"500",
+              "font-size": "xx-large",
+              "color" : "white",
+              "font-weight" : "600",
+              "text-shadow" : "2px 2px 5px red",
+              "text-align" : "center",
+              "width": "30%"}}>
+            No seu convite tem uma camera, abra no seu celular a comece a capturar os momentos.
+          </Text>
+          <Text style={{
+              "font-bold":"500",
+              "font-size": "xx-large",
+              "color" : "white",
+              "font-weight" : "600",
+              "text-shadow" : "2px 2px 5px red",
+              "text-align" : "center",
+              "width": "60%"}}>
+            Você pode compartilhar o seu convite com as pessoas da sua família. 
+            <br />
+            Para que eles também possam tirar fotos.
+          </Text>
+        </Center>
+
       </Painel>
   );
 };

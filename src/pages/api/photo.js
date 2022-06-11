@@ -33,8 +33,6 @@ export default async function handler(request, response) {
 
       const photo = new Photo({ url, date, guest_name : Guest.name, owner : Guest.owner });
       
-      console.log(photo);
-
       photo.save(function (err) {
          if (err) console.error(err);
        });
