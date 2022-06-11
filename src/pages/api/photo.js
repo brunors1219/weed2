@@ -7,8 +7,8 @@ export default async function handler(request, response) {
       
       await connectToDatabase();
 
-      const photos = await Photo.find().sort([['date', -1]]).exec();
-
+      const photos = await Photo.find().sort([['date', -1]]).limit(10).exec();
+     
       return response.status(201).json(photos);
 
     } catch (err) {
@@ -25,12 +25,15 @@ export default async function handler(request, response) {
       }
 
       const {
-        url
+        url,
+        Guest
       } = JSON.parse(request.body);
 
       const date = Date.now();
 
-      const photo = new Photo({ url, date });
+      const photo = new Photo({ url, date, guest_name : Guest.name, owner : Guest.owner });
+      
+      console.log(photo);
 
       photo.save(function (err) {
          if (err) console.error(err);

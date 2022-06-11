@@ -46,18 +46,6 @@ export default function WebcamVideo({ Visivel, funcaoFechar, Guest }) {
   const [isMaxResolution, setIsMaxResolution] = React.useState(false);
   const [cameraStream, setCameraStream] = React.useState();
 
-  const handleDownload = React.useCallback(() => {
-    const link = document.createElement('a');
-
-    link.setAttribute('download', 'suafoto.jpg');
-    link.href = uri;
-    console.log(uri);
-    console.log(link)
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }, [uri])
-
   function changeCamera(){
     if (idealFacingMode == FACING_MODES.ENVIRONMENT){
       setIdealFacingMode(FACING_MODES.USER);
@@ -95,14 +83,13 @@ export default function WebcamVideo({ Visivel, funcaoFechar, Guest }) {
       const gift = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo`, {
         method: 'POST',
         body: JSON.stringify({
-          url
+          url,
+          Guest
         }),
       })
       .then(response => response.json())
       .then(() => {
         const downloadLink = document.getElementById('downloadImage');
-
-        console.log(downloadLink);
 
         downloadLink.click();
         alert('Saved success. See your photo in pary!');
@@ -136,7 +123,7 @@ export default function WebcamVideo({ Visivel, funcaoFechar, Guest }) {
 
   return (
     <Box position="fixed" width="full" height="full"  backgroundColor="#000" top={0} left={0} zIndex={199}>
-      <a id="downloadImage" href={uri} download hidden></a>
+      <a id="downloadImage" href={uri} download="Margo&Anselmo.jpg" hidden></a>
       <Camera 
         idealFacingMode = {idealFacingMode}
         isMaxResolution = {isMaxResolution}

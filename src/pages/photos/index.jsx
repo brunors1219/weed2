@@ -14,19 +14,44 @@ export const Painel = styled(Box)`
 `;
 const ListPhotos = () => {
 
-  const [photos,setPhotos] = React.useState({});
+  const [photos,setPhotos] = React.useState([]);
+  const [photo,setPhoto] = React.useState({});
 
-  function update(){
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo`,{method: 'GET'})
-    .then(r =>  r.json())
-    .then(data => {
-      setPhotos(data);    
-    });    
-  }  
+
+  const update = React.useCallback(async () => {
+    console.log('update: ', photos);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo`);
+    const data = await response.json();
+
+    setPhotos(data);    
+  }  ,[]);
+
+  const updatePhoto = React.useCallback(()=>{
+    console.log('updatePhoto: ', photos);
+    if (photos.length>0) {
+      setPhoto(photos[Math.round(Math.random()*photos.length)]);
+    }
+  }, [photos]);
+
+  React.useEffect(() => {
+    update();
+    const updateInterval = setInterval(()=> update(), 600000);
+
+    return () => {
+      clearInterval(updateInterval);
+    }
+  }, [update]);
 
   React.useEffect(()=>{
-    setInterval(()=>update(), 5000);
-  },[]);
+    console.log("Inicio");
+    updatePhoto();
+    
+    const updatePhotoInterval = setInterval(()=>updatePhoto(), 10000); 
+    
+    return () => {
+      clearInterval(updatePhotoInterval);
+    }
+  },[updatePhoto]);
 
   return (
       <Painel>
@@ -39,9 +64,15 @@ const ListPhotos = () => {
           </Text>
         </Center>
         <Center>
-          <img src={Array.isArray(photos) 
-            ? photos[Math.floor((Math.random() * photos.length))].url
-            : null} />
+          <Text fontSize={"xxx-large"}
+            color={"white"}
+            fontStyle={700}
+            textShadow={"0.1em 0.1em 0.2em black"}>
+            {/* {!photo.guest_name ? photo.guest_name : null} */}
+          </Text>
+        </Center>
+        <Center>
+          {photo ? <img src={photo.url} /> : Null}
         </Center>    
         <Center>
           <Text fontSize={"x-large"}

@@ -2,7 +2,8 @@ import { Schema, model, models } from 'mongoose';
 
 const Photo = new Schema({
   url: { type: String, required: true},
-  guest: { type: String, required: false},
+  owner: { type: String, required: false},
+  guest_name: { type: String, required: false},
   date: { type: Date, required: false}
 });
 
