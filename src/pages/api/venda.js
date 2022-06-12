@@ -22,6 +22,10 @@ export default async function venda(request, response) {
       payer : {
         email: 'ichihara7l@gmail.com'
       },
+      payment_methods :{
+        installments : 12,
+        default_installments: 3,
+      },
       auto_return : "all",
       external_reference : request.query.guest + "-" + request.query.guest_name,
       back_urls : {
