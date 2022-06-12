@@ -40,7 +40,7 @@ export default function GuestCard({ guest }) {
           return (            
             <Badge m={1} style={{
                 "background-color":escort.confirmed === null ? "Yellow" : escort.confirmed ? "Green" : "Pink",
-                "color":escort.confirmed === null ? "red" : escort.confirmed ? "white" : "black"
+                "color":escort.confirmed === null ? "red" : escort.confirmed ? "white" : "white"
                 }}>
               {escort.name}
               ({escort.confirmed === null ? "Pendente" : escort.confirmed ? "Confirmado" : "Não Vai"})

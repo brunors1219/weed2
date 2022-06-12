@@ -41,7 +41,7 @@ export default function Confirmationv2({id, Guest, Escorts, Visivel, funcaoFecha
             color={useColorModeValue('gray.900', 'gray.400')}
             px={3}>
             Por favor, <b>confirme</b> a presença apenas daqueles que vão na <b>recepção</b>!
-            Essa confimarção é importante para que possamos melhor nos organizar e recebê-los!
+            Essa confirmação é importante para que possamos melhor nos organizar e recebê-los!
             <br />
             <br />
             Escolha um dos botões abaixo:

@@ -39,8 +39,11 @@ export default function Locate({Visivel}) {
             </Center>            
             Igreja
           </Heading>
+          <Text fontWeight={700} mb={4}>
+            Igreja de São Francisco
+          </Text>
           <Text fontWeight={600} color={'gray.500'} mb={4}>
-            R. Itaipú, 53 - São Francisco de Assis, Sete Lagoas - MG
+            R. Itaipú, 53 - B. São Francisco de Assis, Sete Lagoas - MG
           </Text>
           <a 
             target="_blank"             
@@ -57,6 +60,9 @@ export default function Locate({Visivel}) {
             <br />
             Recepção
           </Heading>
+          <Text fontWeight={700} mb={4}>
+            Sítio Primavera
+          </Text>
           <Text fontWeight={600} color={'gray.500'} mb={4}>
             Avenida Arquimedes, 145 - JK, Sete Lagoas - MG
           </Text>
