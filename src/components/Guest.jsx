@@ -38,7 +38,10 @@ export default function GuestCard({ guest }) {
         {guest._doc.escorts.map((escort)=>{
           console.log(escort.confirmed === null ? "Yellow" : escort.confirmed ? "Green" : "Pink")
           return (            
-            <Badge m={1} style={{"background-color":escort.confirmed === null ? "Yellow" : escort.confirmed ? "Green" : "Pink"}}>
+            <Badge m={1} style={{
+                "background-color":escort.confirmed === null ? "Yellow" : escort.confirmed ? "Green" : "Pink",
+                "color":escort.confirmed === null ? "red" : escort.confirmed ? "white" : "black"
+                }}>
               {escort.name}
               ({escort.confirmed === null ? "Pendente" : escort.confirmed ? "Confirmado" : "Não Vai"})
             </Badge>
