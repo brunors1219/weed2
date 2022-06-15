@@ -62,7 +62,6 @@ export default async function handler(request, response) {
       await connectToDatabase();
 
       const { query } = request.query;
-      console.log( query );
 
       let guests = {};
       if (!query || query =="All")
@@ -72,8 +71,6 @@ export default async function handler(request, response) {
         console.log(regex);
         guests = await Guest.find({'name':regex}).exec();
       }
-        
-        
         
       const serializedGuests = guests.map(guest => {
         return {

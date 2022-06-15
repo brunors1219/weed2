@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Flex, Badge, Text, Button } from "@chakra-ui/react";
 import { MdStar } from "react-icons/md";
+import DueDate from './DueDate';
 
 
 export default function GuestCard({ guest }) {
@@ -24,7 +25,7 @@ export default function GuestCard({ guest }) {
   }
 
   return (
-    <Box p="5" w="30vw" borderWidth="1px" m="5px">
+    <Box p="5" w="30vw" borderWidth="1px" m="5px" backgroundColor={guest._doc.dueDate ? 'green.300':'none'}>
       <Flex mt={2} align="end" mr="0px">
         <Box as={MdStar} color="orange.400" />
         <Text ml={1} fontSize="10px" color={"GrayText"}>
@@ -36,7 +37,6 @@ export default function GuestCard({ guest }) {
       </Text>
       <Flex align="baseline" mt={2} flexWrap={'wrap'}>
         {guest._doc.escorts.map((escort)=>{
-          console.log(escort.confirmed === null ? "Yellow" : escort.confirmed ? "Green" : "Pink")
           return (            
             <Badge m={1} style={{
                 "background-color":escort.confirmed === null ? "Yellow" : escort.confirmed ? "Green" : "Pink",
