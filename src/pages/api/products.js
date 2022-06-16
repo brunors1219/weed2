@@ -1,7 +1,10 @@
 import connectToDatabase from '../../database';
 import Product from '../../database/schemas/Product';
+import Pagamentos from '../../database/schemas/Pagamentos';
 
 export default async function handler(request, response) {
+  
+
   if (request.method === 'POST') {
     try {
       await connectToDatabase();
@@ -39,7 +42,6 @@ export default async function handler(request, response) {
 
       if (request.query){
         const products = await Product.findOneAndDelete({_id :request.query._id}).exec();
-        console.log(products);
         return response.json(products);
       }
     } catch (err) {
@@ -54,15 +56,35 @@ export default async function handler(request, response) {
       
       await connectToDatabase();
 
+      let products
+
       if (request.query){
-        const products = await Product.find({category :request.query.category}).sort([['date', -1]]).exec();
-        return response.json(products);
+        products = await Product.find({category :request.query.category}).sort([['date', -1]]).exec();
       } else {
-        const products = await Product.find().sort([['date', -1]]).exec();
-        return response.json(products);
+        products = await Product.find().sort([['date', -1]]).exec();
       }
+
+      const payments = await Pagamentos.find().exec();
+      
+      const serializedProducts = products.map(product => {
+        
+        let payment = payments.filter((f)=>{return f.request_Status === "Aprovado e será enviado ao noivos" && f.product_name===product.name});
+        let gifted = payment.length>0;
+
+        
+        let views = payments.filter((f)=>{return f.product_name==product.name});
+
+        return {
+          ...product, 
+          gifted,
+          views
+        };
+      });
+      
+      return response.json(serializedProducts);
       
     } catch (err) {
+      console.log(err);
       return response.status(500).json(err);
     }
   }

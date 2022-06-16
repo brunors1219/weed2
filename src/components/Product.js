@@ -60,18 +60,12 @@ export default function ProductCard({ product, guest, guest_name, funcaoFechar, 
           borderRadius="15%"
           w={"45vw"}>
 
-          {product.gifted
+          {!product._doc.gifted
             ? <Flex align="baseline" mt={2}>
                 <Category colorScheme="green">Presenteado</Category>
               </Flex>
 
-            :product.views.length>0
-            ? <Flex align="baseline" mt={2}>
-                <Category colorScheme="yellow">Visualizações:{product.views.length}</Category>
-              </Flex>
-
             :null}
-
           <Flex align="baseline" mt={2}>
             <Category colorScheme="pink">{product._doc.category}</Category>
           </Flex>
@@ -96,7 +90,7 @@ export default function ProductCard({ product, guest, guest_name, funcaoFechar, 
             R$ {product._doc.value},00 
           </Text>
           <Center>            
-            {!product.gifted
+            {!product._doc.gifted
               ? <Button 
                   w={"90%"}
                   onClick={() => setPay(product)}>

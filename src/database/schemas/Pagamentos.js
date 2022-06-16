@@ -7,6 +7,7 @@ const Pagamentos = new Schema({
   product_url     : {type: String, required: true},
   request_id      : {type: String, required: false },
   request_Status  : {type: String, required: false },
+  request_url_buy : {type: String, required: false },
   excluded        : {type: Boolean, required: false},
 });
 
