@@ -92,7 +92,7 @@ function listguests() {
                 mr={10}>
                 <Text fontSize={"large"}>Pendentes</Text>
                 <Text fontSize={"xx-large"}>
-                  {invitePending} {(invitePending/qtdInvite*50).toFixed(2)}%
+                  {invitePending} {(invitePending/qtdInvite*100).toFixed(2)}%
                 </Text>
               </Box>            
           </Center>
