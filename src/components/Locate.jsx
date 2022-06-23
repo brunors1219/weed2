@@ -4,6 +4,8 @@ import { Heading, Box, Center, Text, Button,
 import styled from '@emotion/styled';
 import { SunIcon } from '@chakra-ui/icons'
 import { FaChurch, FaRoute } from 'react-icons/fa';
+import { BiHotel } from 'react-icons/bi';
+
 
 const Fundo = styled(Center)`
   position:absolute;
@@ -55,6 +57,8 @@ export default function Locate({Visivel}) {
             </Center>
           </a>
           <br />
+          <br />
+
           <Heading fontSize={'2xl'} fontFamily={'body'} color={'#5f5694 '}>
             <SunIcon />
             <br />
@@ -76,6 +80,71 @@ export default function Locate({Visivel}) {
             </Center>
           </a>
           <br />
+          <br />
+
+          <Heading fontSize={'2xl'} fontFamily={'body'} color={'#5f5694 '}>
+            <Center>
+              <BiHotel />
+            </Center>            
+            Hoteis
+            <Text fontSize={"small"}>
+              Clique no nome do hotel para acessar o site
+            </Text>
+          </Heading>
+          <br />
+          <a 
+            target="_blank"             
+            href="http://www.rivierapalacehotel.com.br/">
+            <Center>
+              <Text fontWeight={700}>
+                Riviera Palace Hotel
+              </Text>
+            </Center>
+          </a>
+          <a 
+            target="_blank"             
+            href="tel:+553137710808">
+            <Text fontWeight={600} color={'gray.500'}>
+              (31) 3771-0808
+              </Text>
+          </a>
+          <br />
+          <a 
+            target="_blank"             
+            href="http://www.realhotel.com.br/">
+            <Center>
+              <Text fontWeight={700}>
+                Real Hotel
+              </Text>
+            </Center>
+          </a>
+          <a 
+            target="_blank"             
+            href="tel:+553137733301">
+            <Text fontWeight={600} color={'gray.500'}>
+              (31) 3773-3301
+              </Text>
+          </a>
+          <br />
+          <a 
+            target="_blank"             
+            href="http://www.hotelvilaserrana.com.br/">
+            <Center>
+              <Text fontWeight={700}>
+                Vila Serrana
+              </Text>
+            </Center>
+          </a>
+          <a 
+            target="_blank"             
+            href="tel:+553137764422">
+            <Text fontWeight={600} color={'gray.500'}>
+              (31) 3776-4422
+              </Text>
+          </a>
+          <br />
+
+          
 
           <FormControl id="name" flexDirection={'column'} p={1}>
             <Button
