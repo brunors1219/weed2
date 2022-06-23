@@ -1,6 +1,6 @@
 import React from "react";
 import styled from '@emotion/styled';
-import { Box, Image, Flex, Button, Center } from '@chakra-ui/react';
+import { Box, Image, Flex, Button, Center, Text } from '@chakra-ui/react';
 export const Painel = styled(Box)`
   background-image: url(/images/backPhotos.jpg);
   background-size: 100% 100%;
@@ -45,6 +45,7 @@ const ListPhotos = () => {
           {Array.isArray(photos) ? photos.map((photo)=>{
             console.log(photo.url);
             return <div>
+                <Text>{photo._id}</Text>
                 <Image 
                   width={"200px"} 
                   height={"200px"}

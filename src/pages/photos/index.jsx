@@ -1,8 +1,6 @@
 import React from "react";
 import styled from '@emotion/styled';
 import { Box, Center, Text } from '@chakra-ui/react';
-import { Image } from '@chakra-ui/react';
-import { LaptopWindows } from "@material-ui/icons";
 
 export const Painel = styled(Box)`
   background-color: blue;
@@ -17,6 +15,7 @@ const ListPhotos = () => {
 
   const [photos,setPhotos] = React.useState([]);
   const [photo,setPhoto] = React.useState({});
+  const [classImage,setClassImage] = React.useState("ball");
 
 
   const update = React.useCallback(async () => {
@@ -28,9 +27,9 @@ const ListPhotos = () => {
   }  ,[]);
 
   const updatePhoto = React.useCallback(()=>{
-    console.log('updatePhoto: ', photos);
     if (photos.length>0) {
       setPhoto(photos[Math.round(Math.random()*photos.length)]);
+      setClassImage(classImage=="pulse"?"ball":"pulse");
     }
   }, [photos]);
 
@@ -79,8 +78,9 @@ const ListPhotos = () => {
         <Center>
           {photo 
             ? <img style={{"width":"80vw",
-                      "height":"65vh",
-                      "transition":"all 2s ease"}} src={photo.url} /> 
+                      "height":"65vh"}} 
+                  src={photo.url} 
+                  className={classImage}/> 
             : <Text fontSize={"100px"}
                 textAlign={"center"}
                 color={"white"}
