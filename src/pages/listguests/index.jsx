@@ -119,7 +119,8 @@ function listguests() {
 
   return (
     <>
-      <Center>
+      <Center
+        m={10}>
         <Input
           type='text'
           name='q'
@@ -140,7 +141,7 @@ function listguests() {
         </Text>
       <Center>
       </Center>
-      <Center>
+      <Center style={{"display":"flex", "flex-direction":"column"}}>
         <Box border={"silver"}>
           <Center >Convites</Center>
             <Center>

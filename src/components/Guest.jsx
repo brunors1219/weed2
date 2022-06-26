@@ -5,9 +5,6 @@ import { ImMan, ImQuestion } from "react-icons/im";
 import { FaBaby, FaChild } from "react-icons/fa";
 import { FcOk, FcCancel } from "react-icons/fc";
 
-import DueDate from './DueDate';
-
-
 export default function GuestCard({ guest }) {
 
   const copyToClipboard = () => {
@@ -45,7 +42,7 @@ export default function GuestCard({ guest }) {
   }
 
   return (
-    <Box p="5" w="30vw" borderWidth="1px" m="5px" backgroundColor={guest._doc.dueDate ? 'green.300':'none'}>
+    <Box p="1" w="20vw" borderWidth="1px" m="2px" backgroundColor={guest._doc.dueDate ? 'green.300':'none'}>
       <Flex mt={2} align="end" mr="0px">
         <Box as={MdStar} color="orange.400" />
         <Text ml={1} fontSize="10px" color={"GrayText"}>
@@ -75,21 +72,22 @@ export default function GuestCard({ guest }) {
       <Text 
         p={3}
         color={"blue"}
-        fontSize="large" 
+        fontSize="smaller" 
         fontWeight="semibold" 
         lineHeight="short"
         textAlign={"center"}>
         <a href={guest.invitation_url}>Clique aqui para abrir o convite</a>
-      </Text>
-      <Button w="100%">
+        <Button w="100%" h>
         <Text 
-          fontSize="20px" 
+          fontSize="10px" 
           color="pink" 
           fontWeight={"extrabold"}
           onClick={()=>copyToClipboard()}>
           Copiar o link
         </Text>
       </Button>
+
+      </Text>
     </Box>
   );
 }
