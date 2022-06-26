@@ -134,41 +134,21 @@ function listguests() {
           m={5}
         />
       </Center>
-        <Text fontSize={"large"}>
-          Qtd.Convite: <b>{qtdInvite}</b>
+      <Center>
+          `Qtd.Convite: <b>{qtdInvite}</b>
           - Entregues: <b>{inviteDelivered}</b>
           - Recusaram: <b>{recusedPeople}</b>
-        </Text>
-      <Center>
+          - Total Pessoas Convidadas: <b>{totalPeople}</b>
+          - Convite ainda não entregues: <b>{invitePending}</b> ({(invitePending/qtdInvite*100).toFixed(2)}%)
+          - Pessoas ainda não convidadas: <b>{invitePendingPeople}</b>`
       </Center>
       <Center style={{"display":"flex", "flex-direction":"column"}}>
-        <Box border={"silver"}>
-          <Center >Convites</Center>
-            <Center>
-              <Box textAlign={"center"}                
-                ml={10}
-                mr={10}>
-                <Text fontSize={"large"}>Pendentes</Text>
-                <Box display={"flex"} flexDirection={"row"}>
-                  <Text fontSize={"x-large"}>{invitePending}</Text>
-                  <Text fontSize={"large"}>{(invitePending/qtdInvite*100).toFixed(2)}%</Text>
-                </Box>
-                <Text>Pessoas:{invitePendingPeople}</Text>
-                <Box fontSize={"small"}>
-                <Text>Adulto: <b>{invitePendingPeopleA}</b></Text>
-                <Text>7 a 12 anos: <b>{invitePendingPeopleC}</b></Text>
-                <Text>Menor de 7: <b>{invitePendingPeopleN}</b></Text>
-                {invitePendingPeopleX>0?<Text>Sem idade: <b>{invitePendingPeopleX}</b></Text>:null}
-              </Box>
-              </Box>            
-          </Center>
-        </Box>
         <Box border={"silver"}>
           <Center>Pessoas</Center>
           <Box textAlign={"center"}          
             ml={10}
             mr={10}>
-            <Text fontSize={"xx-large"}>{totalPeople}</Text>
+            
           </Box>
 
           <Center>

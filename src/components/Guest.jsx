@@ -42,7 +42,7 @@ export default function GuestCard({ guest }) {
   }
 
   return (
-    <Box p="1" w="20vw" borderWidth="1px" m="2px" backgroundColor={guest._doc.dueDate ? 'green.300':'none'}>
+    <Box p="1" w="19%" borderWidth="1px" m="2px" backgroundColor={guest._doc.dueDate ? 'green.300':'none'}>
       <Flex mt={2} align="end" mr="0px">
         <Box as={MdStar} color="orange.400" />
         <Text ml={1} fontSize="10px" color={"GrayText"}>
@@ -52,32 +52,38 @@ export default function GuestCard({ guest }) {
       <Text mt={1} fontSize="15px" fontWeight="extrabold">
         {guest._doc.name}
       </Text>
-      <Flex align="baseline" mt={2} flexWrap={'wrap'}>
-        {guest._doc.escorts.map((escort)=>{
-          return (            
-            <Center m={1} style={{
-                "background-color":escort.confirmed === null ? "Yellow" : escort.confirmed ? "Green.300" : "Pink",
-                "color":escort.confirmed === null ? "red" : escort.confirmed ? "white" : "white",
-                "display":"flex"                
-                }}>
-              <Text onClick={()=>updateAge(guest._doc._id, escort._id, null )}>{escort.confirmed === null ? <ImQuestion /> : escort.confirmed ? <FcOk /> : <FcCancel />}</Text>
-              <Text >{escort.name}</Text>
-              {!escort.age ? <ImMan onClick={()=>updateAge(guest._doc._id, escort._id, 18 )}/> : escort.age > 12 ? <ImMan /> : null}
-              {!escort.age ? <FaChild onClick={()=>updateAge(guest._doc._id, escort._id, 11 )}/> : escort.age > 7 && escort.age < 13 ? <FaChild /> : null }
-              {!escort.age ? <FaBaby onClick={()=>updateAge(guest._doc._id, escort._id, 6 )}/>  : escort.age < 8 ? <FaBaby/> : null }
-            </Center>
-          );
-        })}
-      </Flex>
+      <Center>
+        <Flex align="baseline" mt={2} flexWrap={'wrap'}>
+          <Center 
+              flexWrap={'wrap'}
+              style={{"display":"flex", "flex-directions":"row",}}>
+            {guest._doc.escorts.map((escort)=>{
+              return (            
+                <Center m={1} style={{
+                    "background-color":escort.confirmed === null ? "Yellow" : escort.confirmed ? "Green.300" : "Pink",
+                    "color":escort.confirmed === null ? "red" : escort.confirmed ? "white" : "white",
+                    "display":"flex",
+                    "align-items":"center"        
+                    }}>
+                  <Text onClick={()=>updateAge(guest._doc._id, escort._id, null )}>{escort.confirmed === null ? <ImQuestion /> : escort.confirmed ? <FcOk /> : <FcCancel />}</Text>
+                  <Text >{escort.name}</Text>
+                  {!escort.age ? <ImMan onClick={()=>updateAge(guest._doc._id, escort._id, 18 )}/> : escort.age > 12 ? <ImMan /> : null}
+                  {!escort.age ? <FaChild onClick={()=>updateAge(guest._doc._id, escort._id, 11 )}/> : escort.age > 7 && escort.age < 13 ? <FaChild /> : null }
+                  {!escort.age ? <FaBaby onClick={()=>updateAge(guest._doc._id, escort._id, 6 )}/>  : escort.age < 8 ? <FaBaby/> : null }
+                </Center>
+              );
+            })}
+          </Center>
+        </Flex>
+      </Center>
       <Text 
-        p={3}
         color={"blue"}
         fontSize="smaller" 
         fontWeight="semibold" 
         lineHeight="short"
         textAlign={"center"}>
         <a href={guest.invitation_url}>Clique aqui para abrir o convite</a>
-        <Button w="100%" h>
+        <Button w="100%" h={"20px"}>
         <Text 
           fontSize="10px" 
           color="pink" 
