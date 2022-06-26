@@ -25,6 +25,7 @@
     "dynamic": "^4.2.2",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^6.3.3",
+    "lottie-ios": "3.2.3",
     "mercadopago": "^1.5.12",
     "modern-react-qr-reader": "^1.0.12",
     "mongoose": "^6.3.1",

@@ -16,8 +16,17 @@ export default async function handler(request, response) {
       let confirmedPeopleC = 0;
       let confirmedPeopleN = 0;
       let confirmedPeopleX = 0;
-      let recusedPeople = 0;
-      let pendingPeople = 0;
+
+      let confirmedPeopleAnselmoA = 0;
+      let confirmedPeopleAnselmoC = 0;
+      let confirmedPeopleAnselmoN = 0;
+      let confirmedPeopleAnselmoX = 0;
+
+      let confirmedPeopleMargoA = 0;
+      let confirmedPeopleMargoC = 0;
+      let confirmedPeopleMargoN = 0;
+      let confirmedPeopleMargoX = 0;
+
       let pendingPeopleA = 0;
       let pendingPeopleC = 0;
       let pendingPeopleN = 0;
@@ -26,6 +35,7 @@ export default async function handler(request, response) {
       let invitePendingPeopleC = 0;
       let invitePendingPeopleN = 0;
       let invitePendingPeopleX = 0;
+      let recusedPeople = 0;
 
       guests.map((guest)=>{
         totalPeople += guest.escorts.length;
@@ -38,7 +48,7 @@ export default async function handler(request, response) {
 
         guest.escorts.map((escort)=>{
           if (guest.dueDate)
-            if (escort.confirmed)
+            if (escort.confirmed){
               if (escort.age == 18)
                 confirmedPeopleA ++;
               else if (escort.age == 11)
@@ -47,6 +57,26 @@ export default async function handler(request, response) {
                 confirmedPeopleN ++;
               else 
                 confirmedPeopleX ++;
+
+              if (guest.owner == "Anselmo")
+                if (escort.age == 18)
+                  confirmedPeopleAnselmoA ++;
+                else if (escort.age == 11)
+                  confirmedPeopleAnselmoC ++;
+                else if (escort.age == 6)
+                  confirmedPeopleAnselmoN ++;
+                else 
+                  confirmedPeopleAnselmoX ++;
+              else
+                if (escort.age == 18)
+                  confirmedPeopleMargoA ++;
+                else if (escort.age == 11)
+                  confirmedPeopleMargoC ++;
+                else if (escort.age == 6)
+                  confirmedPeopleMargoN ++;
+                else 
+                  confirmedPeopleMargoX ++;
+            }
             else if (escort.confirmed===false)
               recusedPeople ++;   
             else 
@@ -84,12 +114,21 @@ export default async function handler(request, response) {
         confirmedPeopleC,
         confirmedPeopleN,
         confirmedPeopleX,
+        confirmedPeopleAnselmoA,
+        confirmedPeopleAnselmoC,
+        confirmedPeopleAnselmoN,
+        confirmedPeopleAnselmoX,
+        confirmedPeopleMargoA,
+        confirmedPeopleMargoC,
+        confirmedPeopleMargoN,
+        confirmedPeopleMargoX,
         recusedPeople,
         pendingPeopleA,
         pendingPeopleC,
         pendingPeopleN,
         pendingPeopleX        
       }
+      console.log(data);
       return response.json(data);
     } catch (err) {
       return response.status(500).json(err);

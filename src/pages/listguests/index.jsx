@@ -14,10 +14,22 @@ function listguests() {
   const [ invitePendingPeopleC, setInvitePendingPeopleC] = useState();
   const [ invitePendingPeopleN, setInvitePendingPeopleN] = useState();
   const [ invitePendingPeopleX, setInvitePendingPeopleX] = useState();
+
   const [ confirmedPeopleA, setConfirmedPeopleA] = useState();
   const [ confirmedPeopleC, setConfirmedPeopleC] = useState();
   const [ confirmedPeopleN, setConfirmedPeopleN] = useState();
   const [ confirmedPeopleX, setConfirmedPeopleX] = useState();
+
+  const [ confirmedPeopleAnselmoA, setConfirmedPeopleAnselmoA] = useState();
+  const [ confirmedPeopleAnselmoC, setConfirmedPeopleAnselmoC] = useState();
+  const [ confirmedPeopleAnselmoN, setConfirmedPeopleAnselmoN] = useState();
+  const [ confirmedPeopleAnselmoX, setConfirmedPeopleAnselmoX] = useState();
+
+  const [ confirmedPeopleMargoA, setConfirmedPeopleMargoA] = useState();
+  const [ confirmedPeopleMargoC, setConfirmedPeopleMargoC] = useState();
+  const [ confirmedPeopleMargoN, setConfirmedPeopleMargoN] = useState();
+  const [ confirmedPeopleMargoX, setConfirmedPeopleMargoX] = useState();
+
   const [ recusedPeople, setRecusedPeople] = useState();
   const [ pendingPeopleA, setPendingPeopleA] = useState();
   const [ pendingPeopleC, setPendingPeopleC] = useState();
@@ -42,10 +54,22 @@ function listguests() {
         setInvitePendingPeopleC(data.invitePendingPeopleC);
         setInvitePendingPeopleN(data.invitePendingPeopleN);
         setInvitePendingPeopleX(data.invitePendingPeopleX);
+
         setConfirmedPeopleA(data.confirmedPeopleA);
         setConfirmedPeopleC(data.confirmedPeopleC);
         setConfirmedPeopleN(data.confirmedPeopleN);
         setConfirmedPeopleX(data.confirmedPeopleX);
+
+        setConfirmedPeopleAnselmoA(data.confirmedPeopleAnselmoA);
+        setConfirmedPeopleAnselmoC(data.confirmedPeopleAnselmoC);
+        setConfirmedPeopleAnselmoN(data.confirmedPeopleAnselmoN);
+        setConfirmedPeopleAnselmoX(data.confirmedPeopleAnselmoX);
+
+        setConfirmedPeopleMargoA(data.confirmedPeopleMargoA);
+        setConfirmedPeopleMargoC(data.confirmedPeopleMargoC);
+        setConfirmedPeopleMargoN(data.confirmedPeopleMargoN);
+        setConfirmedPeopleMargoX(data.confirmedPeopleMargoX);
+
         setRecusedPeople(data.recusedPeople);
         setPendingPeopleA(data.pendingPeopleA);
         setPendingPeopleC(data.pendingPeopleC);
@@ -144,6 +168,33 @@ function listguests() {
                 {confirmedPeopleX>0 ? <Text>Sem idade: <b>{confirmedPeopleX}</b></Text> : null}
               </Box>
             </Box>
+            <Box textAlign={"center"}              
+              ml={10}
+              mr={10}>
+              <Text fontSize={"large"}>Conf.Margo</Text>
+              <Text fontSize={"xx-large"}>{confirmedPeopleMargoA+confirmedPeopleMargoC+confirmedPeopleMargoN+confirmedPeopleMargoX}</Text>
+              <Box fontSize={"small"}>
+                <Text>Adulto: <b>{confirmedPeopleMargoA}</b></Text>
+                <Text>7 a 12 anos: <b>{confirmedPeopleMargoC}</b></Text>
+                <Text>Pagamos: <b>{confirmedPeopleMargoA+confirmedPeopleMargoC+confirmedPeopleMargoX}</b></Text>
+                <Text>Menor de 7: <b>{confirmedPeopleMargoN}</b></Text>
+                {confirmedPeopleMargoX>0 ? <Text>Sem idade: <b>{confirmedPeopleMargoX}</b></Text> : null}
+              </Box>
+            </Box>
+            <Box textAlign={"center"}              
+              ml={10}
+              mr={10}>
+              <Text fontSize={"large"}>Conf.Anselmo</Text>
+              <Text fontSize={"xx-large"}>{confirmedPeopleAnselmoA+confirmedPeopleAnselmoC+confirmedPeopleAnselmoN+confirmedPeopleAnselmoX}</Text>
+              <Box fontSize={"small"}>
+                <Text>Adulto: <b>{confirmedPeopleAnselmoA}</b></Text>
+                <Text>7 a 12 anos: <b>{confirmedPeopleAnselmoC}</b></Text>
+                <Text>Pagamos: <b>{confirmedPeopleAnselmoA+confirmedPeopleAnselmoC+confirmedPeopleAnselmoX}</b></Text>
+                <Text>Menor de 7: <b>{confirmedPeopleAnselmoN}</b></Text>
+                {confirmedPeopleAnselmoX>0 ? <Text>Sem idade: <b>{confirmedPeopleAnselmoX}</b></Text> : null}
+              </Box>
+            </Box>
+
             <Box textAlign={"center"}              
               ml={10}
               mr={10}>

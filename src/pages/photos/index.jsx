@@ -55,6 +55,27 @@ const ListPhotos = () => {
 
   return (
       <Painel>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>        
+        <div 
+          style={{
+              "display":"flex",
+              "width":"100vw",
+              "heigth" : "100vh",
+              "position" :"fixed", 
+              "z-index" : "9999",
+              "justify-content": "space-between"
+            }}>
+            <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_b6cz19m8.json"  
+              background="transparent"  
+              speed="0.9" 
+              loop controls autoplay
+              style={{"width":"20%",}}></lottie-player>        
+            <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_b6cz19m8.json"  
+              background="transparent"  
+              speed="0.6" 
+              loop controls autoplay
+              style={{"width":"20%",}}></lottie-player>        
+          </div>
         <Center>
           <Text style={{
               "font-size": "xxx-large",
