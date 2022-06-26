@@ -31,10 +31,21 @@ function listguests() {
   const [ confirmedPeopleMargoX, setConfirmedPeopleMargoX] = useState();
 
   const [ recusedPeople, setRecusedPeople] = useState();
+
   const [ pendingPeopleA, setPendingPeopleA] = useState();
   const [ pendingPeopleC, setPendingPeopleC] = useState();
   const [ pendingPeopleN, setPendingPeopleN] = useState();
   const [ pendingPeopleX, setPendingPeopleX] = useState();
+
+  const [ pendingPeopleAnselmoA, setPendingPeopleAnselmoA] = useState();
+  const [ pendingPeopleAnselmoC, setPendingPeopleAnselmoC] = useState();
+  const [ pendingPeopleAnselmoN, setPendingPeopleAnselmoN] = useState();
+  const [ pendingPeopleAnselmoX, setPendingPeopleAnselmoX] = useState();
+
+  const [ pendingPeopleMargoA, setPendingPeopleMargoA] = useState();
+  const [ pendingPeopleMargoC, setPendingPeopleMargoC] = useState();
+  const [ pendingPeopleMargoN, setPendingPeopleMargoN] = useState();
+  const [ pendingPeopleMargoX, setPendingPeopleMargoX] = useState();
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests`)
@@ -71,11 +82,21 @@ function listguests() {
         setConfirmedPeopleMargoX(data.confirmedPeopleMargoX);
 
         setRecusedPeople(data.recusedPeople);
+
         setPendingPeopleA(data.pendingPeopleA);
         setPendingPeopleC(data.pendingPeopleC);
         setPendingPeopleN(data.pendingPeopleN);
         setPendingPeopleX(data.pendingPeopleX);
 
+        setPendingPeopleAnselmoA(data.pendingPeopleAnselmoA);
+        setPendingPeopleAnselmoC(data.pendingPeopleAnselmoC);
+        setPendingPeopleAnselmoN(data.pendingPeopleAnselmoN);
+        setPendingPeopleAnselmoX(data.pendingPeopleAnselmoX);
+
+        setPendingPeopleMargoA(data.pendingPeopleMargoA);
+        setPendingPeopleMargoC(data.pendingPeopleMargoC);
+        setPendingPeopleMargoN(data.pendingPeopleMargoN);
+        setPendingPeopleMargoX(data.pendingPeopleMargoX);
       });
   }, []);
 
@@ -112,22 +133,17 @@ function listguests() {
           m={5}
         />
       </Center>
+        <Text fontSize={"large"}>
+          Qtd.Convite: <b>{qtdInvite}</b>
+          - Entregues: <b>{inviteDelivered}</b>
+          - Recusaram: <b>{recusedPeople}</b>
+        </Text>
       <Center>
-        <Box textAlign={"center"}            
-            ml={10}
-            mr={10}>
-          <Text fontSize={"large"}>Qtd.Convite</Text>
-          <Text fontSize={"xx-large"}>{qtdInvite}</Text>
-        </Box>
+      </Center>
+      <Center>
         <Box border={"silver"}>
           <Center >Convites</Center>
             <Center>
-              <Box textAlign={"center"}                
-                ml={10}
-                mr={10}>
-                <Text fontSize={"large"}>Entregues</Text>
-                <Text fontSize={"xx-large"}>{inviteDelivered}</Text>
-              </Box>
               <Box textAlign={"center"}                
                 ml={10}
                 mr={10}>
@@ -208,11 +224,33 @@ function listguests() {
                 {pendingPeopleX>0 ? <Text>Sem idade: <b>{pendingPeopleX}</b></Text> : null}
               </Box>
             </Box>
+
             <Box textAlign={"center"}              
               ml={10}
               mr={10}>
-              <Text fontSize={"large"}>Recusaram</Text>
-              <Text fontSize={"xx-large"}>{recusedPeople}</Text>
+              <Text fontSize={"large"}>Pend.Margo</Text>
+              <Text fontSize={"xx-large"}>{pendingPeopleMargoA+pendingPeopleMargoC+pendingPeopleMargoN+pendingPeopleMargoX}</Text>
+              <Box fontSize={"small"}>
+                <Text>Adulto: <b>{pendingPeopleMargoA}</b></Text>
+                <Text>7 a 12 anos: <b>{pendingPeopleMargoC}</b></Text>
+                <Text>Pagamos: <b>{pendingPeopleMargoA+pendingPeopleMargoC+pendingPeopleMargoX}</b></Text>
+                <Text>Menor de 7: <b>{pendingPeopleMargoN}</b></Text>
+                {pendingPeopleMargoX>0 ? <Text>Sem idade: <b>{pendingPeopleMargoX}</b></Text> : null}
+              </Box>
+            </Box>
+
+            <Box textAlign={"center"}              
+              ml={10}
+              mr={10}>
+              <Text fontSize={"large"}>Pend.Anselmo</Text>
+              <Text fontSize={"xx-large"}>{pendingPeopleAnselmoA+pendingPeopleAnselmoC+pendingPeopleAnselmoN+pendingPeopleAnselmoX}</Text>
+              <Box fontSize={"small"}>
+                <Text>Adulto: <b>{pendingPeopleAnselmoA}</b></Text>
+                <Text>7 a 12 anos: <b>{pendingPeopleAnselmoC}</b></Text>
+                <Text>Pagamos: <b>{pendingPeopleAnselmoA+pendingPeopleAnselmoC+pendingPeopleAnselmoX}</b></Text>
+                <Text>Menor de 7: <b>{pendingPeopleAnselmoN}</b></Text>
+                {pendingPeopleAnselmoX>0 ? <Text>Sem idade: <b>{pendingPeopleAnselmoX}</b></Text> : null}
+              </Box>
             </Box>
           </Center>
         </Box>

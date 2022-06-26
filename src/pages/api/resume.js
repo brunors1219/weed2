@@ -31,6 +31,18 @@ export default async function handler(request, response) {
       let pendingPeopleC = 0;
       let pendingPeopleN = 0;
       let pendingPeopleX = 0;
+
+      let pendingPeopleAnselmoA = 0;
+      let pendingPeopleAnselmoC = 0;
+      let pendingPeopleAnselmoN = 0;
+      let pendingPeopleAnselmoX = 0;
+
+      let pendingPeopleMargoA = 0;
+      let pendingPeopleMargoC = 0;
+      let pendingPeopleMargoN = 0;
+      let pendingPeopleMargoX = 0;
+
+
       let invitePendingPeopleA = 0;
       let invitePendingPeopleC = 0;
       let invitePendingPeopleN = 0;
@@ -79,7 +91,7 @@ export default async function handler(request, response) {
             }
             else if (escort.confirmed===false)
               recusedPeople ++;   
-            else 
+            else {
               if (escort.age == 18)
                 pendingPeopleA ++;
               else if (escort.age == 11)
@@ -88,7 +100,27 @@ export default async function handler(request, response) {
                 pendingPeopleN ++;
               else 
                 pendingPeopleX ++;
-          else
+              
+              if (guest.owner == "Anselmo")
+                if (escort.age == 18)
+                  pendingPeopleAnselmoA ++;
+                else if (escort.age == 11)
+                  pendingPeopleAnselmoC ++;
+                else if (escort.age == 6)
+                  pendingPeopleAnselmoN ++;
+                else 
+                  pendingPeopleAnselmoX ++;
+              else
+                if (escort.age == 18)
+                  pendingPeopleMargoA ++;
+                else if (escort.age == 11)
+                  pendingPeopleMargoC ++;
+                else if (escort.age == 6)
+                  pendingPeopleMargoN ++;
+                else 
+                  pendingPeopleMargoX ++;
+
+          }  else 
               if (escort.age == 18)
                 invitePendingPeopleA ++;
               else if (escort.age == 11)
@@ -126,9 +158,19 @@ export default async function handler(request, response) {
         pendingPeopleA,
         pendingPeopleC,
         pendingPeopleN,
-        pendingPeopleX        
+        pendingPeopleX,
+
+        pendingPeopleAnselmoA,
+        pendingPeopleAnselmoC,
+        pendingPeopleAnselmoN,
+        pendingPeopleAnselmoX,
+        
+        pendingPeopleMargoA,
+        pendingPeopleMargoC,
+        pendingPeopleMargoN,
+        pendingPeopleMargoX                
+
       }
-      console.log(data);
       return response.json(data);
     } catch (err) {
       return response.status(500).json(err);
