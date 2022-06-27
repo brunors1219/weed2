@@ -158,8 +158,15 @@ function listguests() {
             <Box mt={4} display={"block"}
               fontSize={"xx-small"}>
                 <Text>Adulto: <b>{confirmedPeopleA}</b></Text>
-                <Text>7 a 12 anos: <b>{confirmedPeopleC}</b></Text>
-                <Text>Pagamos: <b>{confirmedPeopleA+confirmedPeopleC+confirmedPeopleX}</b></Text>
+                <Text>
+                    7 a 12 anos: <b>{confirmedPeopleC}</b>
+                     ({confirmedPeopleC+pendingPeopleC})
+                </Text>
+                <Text>
+                  Pagamos: <b>{confirmedPeopleA+confirmedPeopleC+confirmedPeopleX}</b>
+                    ({confirmedPeopleA+confirmedPeopleC+confirmedPeopleX
+                      +pendingPeopleA+pendingPeopleC+pendingPeopleX})
+                </Text>
                 <Text>Menor de 7: <b>{confirmedPeopleN}</b></Text>
                 {confirmedPeopleX>0 ? <Text>Sem idade: <b>{confirmedPeopleX}</b></Text> : null}
             </Box>
@@ -175,7 +182,11 @@ function listguests() {
           <Box fontSize={"xx-small"}>
             <Text>Adulto: <b>{confirmedPeopleMargoA}</b></Text>
             <Text>7 a 12 anos: <b>{confirmedPeopleMargoC}</b></Text>
-            <Text>Pagamos: <b>{confirmedPeopleMargoA+confirmedPeopleMargoC+confirmedPeopleMargoX}</b></Text>
+            <Text>
+              Pagamos: <b>{confirmedPeopleMargoA+confirmedPeopleMargoC+confirmedPeopleMargoX}</b>
+                ({confirmedPeopleMargoA+confirmedPeopleMargoC+confirmedPeopleMargoX
+                 +pendingPeopleMargoA+pendingPeopleMargoC+pendingPeopleMargoN+pendingPeopleMargoX})
+            </Text>
             <Text>Menor de 7: <b>{confirmedPeopleMargoN}</b></Text>
             {confirmedPeopleMargoX>0 ? <Text>Sem idade: <b>{confirmedPeopleMargoX}</b></Text> : null}
           </Box>
@@ -213,9 +224,7 @@ function listguests() {
             <Text>Adulto: <b>{pendingPeopleA}</b></Text>
             <Text>7 a 12 anos: <b>{pendingPeopleC}</b></Text>
             <Text>
-              Pagamos: <b>{pendingPeopleA+pendingPeopleC+pendingPeopleX}</b>
-                ({pendingPeopleA+pendingPeopleC+pendingPeopleX
-                  + pendingPeopleMargoA+pendingPeopleMargoC+pendingPeopleMargoX})
+              Pagamos: <b>{pendingPeopleA+pendingPeopleC+pendingPeopleX}</b>                
             </Text>
             <Text>Menor de 7: <b>{pendingPeopleN}</b></Text>
             {pendingPeopleX>0 ? <Text>Sem idade: <b>{pendingPeopleX}</b></Text> : null}
