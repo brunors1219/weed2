@@ -42,7 +42,7 @@ export default function GuestCard({ guest }) {
   }
 
   return (
-    <Box p="1" w="19%" borderWidth="1px" m="2px" backgroundColor={guest._doc.dueDate ? 'green.300':'none'}>
+    <Box p="1" w="19%" minW={"170px"} borderWidth="1px" m="2px" backgroundColor={guest._doc.dueDate ? 'green.300':'none'}>
       <Flex mt={2} align="end" mr="0px">
         <Box as={MdStar} color="orange.400" />
         <Text ml={1} fontSize="10px" color={"GrayText"}>
