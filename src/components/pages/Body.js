@@ -10,7 +10,7 @@ const Body = (props) => {
   const [whidth, setWhidth] = React.useState(false);
   const [scroll, setScroll] = React.useState(false);
   const [number, setNumber] = React.useState(1);
-  const [imageSlide, setimageSlide] = React.useState('/Img/event-'+number+'.jpg');
+  const [imageSlide, setimageSlide] = React.useState(`${process.env.APP_URL}/Img/event-${number}.jpg`);
   const imageTop = '/Img/illustration2.png';
 
   React.useEffect(() => {
