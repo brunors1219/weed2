@@ -1,12 +1,13 @@
 import Head from "next/head";
 import Body from "../components/pages/Body";
 import Header from "../components/pages/Header";
+import Footer from "../components/pages/Footer";
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Gestor de Eventos</title>
+        <title>GTA Fotos</title>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
@@ -25,6 +26,7 @@ export default function Home() {
 
       <Header />
       <Body />
+      <Footer />
     </>
   );
 }

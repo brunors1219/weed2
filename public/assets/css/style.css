@@ -5,6 +5,7 @@
 :root {
   --collor:black;
   --background-collor: blueviolet;
+  
 }
 
 /* Theme Default */
@@ -940,10 +941,6 @@ ul.about-content-list li i {
   transform: scale(0.9);
 }
 
-.single-services3 h3, p {
-  text-align: center;
-  padding: 0 20% 0 20%;
-}
 .single-services3 img {
   margin: 10px;
   box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.14);

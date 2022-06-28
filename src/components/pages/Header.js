@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Box } from '@chakra-ui/react';
 
 const Header = (props) => {
   const [scroll, setScroll] = useState(false);
@@ -27,7 +28,7 @@ const Header = (props) => {
 
   return (
     <>
-      <header>
+      <Box>
         <div
           className={
             scroll ? "header-area sticky animated slideInDown" : whidth ? "header-area sticky" : "header-area"
@@ -164,7 +165,7 @@ const Header = (props) => {
             </div>
           </div>
         </div>
-      </header>
+      </Box>
     </>
   );
 };
