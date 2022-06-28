@@ -11,7 +11,7 @@ const Body = (props) => {
   const [scroll, setScroll] = React.useState(false);
   const [number, setNumber] = React.useState(1);
   const [imageSlide, setimageSlide] = React.useState(`/img/event-${number}.jpg`);
-  const imageTop = '/img/illustration2.png';
+  const imageTop = '/img/Ilustration2.png';
 
   React.useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -28,7 +28,7 @@ const Body = (props) => {
   const nextPhoto = () => {
     number++;
     if (number>9) number = 1;
-    setimageSlide('/Img/event-'+number+'.jpg');
+    setimageSlide('/img/event-'+number+'.jpg');
   };
 
   const textWhatsApp = '?text=Eu%20quero%20saber%20mais%20sobre%20como%20usar%20GTA%20Fotos';
