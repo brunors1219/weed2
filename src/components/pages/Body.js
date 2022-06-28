@@ -11,7 +11,7 @@ const Body = (props) => {
   const [scroll, setScroll] = React.useState(false);
   const [number, setNumber] = React.useState(1);
   const [imageSlide, setimageSlide] = React.useState(`/img/event-${number}.jpg`);
-  const imageTop = '/img/Ilustration2.png';
+  const imageTop = '/img/Illustration2.png';
 
   React.useEffect(() => {
     window.addEventListener("scroll", () => {
