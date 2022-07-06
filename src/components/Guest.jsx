@@ -41,6 +41,23 @@ export default function GuestCard({ guest }) {
     
   }
 
+  const updateName = (guest_id, escort_id, name) => {
+
+    let newName = prompt("Coloque o nome completo", name);
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/nameguest`, {
+      method: 'POST',
+      body: JSON.stringify({
+        guest_id,
+        escort_id,
+        newName
+      }),
+    })
+    .then(response => {
+        response.json();          
+    });
+    
+  }
+
   return (
     <Box p="1" w="19%" minW={"170px"} borderWidth="1px" m="2px" backgroundColor={guest._doc.dueDate ? 'green.300':'none'}>
       <Flex mt={2} align="end" mr="0px">
@@ -66,7 +83,7 @@ export default function GuestCard({ guest }) {
                     "align-items":"center"        
                     }}>
                   <Text onClick={()=>updateAge(guest._doc._id, escort._id, null )}>{escort.confirmed === null ? <ImQuestion /> : escort.confirmed ? <FcOk /> : <FcCancel />}</Text>
-                  <Text >{escort.name}</Text>
+                  <Text onClick={()=>updateName(guest._doc._id, escort._id, escort.name )}>{escort.name}</Text>
                   {!escort.age ? <ImMan onClick={()=>updateAge(guest._doc._id, escort._id, 18 )}/> : escort.age > 12 ? <ImMan /> : null}
                   {!escort.age ? <FaChild onClick={()=>updateAge(guest._doc._id, escort._id, 11 )}/> : escort.age > 7 && escort.age < 13 ? <FaChild /> : null }
                   {!escort.age ? <FaBaby onClick={()=>updateAge(guest._doc._id, escort._id, 6 )}/>  : escort.age < 8 ? <FaBaby/> : null }
