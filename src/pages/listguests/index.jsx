@@ -1,6 +1,7 @@
 import React, { useEffect, useState }  from 'react';
 import GuestCard from '../../components/Guest';
 import { Box, Center, Input, Text, Collapse, Button } from "@chakra-ui/react";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 function listguests() {
   const [ guests , setGuests ] = useState([]);
@@ -131,6 +132,13 @@ function listguests() {
           bgColor={"#FBB6CE"}
           color={"black"}
         />
+        <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="download-table-xls-button"
+                    table="table-to-xls"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download as XLS"/>
       </Center>
       <Center fontSize={"xx-large"}>Resumo</Center>
       <Center display={"flex"} 
@@ -275,6 +283,35 @@ function listguests() {
           );
         })}
       </Center>
+
+      <Center display={"none"}
+          flexDirection={"row"}
+          flexWrap={"wrap"}
+          alignItems={"stretch"}>
+        <table id="table-to-xls">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Família</th>
+              <th>Noivo ou Noiva</th>
+            </tr>
+          </thead>
+          <tbody>
+            {guests.map((guest)=> {          
+              return guest._doc.escorts.map((escort)=>{
+                return (
+                  <tr>
+                    <th>{escort.name}</th>
+                    <th>{guest._doc.name}</th>
+                    <th>{guest._doc.owner}</th>
+                  </tr>
+                );
+              });
+            })}
+          </tbody>
+        </table>
+      </Center>
+
     </>
 
   );
