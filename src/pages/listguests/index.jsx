@@ -299,11 +299,21 @@ function listguests() {
           <tbody>
             {guests.map((guest)=> {          
               return guest._doc.escorts.map((escort)=>{
+                let list = "";
                 return (
                   <tr>
                     <th>{escort.name}</th>
                     <th>{guest._doc.name}</th>
                     <th>{guest._doc.owner}</th>
+                    <th>
+                      { 
+                        guest._doc.escorts.map((escort_)=>{
+                          return(
+                            list += escort_
+                          )
+                        })
+                      }
+                    </th>
                   </tr>
                 );
               });
