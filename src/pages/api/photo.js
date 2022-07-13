@@ -8,7 +8,7 @@ export default async function handler(request, response) {
       await connectToDatabase();
 
       const photos = await Photo.find().sort([['date', -1]]).limit(200).exec();
-     
+           
       return response.status(201).json(photos);
 
     } catch (err) {

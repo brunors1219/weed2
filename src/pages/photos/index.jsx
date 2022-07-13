@@ -16,42 +16,39 @@ const ListPhotos = () => {
   const [photos,setPhotos] = React.useState([]);
   const [photo,setPhoto] = React.useState({});
   const [classImage,setClassImage] = React.useState("ball");
+  const [position,setPosition] = React.useState(0);
 
-
-  const update = React.useCallback(async () => {
-    console.log('update: ', photos);
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo`);
+  const update = async () => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo?data=${new Date}`)
     const data = await response.json();
+    photos = data;    
+    console.log(data);
+    position = 0;
+  };
 
-    setPhotos(data);    
-  }  ,[]);
-
-  const updatePhoto = React.useCallback(()=>{
+  const updatePhoto = () =>{
+    console.log('position: ', position);
+    
     if (photos.length>0) {
-      setPhoto(photos[Math.round(Math.random()*photos.length)]);
-      setClassImage(classImage=="pulse"?"ball":"pulse");
+      // Math.round(Math.random()*photos.length)
+      setPhoto(photos[position]);
+      position++;
     }
-  }, [photos]);
-
-  React.useEffect(() => {
-    update();
-    const updateInterval = setInterval(()=> window.location.reload(), 600000);
-
-    return () => {
-      clearInterval(updateInterval);
+    if (position >= photos.length){
+      update();
     }
-  }, [update]);
+  };
 
   React.useEffect(()=>{
     console.log("Inicio");
-    updatePhoto();
-    
-    const updatePhotoInterval = setInterval(()=>updatePhoto(), 10000); 
+    update();
+
+    const updatePhotoInterval = setInterval(()=>updatePhoto(), 5000); 
     
     return () => {
       clearInterval(updatePhotoInterval);
     }
-  },[updatePhoto]);
+  },[]);
 
   return (
       <Painel>

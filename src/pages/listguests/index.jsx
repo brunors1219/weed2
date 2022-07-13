@@ -117,8 +117,17 @@ function listguests() {
     setShow(!show);
   };
 
+  const backup = () => {
+    alert('teste');
+    console.log(guests);
+      
+    const downloadLink = document.getElementById('downloadBackup');
+
+    downloadLink.click();
+  }
   return (
     <>
+      <a id="downloadBackup" href={guests} download="backupWedd.json" hidden></a>
       <Center
         mt={5}>
         <Input
@@ -139,6 +148,7 @@ function listguests() {
                     filename="tablexls"
                     sheet="tablexls"
                     buttonText="Download as XLS"/>
+        <Button onClick={backup}>Backup</Button>
       </Center>
       <Center fontSize={"xx-large"}>Resumo</Center>
       <Center display={"flex"} 
