@@ -41,7 +41,7 @@ export default function WelcomeGuest({ guest, back }) {
           </Center>
 
           {theGest.escorts
-            .filter((escort)=>{ return escort.confirmed; })
+            // .filter((escort)=>{ return escort.confirmed; })
             .map((escort)=>{
               return (
                 <Center w={"90%"}>

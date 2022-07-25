@@ -1,5 +1,8 @@
 import connectToDatabase from '../../database';
 import Guest from '../../database/schemas/Guest';
+import Product from '../../database/schemas/Product';
+import Pagamentos from '../../database/schemas/Pagamentos';
+import { ContactSupportOutlined } from '@material-ui/icons';
 
 export default async function handler(request, response) {
   if (request.method === 'POST') {
@@ -72,13 +75,16 @@ export default async function handler(request, response) {
         guests = await Guest.find({'name':regex}).exec();
       }
         
+      // let gift = await Pagamentos.find({'guest':guest._id,"request_Status":"Aprovado e será enviado ao noivos"}).exec();
+      // console.log(gift)
+
       const serializedGuests = guests.map(guest => {
         return {
           ...guest, 
-          invitation_url: `${process.env.APP_URL}/guestInvitationv3/${guest.id}`, 
+          invitation_url: `${process.env.APP_URL}/guestInvitationv3/${guest.id}`,
         };
       });
-  
+
       return response.json(serializedGuests);
     } catch (err) {
       return response.status(500).json(err);

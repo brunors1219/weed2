@@ -16,14 +16,16 @@ const Caixa = styled(Center)`
 export default function QrCode({Guest, Visivel, funcaoFechar, funcaoAbrirConfirmacao}) {
   const { Canvas } = useQRCode();
   const [textQrCode, settextQrCode] = useState("");
-
+  console.log(Guest);
+  
   useEffect(() => {
+    
     if (Guest.escorts){
       var QrCodeGuest = {guest_id : Guest._id};
 
       QrCodeGuest.escorts = Guest
-                              .escorts
-                              .filter((t)=>{return t.confirmed});
+                              .escorts;
+                              // .filter((t)=>{return t.confirmed});
 
       settextQrCode(JSON.stringify(QrCodeGuest));
     }
