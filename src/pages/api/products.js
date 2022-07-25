@@ -51,14 +51,14 @@ export default async function handler(request, response) {
     }
   }
 
-  if (request.method === 'GET' && !request.params) {
+  if (request.method === 'GET') {
     try {
-      
+            
       await connectToDatabase();
 
       let products
 
-      if (request.query){
+      if (request.query.category!=""){
         products = await Product.find({category :request.query.category}).sort([['date', -1]]).exec();
       } else {
         products = await Product.find().sort([['date', -1]]).exec();

@@ -19,11 +19,18 @@ const ListPhotos = () => {
   const [position,setPosition] = React.useState(0);
 
   const update = async () => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo?data=${new Date}`)
-    const data = await response.json();
-    photos = data;    
-    console.log(data);
-    position = 0;
+    try{
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/photo?data=${new Date}`)
+      const data = await response.json();
+      photos = data;    
+      console.log(data);
+      position = 0;
+    }
+    finally{
+     
+    }
+
+
   };
 
   const updatePhoto = () =>{

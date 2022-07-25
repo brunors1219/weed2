@@ -19,7 +19,7 @@ function Gifts({Visivel, funcaoFechar, guest, guest_name, goDelete}) {
   useEffect(() => {
 
     const queryParams = new URLSearchParams({
-      category: "Casa, Móveis e Decoração",
+      category: "",
     });
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/products?${queryParams}`)
