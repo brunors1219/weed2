@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Box, Center, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Center, Text, Button } from "@chakra-ui/react";
 import styled from '@emotion/styled';
 
 const Title = styled(Text)`
@@ -31,56 +31,61 @@ export default function WelcomeGuest({ guest, back }) {
   }
 
   return (
-    <Center>
-      <Box m="2" bgColor={"#64a283"} h={"100vh"}>
-          <Center
-            m={10}
-            color={"white"}
-            fontSize={"xxx-large"}>
-            Sejam todos muito bem vindos
-          </Center>
+    <Box m="2" bgColor={"#64a283"} >
+        <Center
+          m={10}
+          color={"white"}
+          fontSize={"x-large"}
+          textAlign={"center"}>
+          Sejam todos muito bem vindos
+        </Center>
 
-          {theGest.escorts
-            // .filter((escort)=>{ return escort.confirmed; })
-            .map((escort)=>{
-              return (
-                <Center w={"90%"}>
-                  <Title m={2} 
-                    p={2}
-                    color={"white"}
-                    fontSize={"xx-large"}
-                    fontWeight="semibold" >
-                    {escort.name}
-                  </Title>
-                  <Button
-                    display={!escort.present ? "block" : "none"}
-                    onClick={() => setPresent(guest._id, escort._id)}>
-                    Confirmar presença
-                  </Button>
-                  <Title m={2} 
-                    p={2}
-                    color={"yellow"}
-                    fontSize={"xx-large"}
-                    fontWeight="semibold" 
-                    display={!escort.present ? "none" : "block"}>
-                    (Já Entrou!!!)
-                  </Title>
-  
-                </Center>
-                )
-            })
-          }
+        {theGest.escorts
+          // .filter((escort)=>{ return escort.confirmed; })
+          .map((escort)=>{
+            return (
+              <Flex 
+                  w={"100%"} 
+                  flexDirection={"column"} 
+                  alignItems={"center"}>
+                <Title p={2}
+                  color={"white"}
+                  fontSize={"xx-large"}
+                  fontWeight="semibold"
+                  textAlign={"center"}>
+                  {escort.name}
+                </Title>
+                <Button
+                  display={!escort.present ? "block" : "none"}
+                  onClick={() => setPresent(guest._id, escort._id)}
+                  >
+                  Confirmar presença
+                </Button>
+                <Title m={2} 
+                  p={2}
+                  color={"yellow"}
+                  fontSize={"xx-large"}
+                  fontWeight="semibold" 
+                  display={!escort.present ? "none" : "block"}>
+                  (Já Entrou!!!)
+                </Title>
 
-          <Center
-            padding={"50px"}
-            >            
-            <Button 
-              w={"90%"}
-              onClick={() => back()}>
-              Voltar
-            </Button>
-          </Center>
-      </Box>
-    </Center>
+              </Flex>
+              )
+          })
+        }
+
+        <Center
+          padding={"50px"}
+          >            
+          <Button 
+            w={"90%"}
+            onClick={() => back()}
+            backgroundColor={"red"}
+            color={"white"}>
+            Voltar
+          </Button>
+        </Center>
+    </Box>
   );
 }
