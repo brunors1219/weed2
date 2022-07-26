@@ -294,7 +294,7 @@ function listguests() {
         })}
       </Center>
 
-      <Center display={"none"}
+      <Center display={"block"}
           flexDirection={"row"}
           flexWrap={"wrap"}
           alignItems={"stretch"}>
@@ -304,25 +304,22 @@ function listguests() {
               <th>Nome</th>
               <th>Família</th>
               <th>Noivo ou Noiva</th>
+              <th>Acompanhantes</th>
             </tr>
           </thead>
           <tbody>
             {guests.map((guest)=> {          
-              return guest._doc.escorts.map((escort)=>{
-                let list = "";
+              return guest._doc.escorts.map((escort)=>{       
+                const escorts = guest._doc.escorts
+                  .filter(f=>f.name !== escort.name)
+                  .map(escort => escort.name).join(', ');
                 return (
                   <tr>
                     <th>{escort.name}</th>
                     <th>{guest._doc.name}</th>
                     <th>{guest._doc.owner}</th>
                     <th>
-                      { 
-                        guest._doc.escorts.map((escort_)=>{
-                          return(
-                            list += escort_
-                          )
-                        })
-                      }
+                      {escorts}
                     </th>
                   </tr>
                 );

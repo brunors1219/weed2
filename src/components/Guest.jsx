@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Center, Box, Flex, Badge, Text, Button } from "@chakra-ui/react";
+import { Center, Box, Flex, Text, Button, Image } from "@chakra-ui/react";
 import { MdStar } from "react-icons/md";
 import { ImMan, ImQuestion } from "react-icons/im";
 import { FaBaby, FaChild } from "react-icons/fa";
 import { FcOk, FcCancel } from "react-icons/fc";
+import Gifts from './gifts';
 
 export default function GuestCard({ guest }) {
 
@@ -93,6 +94,27 @@ export default function GuestCard({ guest }) {
           </Center>
         </Flex>
       </Center>
+      {guest.gifts
+        ? guest.gifts.map(gift=>{
+            return (
+              <>
+                <Text p={4} 
+                  textAlign={"center"}>
+                  {gift.product_name}
+                </Text>
+                <Center>
+                  <Image
+                    w={100}
+                    h={100}
+                    src={gift.product_url}
+                  />
+                </Center>
+              </>
+              
+            )
+          })               
+        : n
+      }
       <Text 
         color={"blue"}
         fontSize="smaller" 
