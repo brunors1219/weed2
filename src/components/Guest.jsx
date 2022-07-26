@@ -94,26 +94,22 @@ export default function GuestCard({ guest }) {
           </Center>
         </Flex>
       </Center>
-      {guest.gifts
-        ? guest.gifts.map(gift=>{
-            return (
-              <>
-                <Text p={4} 
-                  textAlign={"center"}>
-                  {gift.product_name}
-                </Text>
-                <Center>
-                  <Image
-                    w={100}
-                    h={100}
-                    src={gift.product_url}
-                  />
-                </Center>
-              </>
-              
-            )
-          })               
-        : n
+      {console.log(guest.gifts)}
+      {(guest.gifts != undefined)
+        ? <>
+            <Text p={4} 
+              textAlign={"center"}>
+              {guest.gifts.product_name}
+            </Text>
+            <Center>
+              <Image
+                w={100}
+                h={100}
+                src={guest.gifts.product_url}
+              />
+            </Center>
+          </>
+        : null
       }
       <Text 
         color={"blue"}

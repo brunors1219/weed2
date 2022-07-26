@@ -75,14 +75,16 @@ export default async function handler(request, response) {
         guests = await Guest.find({'name':regex}).exec();
       }
         
+      const payments = await Pagamentos.find({"request_Status":"Aprovado e será enviado ao noivos"}).exec();
+
       const serializedGuests = await Promise.all(guests.map(async guest => {
         return {
           ...guest, 
-          gifts: await Pagamentos.find({'guest':guest._id,"request_Status":"Aprovado e será enviado ao noivos"}).exec(),
+          gifts: payments.find(f=>f.guest == guest._id),
           invitation_url: `${process.env.APP_URL}/guestInvitationv1/${guest.id}`
         };
       }));
-      console.log(serializedGuests);
+
       return response.json(serializedGuests);
       
     } catch (err) {
