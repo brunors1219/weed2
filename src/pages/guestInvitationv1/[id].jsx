@@ -19,7 +19,7 @@ const GuestInvite = () => {
   const [mostrarList, setMostrarList] = useState(false);
 
   useEffect(() => {
-    if (id) {
+    if (id) {      
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${id}`)
         .then(response => response.json())
         .then(data => {

@@ -1,10 +1,9 @@
 import connectToDatabase from '../../database';
 import Guest from '../../database/schemas/Guest';
-import Product from '../../database/schemas/Product';
 import Pagamentos from '../../database/schemas/Pagamentos';
-import { ContactSupportOutlined } from '@material-ui/icons';
 
 export default async function handler(request, response) {
+
   if (request.method === 'POST') {
     try {
       await connectToDatabase();
@@ -71,7 +70,7 @@ export default async function handler(request, response) {
         guests = await Guest.find().exec(); 
       else{
         let regex = new RegExp(query, 'i');
-        console.log(regex);
+        console.log('anselmo', regex);
         guests = await Guest.find({'name':regex}).exec();
       }
         
@@ -81,7 +80,7 @@ export default async function handler(request, response) {
         return {
           ...guest, 
           gifts: payments.find(f=>f.guest == guest._id),
-          invitation_url: `${process.env.APP_URL}/guestInvitationv1/${guest.id}`
+          invitation_url: `${process.env.APP_URL}/guestInvitationv3/${guest.id}`
         };
       }));
 
