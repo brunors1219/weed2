@@ -385,7 +385,7 @@ function listguests() {
         })}
       </Center>
 
-      <Center display={"block"}
+      <Center display={"none"}
           flexDirection={"row"}
           flexWrap={"wrap"}
           alignItems={"stretch"}>
