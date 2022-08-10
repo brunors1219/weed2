@@ -3,12 +3,6 @@ import connectToDatabase from '../../database';
 import Photo from '../../database/schemas/Photo';
 import axios from 'axios';
 import { createWriteStream } from 'fs';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url'
-import { saveAs } from 'file-saver'
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const api = axios.create({
     baseURL: 'https://wedd-ichihara7l.vercel.app/api'
