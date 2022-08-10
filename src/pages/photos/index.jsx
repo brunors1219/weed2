@@ -97,7 +97,7 @@ const ListPhotos = () => {
             color={"green"}
             fontStyle={900}
             textShadow={"2px 2px 5px red"}>
-            {photo ? photo.guest_name ? photo.guest_name : "Aguardando fotos1..." : "Aguardando fotos..."}
+            {/* {photo ? photo.guest_name ? photo.guest_name : "Aguardando fotos1..." : "Aguardando fotos..."} */}
           </Text>
         </Center>
         <Center>

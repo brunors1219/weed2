@@ -12,6 +12,7 @@ export default async function handler(request, response) {
       let inviteDelivered = 0;
       let invitePending = 0;
       let invitePendingPeople = 0;
+
       let confirmedPeopleA = 0;
       let confirmedPeopleC = 0;
       let confirmedPeopleN = 0;
@@ -26,6 +27,21 @@ export default async function handler(request, response) {
       let confirmedPeopleMargoC = 0;
       let confirmedPeopleMargoN = 0;
       let confirmedPeopleMargoX = 0;
+
+      let presentPeopleA = 0;
+      let presentPeopleC = 0;
+      let presentPeopleN = 0;
+      let presentPeopleX = 0;
+
+      let presentPeopleAnselmoA = 0;
+      let presentPeopleAnselmoC = 0;
+      let presentPeopleAnselmoN = 0;
+      let presentPeopleAnselmoX = 0;
+
+      let presentPeopleMargoA = 0;
+      let presentPeopleMargoC = 0;
+      let presentPeopleMargoN = 0;
+      let presentPeopleMargoX = 0;
 
       let pendingPeopleA = 0;
       let pendingPeopleC = 0;
@@ -59,6 +75,35 @@ export default async function handler(request, response) {
         }
 
         guest.escorts.map((escort)=>{
+          if (escort.present){
+            if (escort.age == 18)
+              presentPeopleA ++;
+            else if (escort.age == 11)
+              presentPeopleC ++;
+            else if (escort.age == 6)
+              presentPeopleN ++;
+            else 
+              presentPeopleX ++;
+
+            if (guest.owner == "Anselmo")
+              if (escort.age == 18)
+                presentPeopleAnselmoA ++;
+              else if (escort.age == 11)
+                presentPeopleAnselmoC ++;
+              else if (escort.age == 6)
+                presentPeopleAnselmoN ++;
+              else 
+                presentPeopleAnselmoX ++;
+            else
+              if (escort.age == 18)
+                presentPeopleMargoA ++;
+              else if (escort.age == 11)
+                presentPeopleMargoC ++;
+              else if (escort.age == 6)
+                presentPeopleMargoN ++;
+              else 
+                presentPeopleMargoX ++;
+          }          
           if (guest.dueDate)
             if (escort.confirmed){
               if (escort.age == 18)
@@ -154,6 +199,20 @@ export default async function handler(request, response) {
         confirmedPeopleMargoC,
         confirmedPeopleMargoN,
         confirmedPeopleMargoX,
+
+        presentPeopleA,
+        presentPeopleC,
+        presentPeopleN,
+        presentPeopleX,
+        presentPeopleAnselmoA,
+        presentPeopleAnselmoC,
+        presentPeopleAnselmoN,
+        presentPeopleAnselmoX,
+        presentPeopleMargoA,
+        presentPeopleMargoC,
+        presentPeopleMargoN,
+        presentPeopleMargoX,
+
         recusedPeople,
         pendingPeopleA,
         pendingPeopleC,

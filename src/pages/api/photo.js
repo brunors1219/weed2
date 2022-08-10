@@ -1,3 +1,4 @@
+import openDatabase from "../../database/sqlite";
 import connectToDatabase from '../../database';
 import Photo from '../../database/schemas/Photo';
 
@@ -6,9 +7,13 @@ export default async function handler(request, response) {
     try {
       
       await connectToDatabase();
-
       const photos = await Photo.find().sort([['date', -1]]).limit(200).exec();
            
+      
+      // const database = await openDatabase();
+      // const photos = await database.all(`SELECT * FROM photos ORDER BY id DESC LIMIT 200`);
+      // console.log("new method", photos);
+      
       return response.status(201).json(photos);
 
     } catch (err) {

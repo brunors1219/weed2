@@ -27,6 +27,21 @@ function listguests() {
   const [ confirmedPeopleMargoN, setConfirmedPeopleMargoN] = useState();
   const [ confirmedPeopleMargoX, setConfirmedPeopleMargoX] = useState();
 
+  const [ presentPeopleA, setPresentPeopleA] = useState();
+  const [ presentPeopleC, setPresentPeopleC] = useState();
+  const [ presentPeopleN, setPresentPeopleN] = useState();
+  const [ presentPeopleX, setPresentPeopleX] = useState();
+
+  const [ presentPeopleAnselmoA, setPresentPeopleAnselmoA] = useState();
+  const [ presentPeopleAnselmoC, setPresentPeopleAnselmoC] = useState();
+  const [ presentPeopleAnselmoN, setPresentPeopleAnselmoN] = useState();
+  const [ presentPeopleAnselmoX, setPresentPeopleAnselmoX] = useState();
+
+  const [ presentPeopleMargoA, setPresentPeopleMargoA] = useState();
+  const [ presentPeopleMargoC, setPresentPeopleMargoC] = useState();
+  const [ presentPeopleMargoN, setPresentPeopleMargoN] = useState();
+  const [ presentPeopleMargoX, setPresentPeopleMargoX] = useState();
+
   const [ recusedPeople, setRecusedPeople] = useState();
 
   const [ pendingPeopleA, setPendingPeopleA] = useState();
@@ -73,6 +88,21 @@ function listguests() {
         setConfirmedPeopleMargoC(data.confirmedPeopleMargoC);
         setConfirmedPeopleMargoN(data.confirmedPeopleMargoN);
         setConfirmedPeopleMargoX(data.confirmedPeopleMargoX);
+
+        setPresentPeopleA(data.presentPeopleA);
+        setPresentPeopleC(data.presentPeopleC);
+        setPresentPeopleN(data.presentPeopleN);
+        setPresentPeopleX(data.presentPeopleX);
+
+        setPresentPeopleAnselmoA(data.presentPeopleAnselmoA);
+        setPresentPeopleAnselmoC(data.presentPeopleAnselmoC);
+        setPresentPeopleAnselmoN(data.presentPeopleAnselmoN);
+        setPresentPeopleAnselmoX(data.presentPeopleAnselmoX);
+
+        setPresentPeopleMargoA(data.presentPeopleMargoA);
+        setPresentPeopleMargoC(data.presentPeopleMargoC);
+        setPresentPeopleMargoN(data.presentPeopleMargoN);
+        setPresentPeopleMargoX(data.presentPeopleMargoX);
 
         setRecusedPeople(data.recusedPeople);
 
@@ -164,6 +194,67 @@ function listguests() {
       <Center display={"flex"} 
           flexDirection={"row"} 
           flexWrap={"wrap"}>
+
+        <Box textAlign={"center"}              
+          ml={10}
+          mr={10}>
+          <Text fontSize={"smaller"}>Presentes</Text>
+            <Text fontSize={"small"} 
+              fontWeight={700}
+              onClick={handleToggle}>
+              {presentPeopleA+presentPeopleC+presentPeopleN+presentPeopleX}
+            </Text>
+            <Box mt={4} display={"block"}
+              fontSize={"xx-small"}>
+                <Text>Adulto: <b>{presentPeopleA}</b></Text>
+                <Text>
+                    7 a 12 anos: <b>{presentPeopleC}</b>
+                     ({presentPeopleC+pendingPeopleC})
+                </Text>
+                <Text>
+                  Pagamos: <b>{presentPeopleA+presentPeopleC+presentPeopleX}</b>
+                </Text>
+                <Text>Menor de 7: <b>{presentPeopleN}</b></Text>
+                {presentPeopleX>0 ? <Text>Sem idade: <b>{presentPeopleX}</b></Text> : null}
+            </Box>
+        </Box>
+        <Box textAlign={"center"}              
+          ml={10}
+          mr={10}>
+          <Text fontSize={"smaller"}>Pres.Margo</Text>
+          <Text fontSize={"small"} 
+              fontWeight={700}>
+            {presentPeopleMargoA+presentPeopleMargoC+presentPeopleMargoN+presentPeopleMargoX}
+          </Text>
+          <Box fontSize={"xx-small"}>
+            <Text>Adulto: <b>{presentPeopleMargoA}</b></Text>
+            <Text>7 a 12 anos: <b>{presentPeopleMargoC}</b></Text>
+            <Text>
+              Pagamos: <b>{presentPeopleMargoA+presentPeopleMargoC+presentPeopleMargoX}</b>
+            </Text>
+            <Text>Menor de 7: <b>{presentPeopleMargoN}</b></Text>
+            {presentPeopleMargoX>0 ? <Text>Sem idade: <b>{presentPeopleMargoX}</b></Text> : null}
+          </Box>
+        </Box>
+        <Box textAlign={"center"}              
+          ml={10}
+          mr={10}>
+          <Text fontSize={"smaller"}>Pres.Anselmo</Text>
+          <Text fontSize={"small"} 
+              fontWeight={700}>
+            {presentPeopleAnselmoA+presentPeopleAnselmoC+presentPeopleAnselmoN+presentPeopleAnselmoX}
+          </Text>
+          <Box fontSize={"xx-small"}>
+            <Text>Adulto: <b>{presentPeopleAnselmoA}</b></Text>
+            <Text>7 a 12 anos: <b>{presentPeopleAnselmoC}</b></Text>
+            <Text>
+              Pagamos: <b>{presentPeopleAnselmoA+presentPeopleAnselmoC+presentPeopleAnselmoX}</b>
+            </Text>
+            <Text>Menor de 7: <b>{presentPeopleAnselmoN}</b></Text>
+            {presentPeopleAnselmoX>0 ? <Text>Sem idade: <b>{presentPeopleAnselmoX}</b></Text> : null}
+          </Box>
+        </Box>
+
         <Box textAlign={"center"}              
           ml={10}
           mr={10}>
@@ -305,25 +396,30 @@ function listguests() {
               <th>Família</th>
               <th>Noivo ou Noiva</th>
               <th>Acompanhantes</th>
+              <th>Presente</th>
             </tr>
           </thead>
           <tbody>
-            {guests.map((guest)=> {          
-              return guest._doc.escorts.map((escort)=>{       
-                const escorts = guest._doc.escorts
-                  .filter(f=>f.name !== escort.name)
-                  .map(escort => escort.name).join(', ');
-                return (
-                  <tr>
-                    <th>{escort.name}</th>
-                    <th>{guest._doc.name}</th>
-                    <th>{guest._doc.owner}</th>
-                    <th>
-                      {escorts}
-                    </th>
-                  </tr>
-                );
-              });
+            {guests.map((guest)=> {   
+              console.log(guest);       
+              return guest._doc.escorts
+                .filter(f=>f.confirmed)
+                .map((escort)=>{       
+                  const escorts = guest._doc.escorts
+                    .filter(f=>f.name !== escort.name && f.confirmed)
+                    .map(escort => escort.name).join(', ');
+                  return (
+                    <tr>
+                      <th>{escort.name}</th>
+                      <th>{guest._doc.name}</th>
+                      <th>{guest._doc.owner}</th>
+                      <th>
+                        {escorts}
+                      </th>
+                      <th>{escort.present?"Já Entrou":""}</th>
+                    </tr>
+                  );
+                });
             })}
           </tbody>
         </table>
