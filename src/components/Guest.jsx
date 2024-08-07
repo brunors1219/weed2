@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Center, Box, Flex, Text, Button, Image } from "@chakra-ui/react";
-import { MdStar } from "react-icons/md";
-import { ImMan, ImQuestion } from "react-icons/im";
-import { FaBaby, FaChild } from "react-icons/fa";
-import { FcOk, FcCancel } from "react-icons/fc";
+import { MdStar } from "react-icons/md/index.js";
+import { ImMan, ImQuestion } from "react-icons/im/index.js";
+import { FaBaby, FaChild } from "react-icons/fa/index.js";
+import { FcOk, FcCancel } from "react-icons/fc/index.js";
 import Gifts from './gifts';
 
 export default function GuestCard({ guest }) {

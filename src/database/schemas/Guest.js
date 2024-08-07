@@ -1,6 +1,6 @@
-import { Schema, model, models } from 'mongoose';
-
-import Escort from './Escort';
+import mongoose from 'mongoose';
+import Escort from './Escort.js';
+const { Schema, model, models } = mongoose;
 
 const Guest = new Schema({
   owner: { type: String, required: true }, 

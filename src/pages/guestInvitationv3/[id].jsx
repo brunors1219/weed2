@@ -7,8 +7,8 @@ import QrCode from '/src/components/QrCode';
 import Gifts from '/src/components/gifts';
 import * as Style from '../../styles/guestInvitationv3';
 import Camera from '/src/components/Camera';
-import { FcCamera } from 'react-icons/fc';
-import { BsCameraFill } from 'react-icons/bs';
+import { FcCamera } from 'react-icons/fc/index.js';
+import { BsCameraFill } from 'react-icons/bs/index.js';
 import DueDate from './../../components/DueDate';
 
 const GuestInvite = () => {

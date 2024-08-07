@@ -1,5 +1,6 @@
-import { Schema, model, models } from 'mongoose';
-import { Pagamentos } from './Pagamentos.js';
+// import { Pagamentos } from './Pagamentos.js';
+import mongoose from 'mongoose';
+const { Schema, model, models } = mongoose;
 
 const Product = new Schema({
   category: { type: String, required: true },

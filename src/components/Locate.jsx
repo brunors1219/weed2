@@ -3,8 +3,8 @@ import { Heading, Box, Center, Text, Button,
   useColorModeValue, FormControl} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { SunIcon } from '@chakra-ui/icons'
-import { FaChurch, FaRoute } from 'react-icons/fa';
-import { BiHotel } from 'react-icons/bi';
+import { FaChurch, FaRoute } from 'react-icons/fa/index.js';
+import { BiHotel } from 'react-icons/bi/index.js';
 
 
 const Fundo = styled(Center)`

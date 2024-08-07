@@ -3,7 +3,7 @@ import { Box, Center, Text, Stack, Button,
   Badge, useColorModeValue, FormControl} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import ConfirmationGuest from './ConfirmationGuest';
-import { GoThumbsup, GoThumbsdown } from 'react-icons/go';
+import { GoThumbsup, GoThumbsdown } from 'react-icons/go/index.js';
 
 const Fundo = styled(Center)`
   position:absolute;

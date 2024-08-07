@@ -1,4 +1,5 @@
-import { Schema, model, models } from 'mongoose';
+import mongoose from 'mongoose';
+const { Schema, model, models } = mongoose;
 
 const Setup = new Schema({
   showCamera: { type: Boolean, required: false},

@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Center, Text, Img } from '@chakra-ui/react';
-import { SiTinyletter } from 'react-icons/si';
-import { GiPresent } from 'react-icons/gi';
-import { GrValidate } from 'react-icons/gr';
-import { BsPersonCheckFill } from 'react-icons/bs';
-import { IoLogoWhatsapp } from 'react-icons/io';
+import { SiTinyletter } from 'react-icons/si/index.js';
+import { GiPresent } from 'react-icons/gi/index.js';
+import { GrValidate } from 'react-icons/gr/index.js';
+import { BsPersonCheckFill } from 'react-icons/bs/index.js';
+import { IoLogoWhatsapp } from 'react-icons/io/index.js';
 
 const Body = (props) => {
   const [whidth, setWhidth] = React.useState(false);

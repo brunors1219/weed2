@@ -3,7 +3,7 @@ import { Heading, Box, Center, Text, Button,
   useColorModeValue, FormControl} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { SunIcon } from '@chakra-ui/icons'
-import { FaChurch, FaRoute } from 'react-icons/fa';
+import { FaChurch, FaRoute } from 'react-icons/fa/index.js';
 
 const Fundo = styled(Center)`
   position:absolute;

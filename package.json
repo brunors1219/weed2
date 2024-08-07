@@ -2,6 +2,7 @@
   "name": "wedd",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "repository": "git@gitlab.com:ichihara7l/wedd.git",
   "author": "Pedro Henrique <p3drohenrique.moreira@gmail.com>",
   "license": "MIT",

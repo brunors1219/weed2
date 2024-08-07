@@ -2,7 +2,7 @@ import React from "react";
 import Webcam from "react-webcam";
 import styled from '@emotion/styled';
 import { Center, Box, IconButton } from '@chakra-ui/react';
-import { FcRotateCamera } from 'react-icons/fc';
+import { FcRotateCamera } from 'react-icons/fc/index.js';
 import { CloseIcon } from '@chakra-ui/icons';
 import Camera, { FACING_MODES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';

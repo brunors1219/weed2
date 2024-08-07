@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Box, Button, Badge } from '@chakra-ui/react';
-import { GoThumbsup, GoThumbsdown } from 'react-icons/go';
+import { GoThumbsup, GoThumbsdown } from 'react-icons/go/index.js';
 import styled from '@emotion/styled';
 
 export const BtnVai = styled(Button)`

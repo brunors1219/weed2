@@ -60,12 +60,12 @@ function listguests() {
   const [ pendingPeopleMargoX, setPendingPeopleMargoX] = useState();
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests`)
+    fetch(`/api/guest`)
       .then(response => response.json())
       .then(data => {
         setGuests(data);
       });
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/resume`)
+    fetch(`/api/resume`)
       .then(response => response.json())
       .then(data => {
         setQtdInvite(data.qtdInvite);
@@ -130,7 +130,7 @@ function listguests() {
    const parameters = new URLSearchParams({
       query : query});
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests?${parameters}`)
+    fetch(`/api/guests?${parameters}`)
       .then(response => response.json())
       .then(data => {
         setGuests(data);
