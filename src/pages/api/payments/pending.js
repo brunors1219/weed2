@@ -6,7 +6,7 @@ export default async function handler(request, response) {
   const Pagamento = await Pagamentos.findOne({ request_id : request.query.preference_id }).exec();
 
   if (Pagamento){
-    return response.redirect(`${process.env.APP_URL}/guestInvitationv3/${Pagamento.guest}`);
+    return response.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/guestInvitationv3/${Pagamento.guest}`);
   }else{
     return response.status(500).json({ message: 'Registro não encontrado para atualização' });
   }

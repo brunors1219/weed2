@@ -72,11 +72,6 @@ function InsertGuests() {
         }
     };
 
-    useEffect(() => {
-        console.log('Valor da variável de ambiente:', process.env.NEXT_PUBLIC_API_URL);
-    }, []);
-
-
     return (
         <>
             <Center mt={5}>

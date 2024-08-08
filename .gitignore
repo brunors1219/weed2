@@ -4,3 +4,4 @@ build
 .vercel
 .next
 .env
+.env.local

@@ -11,7 +11,7 @@ export default async function handler(request, response) {
     Pagamento.excluded = true;
     Pagamento.save();
 
-    return response.redirect(`${process.env.APP_URL}/guestInvitationv3/${Pagamento.guest}`);
+    return response.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/guestInvitationv3/${Pagamento.guest}`);
   }else{
     return response.status(500).json({ message: 'Registro não encontrado para atualização' });
   }

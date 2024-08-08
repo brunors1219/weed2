@@ -80,7 +80,7 @@ export default async function handler(request, response) {
         return {
           ...guest, 
           gifts: payments.find(f=>f.guest == guest._id),
-          invitation_url: `${process.env.APP_URL}/guestInvitationv3/${guest.id}`
+          invitation_url: `${process.env.NEXT_PUBLIC_APP_URL}/guestInvitationv3/${guest.id}`
         };
       }));
 
