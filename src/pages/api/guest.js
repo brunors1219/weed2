@@ -12,50 +12,42 @@ export default async function handler(request, response) {
         return response.status(400).json({ message: 'Corpo da requisição está vazio' });
       }
 
-      const guests = request.body;
+      const guest = request.body;
 
-      if (!Array.isArray(guests)) {
-        return response.status(400).json({ message: 'Guests precisa ser uma array'});
-      }
-      let erros = [];
-      guests.map(async (item)=>{
-        if (item.name) {
-          const guestExists = await Guest.findOne({
-            "name" : item.name,
+      if (guest.name) {
+        const guestExists = await Guest.findOne({ name: guest.name });
+
+        if (guestExists) {
+          // Guest exists - UPDATE (you can add update logic here if needed)
+          return response.status(200).json({ message: 'Convidado já existe.' });
+        } else {
+          // Guest does not exist - INSERT
+          const newGuest = new Guest({
+            name: guest.name,
+            owner: guest.owner,
+            referency: guest.referency,
+            email: guest.email,
+            age: guest.age,
+            phone: guest.phone,
+            confirmed: guest.confirmed,
+            dueDate: guest.dueDate,
+            escorts: guest.escorts.map(escort => ({
+              name: escort.name,
+              age: escort.age,
+              confirmed: escort.confirmed,
+              present: escort.present,
+            })),
           });
-  
-           if (guestExists) {
-              //  Guest exist - UPDATE
 
-
-           } else {
-              //  Guest not exist - INSERT
-              const record_guest = new Guest({
-                name : item.name, 
-                owner : item.owner,
-                referency : item.referency
-              });
-              
-              if (Array.isArray(item.escorts)) {
-                record_guest.escorts = item.escorts.map(escort => ({
-                  name: escort.name
-                }));                
-              };
-                         
-              record_guest.save(function (err) {
-                if (err) erros.push({"erro": err, "owner": item.owner, "name": item.name});
-              });
-           }
-         }
-      })
-      if (erros.length > 0)
-        return response.status(200).json(erros);
-      else
-        return response.status(201).json('Dados incluídos com sucesso');
+          await newGuest.save();
+          return response.status(201).json('Convidado inserido com sucesso');
+        }
+      } else {
+        return response.status(400).json({ message: 'Nome é obrigatório' });
+      }
     } catch (err) {
       console.error(err);
-
-      return response.status(500).json({ message: 'Internal server error' });
+      return response.status(500).json({ message: 'Erro interno do servidor' });
     }
   }
 
@@ -66,26 +58,26 @@ export default async function handler(request, response) {
       const { query } = request.query;
 
       let guests = {};
-      if (!query || query =="All")
-        guests = await Guest.find().exec(); 
-      else{
+      if (!query || query == "All")
+        guests = await Guest.find().exec();
+      else {
         let regex = new RegExp(query, 'i');
         console.log('anselmo', regex);
-        guests = await Guest.find({'name':regex}).exec();
+        guests = await Guest.find({ 'name': regex }).exec();
       }
-        
-      const payments = await Pagamentos.find({"request_Status":"Aprovado e será enviado ao noivos"}).exec();
+
+      const payments = await Pagamentos.find({ "request_Status": "Aprovado e será enviado ao noivos" }).exec();
 
       const serializedGuests = await Promise.all(guests.map(async guest => {
         return {
-          ...guest, 
-          gifts: payments.find(f=>f.guest == guest._id),
+          ...guest,
+          gifts: payments.find(f => f.guest == guest._id),
           invitation_url: `${process.env.NEXT_PUBLIC_APP_URL}/guestInvitationv3/${guest.id}`
         };
       }));
 
       return response.json(serializedGuests);
-      
+
     } catch (err) {
       return response.status(500).json(err);
     }
@@ -102,22 +94,22 @@ export default async function handler(request, response) {
 
       await connectToDatabase();
 
-      const guests = await Guest.find({_id : guest_id}).exec();
-      if (guests){
-        guests.map((guest)=>{
+      const guests = await Guest.find({ _id: guest_id }).exec();
+      if (guests) {
+        guests.map((guest) => {
           if (guest._id == escort_id) {
             guest.present = true;
           }
-        });          
+        });
       }
       guests.save();
-      
+
       return response.json(guest);
     } catch (err) {
       return response.status(500).json(err);
     }
   }
 
-  
+
   return response.status(405).json({ message: 'Method not allowed' });
 }

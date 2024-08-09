@@ -1,6 +1,7 @@
 // src/pages/insertGuests/index.jsx
 import React, { useState, useEffect } from 'react';
-import { Box, Center, Input, Text, Button, FormControl, FormLabel } from "@chakra-ui/react";
+import { Box, Center, Input, Text, Button, FormControl, FormLabel, Checkbox, CheckboxGroup } from "@chakra-ui/react";
+import { CheckIcon } from "@chakra-ui/icons";
 
 function InsertGuests() {
     const [owner, setOwner] = useState('');
@@ -144,12 +145,14 @@ function InsertGuests() {
                         </FormControl>
                         <FormControl id="confirmed" mb={4}>
                             <FormLabel>Confirmado</FormLabel>
-                            <Input
-                                type='checkbox'
-                                checked={confirmed}
+                            <Checkbox
+                                isChecked={confirmed}
                                 onChange={(e) => setConfirmed(e.target.checked)}
-                                bgColor={"#f1f1f1"}
-                            />
+                                colorScheme="messenger"
+                                size="lg"
+                            >
+                                {confirmed ? "Sim" : "Não"}
+                            </Checkbox>
                         </FormControl>
                         <FormControl id="dueDate" mb={4}>
                             <FormLabel>Data de vencimento</FormLabel>
@@ -187,21 +190,25 @@ function InsertGuests() {
                                     </FormControl>
                                     <FormControl id={`escort-confirmed-${index}`} mb={2}>
                                         <FormLabel>Confirmado</FormLabel>
-                                        <Input
-                                            type='checkbox'
-                                            checked={escort.confirmed}
+                                        <Checkbox
+                                            isChecked={escort.confirmed}
                                             onChange={(e) => handleEscortChange(index, 'confirmed', e.target.checked)}
-                                            bgColor={"#f1f1f1"}
-                                        />
+                                            colorScheme="messenger"
+                                            size="lg"
+                                        >
+                                            {escort.confirmed ? "Sim" : "Não"}
+                                        </Checkbox>
                                     </FormControl>
                                     <FormControl id={`escort-present-${index}`} mb={2}>
                                         <FormLabel>Presente</FormLabel>
-                                        <Input
-                                            type='checkbox'
-                                            checked={escort.present}
+                                        <Checkbox
+                                            isChecked={escort.present}
                                             onChange={(e) => handleEscortChange(index, 'present', e.target.checked)}
-                                            bgColor={"#f1f1f1"}
-                                        />
+                                            colorScheme="messenger"
+                                            size="lg"
+                                        >
+                                            {escort.present ? "Sim" : "Não"}
+                                        </Checkbox>
                                     </FormControl>
                                     <Button colorScheme='red' onClick={() => handleRemoveEscort(index)}>
                                         Remover Acompanhante
