@@ -107,7 +107,7 @@ const GuestInvite = () => {
       <Gifts Visivel={mostrarList} funcaoFechar={fecharList} guest={id} guest_name={name}/>
       <Box display={"Flex"}>
         
-        <Style.lateral />
+        <Style.Lateral />
 
         <Style.Caixa h="100vh" flexDirection="column">
 
@@ -160,7 +160,7 @@ const GuestInvite = () => {
           
         </Style.Caixa>
 
-        <Style.lateral />
+        <Style.Lateral />
 
       </Box>
 

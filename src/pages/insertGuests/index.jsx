@@ -1,7 +1,5 @@
-// src/pages/insertGuests/index.jsx
 import React, { useState, useEffect } from 'react';
-import { Box, Center, Input, Text, Button, FormControl, FormLabel, Checkbox, CheckboxGroup } from "@chakra-ui/react";
-import { CheckIcon } from "@chakra-ui/icons";
+import { Box, Center, Input, Text, Button, FormControl, FormLabel, Checkbox } from "@chakra-ui/react";
 
 function InsertGuests() {
     const [owner, setOwner] = useState('');

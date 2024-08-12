@@ -11,7 +11,7 @@ export default function GuestCard({ guest }) {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(guest.invitation_url);
 
-    console.log(guest);
+    console.log('Guest: ', guest);
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${guest._doc._id}`, {
       method: 'POST',
@@ -94,7 +94,7 @@ export default function GuestCard({ guest }) {
           </Center>
         </Flex>
       </Center>
-      {console.log(guest.gifts)}
+      {console.log('Guest Gifts: ', guest.gifts)}
       {(guest.gifts != undefined)
         ? <>
             <Text p={4} 

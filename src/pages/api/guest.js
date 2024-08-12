@@ -85,7 +85,7 @@ export default async function handler(request, response) {
 
   if (request.method === 'GET' && request.params) {
     try {
-      console.log(request);
+      console.log('Request: ', request);
 
       const {
         guest_id,
