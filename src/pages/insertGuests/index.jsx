@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Center, Input, Text, Button, FormControl, FormLabel, Checkbox } from "@chakra-ui/react";
+import { useRouter } from 'next/router';
 
 function InsertGuests() {
     const [owner, setOwner] = useState('');
@@ -11,6 +12,23 @@ function InsertGuests() {
     const [confirmed, setConfirmed] = useState(false);
     const [dueDate, setDueDate] = useState('');
     const [escorts, setEscorts] = useState([{ name: '', age: '', confirmed: false, present: false }]);
+
+    const router = useRouter();
+    const { query } = router;
+
+    useEffect(() => {
+        if (query.id) {
+            setOwner(query.owner || '');
+            setName(query.name || '');
+            setReferency(query.referency || '');
+            setEmail(query.email || '');
+            setAge(query.age || '');
+            setPhone(query.phone || '');
+            setConfirmed(query.confirmed === 'true');
+            setDueDate(query.dueDate || '');
+            setEscorts(JSON.parse(query.escorts || '[]'));
+        }
+    }, [query]);
 
     const handleEscortChange = (index, field, value) => {
         const newEscorts = [...escorts];
@@ -25,6 +43,14 @@ function InsertGuests() {
     const handleRemoveEscort = (index) => {
         const newEscorts = escorts.filter((_, i) => i !== index);
         setEscorts(newEscorts);
+    };
+
+    // Format phone number
+    const handlePhoneChange = (e) => {
+        let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é número
+        value = value.replace(/^(\d{2})(\d)/g, '($1) $2'); // Adiciona parênteses em volta dos dois primeiros dígitos
+        value = value.replace(/(\d)(\d{4})$/, '$1-$2'); // Adiciona o traço entre o quinto e o sexto dígito
+        setPhone(value);
     };
 
     const handleSubmit = async (e) => {
@@ -43,16 +69,29 @@ function InsertGuests() {
         };
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/guest`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(guest),
-            });
+            let response;
+            if (query.id) {
+                // Update existing guest
+                response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests/${query.id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(guest),
+                });
+            } else {
+                // Insert new guest
+                response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/guest`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(guest),
+                });
+            }
 
             if (response.ok) {
-                alert('Convidado inserido com sucesso!');
+                alert(query.id ? 'Convidado atualizado com sucesso!' : 'Convidado inserido com sucesso!');
                 setOwner('');
                 setName('');
                 setReferency('');
@@ -62,19 +101,20 @@ function InsertGuests() {
                 setConfirmed(false);
                 setDueDate('');
                 setEscorts([{ name: '', age: '', confirmed: false, present: false }]);
+                router.push('/listguests'); // Redirect to guest list page
             } else {
-                alert('Erro ao inserir convidado.');
+                alert('Erro ao inserir / atualizar convidado.');
             }
         } catch (error) {
             console.error('Erro:', error);
-            alert('Erro ao inserir convidado.');
+            alert('Erro ao inserir / atualizar convidado.');
         }
     };
 
     return (
         <>
             <Center mt={5}>
-                <Text fontSize={"xx-large"}>Inserir Convidado</Text>
+                <Text fontSize={"xx-large"}>{query.id ? 'Editar Convidado' : 'Inserir Convidado'}</Text>
             </Center>
             <Center mb={5}>
                 <Box width={"80%"} mt={5} bgColor={"#FBB6CE"} p={5} borderRadius={"md"}>
@@ -136,7 +176,7 @@ function InsertGuests() {
                             <Input
                                 type='text'
                                 value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
+                                onChange={handlePhoneChange}
                                 placeholder='Digite o telefone do convidado'
                                 bgColor={"#f1f1f1"}
                             />
@@ -219,7 +259,7 @@ function InsertGuests() {
                         </FormControl>
                         <Center>
                             <Button type='submit' colorScheme='teal'>
-                                Inserir Convidado
+                                {query.id ? 'Editar Convidado' : 'Inserir Convidado'}
                             </Button>
                         </Center>
                     </form>

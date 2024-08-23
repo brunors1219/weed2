@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { Center, Box, Flex, Text, Button, Image } from "@chakra-ui/react";
 import { MdStar } from "react-icons/md/index.js";
 import { ImMan, ImQuestion } from "react-icons/im/index.js";
 import { FaBaby, FaChild } from "react-icons/fa/index.js";
 import { FcOk, FcCancel } from "react-icons/fc/index.js";
-import { LiaEdit } from "react-icons/lia";
+import { LiaEdit } from "react-icons/lia/index.js";
 import Gifts from './gifts';
 
 
@@ -61,6 +62,26 @@ export default function GuestCard({ guest }) {
 
   }
 
+  const router = useRouter();
+  const handleGuest = () => {
+    console.log('Guest Id:', guest._doc._id);
+    router.push({
+      pathname: '/insertGuests',
+      query: {
+        id: guest._doc._id,
+        owner: guest._doc.owner,
+        name: guest._doc.name,
+        referency: guest._doc.referency,
+        email: guest._doc.email,
+        age: guest._doc.age,
+        phone: guest._doc.phone,
+        confirmed: guest._doc.confirmed,
+        dueDate: guest._doc.dueDate,
+        escorts: JSON.stringify(guest._doc.escorts)
+      }
+    });
+  }
+
   return (
     <Box p="1" w="19%" minW={"170px"} borderWidth="1px" m="2px" backgroundColor={guest._doc.dueDate ? 'green.300' : 'none'}>
       <Flex mt={2} align="end" mr="0px">
@@ -71,10 +92,10 @@ export default function GuestCard({ guest }) {
 
       </Flex>
       <Flex justifyContent={"flex-end"}>
-        <Button >
+        <Button onClick={handleGuest}>
           <LiaEdit
             color='green'
-            fontSize='28px'/>
+            fontSize='28px' />
         </Button>
       </Flex>
       <Text mt={1} fontSize="15px" fontWeight="extrabold">
