@@ -6,6 +6,7 @@ import { ImMan, ImQuestion } from "react-icons/im/index.js";
 import { FaBaby, FaChild } from "react-icons/fa/index.js";
 import { FcOk, FcCancel } from "react-icons/fc/index.js";
 import { LiaEdit } from "react-icons/lia/index.js";
+import { GrClose } from "react-icons/gr";
 import Gifts from './gifts';
 
 
@@ -82,6 +83,34 @@ export default function GuestCard({ guest }) {
     });
   }
 
+  const handleRemove = () => { //função para fazer remoção do convidado
+    if (confirm("Tem certeza que deseja remover este convidado?")) {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/remove`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: guest._doc._id
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert("Convidado removido com sucesso!");
+            router.replace(router.asPath); 
+          } else {
+            alert("Falha ao remover o convidado.");
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao remover convidado:', error);
+          alert("Ocorreu um erro ao remover o convidado.");
+        });
+    }
+  };
+
+
   return (
     <Box p="1" w="19%" minW={"170px"} borderWidth="1px" m="2px" backgroundColor={guest._doc.dueDate ? 'green.300' : 'none'}>
       <Flex mt={2} align="end" mr="0px">
@@ -91,10 +120,16 @@ export default function GuestCard({ guest }) {
         </Text>
 
       </Flex>
-      <Flex justifyContent={"flex-end"}>
+      <Flex justifyContent={"flex-end"} direction="row" gap="2">
         <Button onClick={handleGuest}>
           <LiaEdit
             color='green'
+            fontSize='28px' />
+        </Button>
+
+        <Button onClick={handleRemove}>
+          <GrClose 
+            color='red'
             fontSize='28px' />
         </Button>
       </Flex>

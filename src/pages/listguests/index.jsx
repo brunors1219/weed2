@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import GuestCard from '../../components/Guest';
-import { Box, Center, Input, Text, Collapse, Button } from "@chakra-ui/react";
+import { Box, Center, Input, Text, Collapse, Button, Flex } from "@chakra-ui/react";
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { GrAdd } from "react-icons/gr";
+import { useRouter } from 'next/router';
 
 function listguests() {
   const [guests, setGuests] = useState([]);
@@ -58,6 +60,10 @@ function listguests() {
   const [pendingPeopleMargoC, setPendingPeopleMargoC] = useState();
   const [pendingPeopleMargoN, setPendingPeopleMargoN] = useState();
   const [pendingPeopleMargoX, setPendingPeopleMargoX] = useState();
+  const router = useRouter();
+  const insert = () => {
+    router.push('/insertGuests')
+  };
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/guest`)
@@ -379,7 +385,15 @@ function listguests() {
             {pendingPeopleAnselmoX > 0 ? <Text>Sem idade: <b>{pendingPeopleAnselmoX}</b></Text> : null}
           </Box>
         </Box>
+        
       </Center>
+      <Flex justifyContent={"right"} direction="row" padding={"20px"}>
+          <Button onClick={insert}>
+            <GrAdd
+              color='green'
+              fontSize='28px' />
+          </Button>
+        </Flex>
       <Center display={"flex"}
         flexDirection={"row"}
         flexWrap={"wrap"}
@@ -390,7 +404,6 @@ function listguests() {
           );
         })}
       </Center>
-
       <Center display={"none"}
         flexDirection={"row"}
         flexWrap={"wrap"}
