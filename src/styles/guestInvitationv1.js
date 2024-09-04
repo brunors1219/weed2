@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import { Center, Box, Flex, Button } from "@chakra-ui/react";
 
 export const Fundo = styled(Center)`
