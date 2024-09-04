@@ -1912,7 +1912,7 @@
   "resolved" "https://registry.npmjs.org/@emotion/sheet/-/sheet-1.1.0.tgz"
   "version" "1.1.0"
 
-"@emotion/styled@^11.0.0", "@emotion/styled@^11.8.1", "@emotion/styled@10.x":
+"@emotion/styled@^11.0.0", "@emotion/styled@^11.9.0", "@emotion/styled@10.x":
   "integrity" "sha512-tkzkY7nQhW/zC4hztlwucpT8QEZ6eUzpXDRhww/Eej4tFfO0FxQYWRyg/c5CCXa4d/f174kqeXYjuQRnhzf6dA=="
   "resolved" "https://registry.npmjs.org/@emotion/styled/-/styled-11.13.0.tgz"
   "version" "11.13.0"
