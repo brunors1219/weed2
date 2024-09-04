@@ -387,23 +387,29 @@ function listguests() {
         </Box>
         
       </Center>
-      <Flex justifyContent={"right"} direction="row" padding={"20px"}>
+      
+      <Center display={"flex"}
+        flexDirection={"row"}
+        flexWrap={"wrap"}
+        alignItems={"stretch"}>
+        
+      <Flex alignContent={"center"} //botão para formulário de novo convidado
+        justifyContent={"center"}
+        padding={"20px"}>
           <Button onClick={insert}>
             <GrAdd
               color='green'
               fontSize='28px' />
           </Button>
         </Flex>
-      <Center display={"flex"}
-        flexDirection={"row"}
-        flexWrap={"wrap"}
-        alignItems={"stretch"}>
+
         {guests.map((guest) => {
           return (
             <GuestCard key={guest._id} guest={guest} />
           );
         })}
       </Center>
+      
       <Center display={"none"}
         flexDirection={"row"}
         flexWrap={"wrap"}
@@ -443,7 +449,7 @@ function listguests() {
           </tbody>
         </table>
       </Center>
-
+      
     </>
 
   );

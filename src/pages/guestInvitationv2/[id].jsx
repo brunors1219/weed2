@@ -5,7 +5,7 @@ import Confirmation from "/src/components/Confirmation.jsx";
 import Locate from "/src/components/Locate.jsx";
 import QrCode from '/src/components/QrCode';
 import Gifts from '/src/components/gifts';
-import * as Style from '../../styles/guestInvitationv2';
+import Style from '../../styles/guestInvitationv2';
 
 const GuestInvite = () => {
 
